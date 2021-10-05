@@ -25,7 +25,7 @@ the platform user can navigate through 2 main links of exploration.
 2 : All artists (photo of Artist [clic on image and see the profil and the Artpiece])
 
 ### other Interactions
-search bar / contact - know about / FAQ / Collect Email for Newsletter
+search bar / contact - know about us/ FAQ / Collect Email for Newsletter
 
 # Detailed description
 
