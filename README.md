@@ -36,13 +36,9 @@ inspiration of similar French website : https://www.amelie-paris.com/fr/
 the oversize will be compatible for Computer and phone format size. 
 ![image](https://user-images.githubusercontent.com/91942753/136030340-3df2f590-ee37-481b-b4fe-2f8e7abc6cdc.png)
 
-
-
-
-
-
-
 ## Profil register page Level1
+If L0-5 is inactive (meaning the user is not login), once the user clic on L0-10 . whether the user login whether he create an account following the format below
+
 
 ## Artpiece register page Level1
 
