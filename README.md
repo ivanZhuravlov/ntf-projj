@@ -6,12 +6,13 @@ Jenko.io is a platform enable to create and provide Certificated of Authenticity
 # user story
 users access to jenko.io
 the platform enable artists who wants to protect and register a piece of art into the blockchain, and to obtain a certificate of authenticity. 
-the information given by the Artists will be recorded into the Blockchain and accessible through the platform in ipfs. 
+the information given by the Art piece user (Artist, Galeries, Buyers) and  will be recorded into the Blockchain and accessible through the platform in ipfs. the Certificate of Authencity contains the contract between user who have a physical transaction of a piece of Art. 
+
 
 From the Front page, the objective is show immediately the main action for user ( Create Now or Explore)
 creation:
-the Artist shall create a profile and fill his information (see Profile)
-the Artist shall create a description of his Art piece (see Art piece)
+  1: the Artist, Galery, Buyer shall create a profile and fill their information (see Profile)
+  2: the Artist shall create a description of his Art piece (see Art piece)
 
 exploration:
 the platform user can navigate through 2 main links of exploration
