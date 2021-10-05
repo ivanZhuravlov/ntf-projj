@@ -29,7 +29,18 @@ search bar / contact - know about us/ FAQ / Collect Email for Newsletter
 
 # Detailed description
 
+inspiration of similar French website : https://www.amelie-paris.com/fr/  
+
 ## Front page Level0
+
+the oversize will be compatible for Computer and phone format size. 
+
+![image](https://user-images.githubusercontent.com/91942753/136027616-c28e9e25-9fd6-4474-8e6e-e722eeac43c9.png)
+
+
+
+
+
 
 ## Profil register page Level1
 
