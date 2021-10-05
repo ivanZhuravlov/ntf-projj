@@ -13,9 +13,8 @@ the information given around the Artpiece' life by users (Artist, Galeries, Buye
 
 ### From the Front page, the objective is show immediately the main action for user ( Create Now or Explore).
 ### Creation:
--1: the Artist, Galery, Buyer shall create a profile and fill their information (see Profile).
-
--2: the Artist shall create a description of his Art piece (see Art piece)
+  1: the Artist, Galery, Buyer shall create a profile and fill their information (see Profile).
+  2: the Artist shall create a description of his Art piece (see Art piece)
 
 ### Exploration:
 the platform user can navigate through 2 main links of exploration.
