@@ -43,7 +43,10 @@ If L0-5 is inactive (meaning the user is not login), once the user clic on L0-10
 
 
 ## Profil register page Level1
-From login page create a profil. 
+From login page create a profile. # the profile shall be recorded in Blockchain. 
+
+![Screenshot 2021-10-05 at 16 58 21](https://user-images.githubusercontent.com/91942753/136048575-f274416f-fa8e-4f8a-9591-87554895a207.png)
+
 
 
 
