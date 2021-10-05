@@ -4,8 +4,10 @@ Jenko.io is a platform enable to create and provide Certificated of Authenticity
 "Property together with a contract, is the core institutional component of Market ans a core institutional element of liberal society" Yochai Benkler - the wealth of network 2006
 
 # user story
-users access to jenko.io
+users access to jenko.io.
+
 the platform enable artists who wants to protect and register a piece of art into the blockchain, and to obtain a certificate of authenticity. 
+
 the information given by the Art piece user (Artist, Galeries, Buyers) and  will be recorded into the Blockchain and accessible through the platform in ipfs. the Certificate of Authencity contains the contract between user who have a physical transaction of a piece of Art. 
 
 
