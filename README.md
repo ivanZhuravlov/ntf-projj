@@ -42,18 +42,16 @@ If L0-5 is inactive (meaning the user is not login), once the user clic on L0-10
 ![Screenshot 2021-10-05 at 15 28 39](https://user-images.githubusercontent.com/91942753/136032781-fbf6d18a-b2c2-4351-ae18-6ed523783936.png)
 
 
-## Profil register page Level1
+## Profile register page Level1
 From login page create a profile. # the profile shall be recorded in Blockchain. 
-
-![Screenshot 2021-10-05 at 16 58 21](https://user-images.githubusercontent.com/91942753/136048575-f274416f-fa8e-4f8a-9591-87554895a207.png)
-
-
-
-
-
+![Screenshot 2021-10-05 at 17 03 36](https://user-images.githubusercontent.com/91942753/136049676-f3070b0d-5a2a-40ae-9659-bda8ac7a6b32.png)
 
 
 ## Artpiece register page Level1
+if profile register for an artist is not set, the link will not acces to the page but forward to create Profile. if the profil register is ok, the artist could create a certicate of authencity.
+
+
+
 
 ## Explore Artpiece page Level1
 
