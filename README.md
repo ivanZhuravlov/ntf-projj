@@ -29,4 +29,20 @@ search bar / contact - know about us/ FAQ / Collect Email for Newsletter
 
 # Detailed description
 
-## Front page 
+## Front page Level0
+
+## Profil register page Level1
+
+## Artpiece register page Level1
+
+## Explore Artpiece page Level1
+
+## Explore Artist page Level1
+
+## Certificate of Authenticity design 
+
+## logic 
+
+
+
+
