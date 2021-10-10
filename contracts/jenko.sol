@@ -81,4 +81,8 @@ contract Jenko is ERC721, Ownable {
         _mint(msg.sender, newTokenId);
         _setTokenURI(newTokenId, _tokenUri);
     }
+    
+    function lastToken() public view returns (string memory) {
+        return _tokenIds.current().toString();
+    }
 }
