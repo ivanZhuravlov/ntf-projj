@@ -50,6 +50,7 @@ From login page create a profile. # the profile shall be recorded in Blockchain.
 ## Artpiece register page Level1
 if profile register for an artist is not set, the link will not acces to the page but forward to create Profile. if the profil register is ok, the artist could create a certicate of authencity but filling the fields as described below.
 
+![Screenshot 2021-10-11 at 16 44 35](https://user-images.githubusercontent.com/91942753/136810135-13e48e3e-ee60-43b6-87a1-0828f8d495b4.png)
 
 
 
