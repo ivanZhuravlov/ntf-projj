@@ -13,7 +13,7 @@ the information given around the Artpiece' life by users (Artist, Galeries, Buye
 
 ### From the Front page, the objective is show immediately the main action for user ( Create Now or Explore).
 ### Creation:
-  1: the Artist, Galery, Buyer shall create a profile and fill their information (see Profile).
+  1: the Artist, Galery, shall create a profile and fill their information (see Profile).
   
   2: the Artist shall create a description of his Art piece (see Art piece)
 
@@ -33,8 +33,12 @@ inspiration of similar French website : https://www.amelie-paris.com/fr/
 
 ## Front page Level0
 
-the oversize will be compatible for Computer and phone format size. 
+the size will be compatible for Computer and phone format size. 
 ![image](https://user-images.githubusercontent.com/91942753/136030340-3df2f590-ee37-481b-b4fe-2f8e7abc6cdc.png)
+
+**modification 15 Oct**
+explore links is merged into one link to explore page. by default on Artpiece
+whereas the Artist is invited to create a profil through Create now link, the Art Galery will have a link to 
 
 ## Login page Level 1
 If L0-5 is inactive (meaning the user is not login), once the user clic on L0-10. format will be like 
