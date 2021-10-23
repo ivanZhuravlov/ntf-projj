@@ -12,8 +12,12 @@ contract Jenko is ERC721, Ownable {
     using Counters for Counters.Counter;
     Counters.Counter private _tokenIds;
 
+    event registerArtistEv(address _address, string _artistVerificationId);
+    event mintEv(uint256 _tokenId);
+
     struct Token {
         address artistAddress;
+        string artPieceId;
         string title;
         string description;
     }
@@ -28,11 +32,12 @@ contract Jenko is ERC721, Ownable {
     mapping (uint256 => string) private _tokenURIs;
     string private _baseURIextended;
 
-    constructor () ERC721("JenkoToken", "JNK") {
+    constructor () ERC721("JenkoAuthenticityToken", "JNK") {
     }
     
     function registerArtist(string memory _verificationId) public {
         artistsByAddress[msg.sender] = Artist(_verificationId);
+        emit registerArtistEv(msg.sender, _verificationId);
     }
     
     function setBaseURI(string memory baseURI_) external onlyOwner() {
@@ -66,8 +71,8 @@ contract Jenko is ERC721, Ownable {
         return string(abi.encodePacked(base, tokenId.toString()));
     }
 
-    
     function mint(
+        string memory _artPieceId,
         string memory _title, 
         string memory _description,
         string memory _tokenUri
@@ -76,10 +81,33 @@ contract Jenko is ERC721, Ownable {
 
         uint256 newTokenId = _tokenIds.current();
         
-        tokensById[newTokenId] = Token(msg.sender, _title, _description);
+        tokensById[newTokenId] = Token(msg.sender, _artPieceId, _title, _description);
         
         _mint(msg.sender, newTokenId);
         _setTokenURI(newTokenId, _tokenUri);
+        emit mintEv(newTokenId);
+    }
+
+    function mintAndRegisterArtist(
+        address _artistAddress,
+        string memory _artistVerificationId,
+        string memory _artPieceId,
+        string memory _title, 
+        string memory _description,
+        string memory _tokenUri
+    ) public onlyOwner {
+        _tokenIds.increment();
+
+        uint256 newTokenId = _tokenIds.current();
+        
+        tokensById[newTokenId] = Token(_artistAddress, _artPieceId, _title, _description);
+        
+        _mint(_artistAddress, newTokenId);
+        _setTokenURI(newTokenId, _tokenUri);
+        emit mintEv(newTokenId);
+    
+        artistsByAddress[_artistAddress] = Artist(_artistVerificationId);
+        emit registerArtistEv(_artistAddress, _artistVerificationId);
     }
     
     function lastToken() public view returns (string memory) {

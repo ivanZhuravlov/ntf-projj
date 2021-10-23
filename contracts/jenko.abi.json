@@ -99,6 +99,38 @@
     "type": "event"
   },
   {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "_tokenId",
+        "type": "uint256"
+      }
+    ],
+    "name": "mintEv",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "_address",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "string",
+        "name": "_artistVerificationId",
+        "type": "string"
+      }
+    ],
+    "name": "registerArtistEv",
+    "type": "event"
+  },
+  {
     "inputs": [
       {
         "internalType": "address",
@@ -214,6 +246,11 @@
     "inputs": [
       {
         "internalType": "string",
+        "name": "_artPieceId",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
         "name": "_title",
         "type": "string"
       },
@@ -229,6 +266,44 @@
       }
     ],
     "name": "mint",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_artistAddress",
+        "type": "address"
+      },
+      {
+        "internalType": "string",
+        "name": "_artistVerificationId",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "_artPieceId",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "_title",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "_description",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "_tokenUri",
+        "type": "string"
+      }
+    ],
+    "name": "mintAndRegisterArtist",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
@@ -445,6 +520,11 @@
         "internalType": "address",
         "name": "artistAddress",
         "type": "address"
+      },
+      {
+        "internalType": "string",
+        "name": "artPieceId",
+        "type": "string"
       },
       {
         "internalType": "string",
