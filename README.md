@@ -46,7 +46,7 @@ Buyer2: 2%
   
   2: the Artist shall create a description of his Art piece (see Art piece)
 
-### Exploration:
+### Exploration (hold for POC):
 the platform user can navigate through 2 main links of exploration.
 
 1 : all the publications (Artpiece photo, other filters inside this category will be possible in the future such as, sculpture, paint, photo, video  etc...).
