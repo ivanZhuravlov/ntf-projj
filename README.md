@@ -26,6 +26,19 @@ the Artpiece is certified and ready to be transfered to ("the Parties" : an agen
 
 the payment system in fiat must be included once clicking on create (last step of Artpiece creation). this payment will not be necessary for each piece if the Artist buy a credit of XX Artpiece. 
 
+The royalties system will be simulated in each user profile, upon the price recorded for each transaction. 
+
+We Keep the privacy such as management system connected to user profil. exploration page will be needed.
+
+Royalties default settings for POC: 
+Artist: 15%
+Jenko: 2%
+Galerie: 2%
+or Agent: 2%
+Buyer0: 2%
+Buyer1: 2%
+Buyer2: 2%
+
 
 ### From the Front page, the objective is show immediately the main action for user ( Create Now or Explore).
 ### Creation:
