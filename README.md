@@ -12,12 +12,17 @@ the information given around the Artpiece' life by users (Artist, Galeries, Buye
 
 # POC
 
--the website is accessible from jenko.io
--once registered, the Artist can upload Artpiece
--the Artpiece is certified and ready to be transfered to ("the Parties" : an agent, a galery, a Buyer) with associated Contract that includes Royalties system.
--"A Partie", once registered, accept the Contract of sale, and obtain the certificate of Authencity at his name once the Artpiece' property is transfered. 
--"Another Partie", once registered, accept the Contract of sale, and obtain the certificate of Authencity at his name once the Artpiece' property is transfered. 
--"Another Partie etc .." once registered, accept the Contract of sale, and obtain the certificate of Authencity at his name once the Artpiece' property is transfered. 
+the website is accessible from jenko.io.
+
+once registered, the Artist can upload Artpiece.
+
+the Artpiece is certified and ready to be transfered to ("the Parties" : an agent, a galery, a Buyer) with associated Contract that includes Royalties system.
+
+"A Partie", once registered, accept the Contract of sale, and obtain the certificate of Authencity at his name once the Artpiece' property is transfered.
+
+"Another Partie", once registered, accept the Contract of sale, and obtain the certificate of Authencity at his name once the Artpiece' property is transfered.
+
+"Another Partie etc .." once registered, accept the Contract of sale, and obtain the certificate of Authencity at his name once the Artpiece' property is transfered. 
 
 the payment system in fiat must be included once clicking on create (last step of Artpiece creation). this payment will not be necessary for each piece if the Artist buy a credit of XX Artpiece. 
 
