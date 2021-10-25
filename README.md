@@ -14,7 +14,7 @@ the information given around the Artpiece' life by users (Artist, Galeries, Buye
 
 the website is accessible from jenko.io.
 
-once registered, the Artist can upload Artpiece.
+once registered, the Artist can download an Artpiece and create Artpiece certificate of authenthicity.
 
 the Artpiece is certified and ready to be transfered to ("the Parties" : an agent, a galery, a Buyer) with associated Contract that includes Royalties system.
 
