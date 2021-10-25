@@ -6,9 +6,20 @@ Jenko.io is a platform enable to create and provide Certificated of Authenticity
 # user story
 users access to jenko.io.
 
-the platform enable artists who wants to protect and register a piece of art into the blockchain, and to generate certificate of authenticity. 
+the platform enable artists who wants to protect and register a piece of art into the blockchain such as NFT, and to generate an associated certificate of authenticity in order to build a Contract around the Artpiece that is including royalties system. 
 
 the information given around the Artpiece' life by users (Artist, Galeries, Buyers) will be recorded into the Blockchain and accessible through the platform in ipfs. the Certificate of Authencity (CoA) contains the contract of sale between users who have a physical transaction of a piece of Art and enable to claim legal rights. the CoA will be accessible only on ipfs website and the Contract of sale will sent by Email to user (including the CoA link).
+
+# POC
+
+-the website is accessible from jenko.io
+-once registered, the Artist can upload Artpiece
+-the Artpiece is certified and ready to be transfered to ("the Parties" : an agent, a galery, a Buyer) with associated Contract that includes Royalties system.
+-"A Partie", once registered, accept the Contract of sale, and obtain the certificate of Authencity at his name once the Artpiece' property is transfered. 
+-"Another Partie", once registered, accept the Contract of sale, and obtain the certificate of Authencity at his name once the Artpiece' property is transfered. 
+-"Another Partie etc .." once registered, accept the Contract of sale, and obtain the certificate of Authencity at his name once the Artpiece' property is transfered. 
+
+the payment system in fiat must be included once clicking on create (last step of Artpiece creation). this payment will not be necessary for each piece if the Artist buy a credit of XX Artpiece. 
 
 
 ### From the Front page, the objective is show immediately the main action for user ( Create Now or Explore).
