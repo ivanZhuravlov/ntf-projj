@@ -56,9 +56,9 @@ the platform user can navigate through 2 main links of exploration.
 ### other Interactions
 search bar / contact - know about us/ FAQ / Collect Email for Newsletter
 
-# Detailed description
+# logic description
 
-inspiration of similar French website : https://www.amelie-paris.com/fr/  
+ https://whimsical.com/jenko-io-9utJibPLHFdWdKEAay3JWf
 
 ## Front page Level0
 
