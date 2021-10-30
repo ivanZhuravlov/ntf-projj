@@ -108,7 +108,7 @@
         "type": "uint256"
       }
     ],
-    "name": "mintEv",
+    "name": "mintEvent",
     "type": "event"
   },
   {
@@ -127,7 +127,7 @@
         "type": "string"
       }
     ],
-    "name": "registerArtistEv",
+    "name": "registerArtistEvent",
     "type": "event"
   },
   {
@@ -160,7 +160,7 @@
     "outputs": [
       {
         "internalType": "string",
-        "name": "artistVerificationId",
+        "name": "verificationId",
         "type": "string"
       }
     ],
@@ -245,46 +245,18 @@
   {
     "inputs": [
       {
-        "internalType": "string",
-        "name": "_artPieceId",
-        "type": "string"
-      },
-      {
-        "internalType": "string",
-        "name": "_title",
-        "type": "string"
-      },
-      {
-        "internalType": "string",
-        "name": "_description",
-        "type": "string"
-      },
-      {
-        "internalType": "string",
-        "name": "_tokenUri",
-        "type": "string"
-      }
-    ],
-    "name": "mint",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
         "internalType": "address",
         "name": "_artistAddress",
         "type": "address"
       },
       {
         "internalType": "string",
-        "name": "_artistVerificationId",
+        "name": "_artPieceId",
         "type": "string"
       },
       {
         "internalType": "string",
-        "name": "_artPieceId",
+        "name": "_tokenUri",
         "type": "string"
       },
       {
@@ -299,12 +271,38 @@
       },
       {
         "internalType": "string",
-        "name": "_tokenUri",
+        "name": "_size",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "_technical",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "_material",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "_tirage",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "_movement",
         "type": "string"
       }
     ],
-    "name": "mintAndRegisterArtist",
-    "outputs": [],
+    "name": "mint",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
     "stateMutability": "nonpayable",
     "type": "function"
   },
@@ -356,8 +354,13 @@
   {
     "inputs": [
       {
+        "internalType": "address",
+        "name": "_artistAddress",
+        "type": "address"
+      },
+      {
         "internalType": "string",
-        "name": "_verificationId",
+        "name": "_artistVerificationId",
         "type": "string"
       }
     ],
@@ -534,6 +537,31 @@
       {
         "internalType": "string",
         "name": "description",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "size",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "technical",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "material",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "tirage",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "movement",
         "type": "string"
       }
     ],

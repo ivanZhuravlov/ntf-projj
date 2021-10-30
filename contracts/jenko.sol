@@ -12,19 +12,24 @@ contract Jenko is ERC721, Ownable {
     using Counters for Counters.Counter;
     Counters.Counter private _tokenIds;
 
-    event registerArtistEv(address _address, string _artistVerificationId);
-    event mintEv(uint256 _tokenId);
+    event registerArtistEvent(address _address, string _artistVerificationId);
+    event mintEvent(uint256 _tokenId);
 
     struct Token {
         address artistAddress;
         string artPieceId;
         string title;
         string description;
+        string size;
+        string technical;
+        string material;
+        string tirage;
+        string movement;
     }
     mapping(uint256 => Token) public tokensById;
     
     struct Artist {
-      string artistVerificationId;  
+      string verificationId;  
     }
     mapping(address => Artist) public artistsByAddress;
     
@@ -32,13 +37,7 @@ contract Jenko is ERC721, Ownable {
     mapping (uint256 => string) private _tokenURIs;
     string private _baseURIextended;
 
-    constructor () ERC721("JenkoAuthenticityToken", "JNK") {
-    }
-    
-    function registerArtist(string memory _verificationId) public {
-        artistsByAddress[msg.sender] = Artist(_verificationId);
-        emit registerArtistEv(msg.sender, _verificationId);
-    }
+    constructor () ERC721("JenkoAuthenticityContract", "JNK") {}
     
     function setBaseURI(string memory baseURI_) external onlyOwner() {
         _baseURIextended = baseURI_;
@@ -71,46 +70,50 @@ contract Jenko is ERC721, Ownable {
         return string(abi.encodePacked(base, tokenId.toString()));
     }
 
-    function mint(
-        string memory _artPieceId,
-        string memory _title, 
-        string memory _description,
-        string memory _tokenUri
-    ) public {
-        _tokenIds.increment();
-
-        uint256 newTokenId = _tokenIds.current();
-        
-        tokensById[newTokenId] = Token(msg.sender, _artPieceId, _title, _description);
-        
-        _mint(msg.sender, newTokenId);
-        _setTokenURI(newTokenId, _tokenUri);
-        emit mintEv(newTokenId);
-    }
-
-    function mintAndRegisterArtist(
-        address _artistAddress,
-        string memory _artistVerificationId,
-        string memory _artPieceId,
-        string memory _title, 
-        string memory _description,
-        string memory _tokenUri
-    ) public onlyOwner {
-        _tokenIds.increment();
-
-        uint256 newTokenId = _tokenIds.current();
-        
-        tokensById[newTokenId] = Token(_artistAddress, _artPieceId, _title, _description);
-        
-        _mint(_artistAddress, newTokenId);
-        _setTokenURI(newTokenId, _tokenUri);
-        emit mintEv(newTokenId);
-    
-        artistsByAddress[_artistAddress] = Artist(_artistVerificationId);
-        emit registerArtistEv(_artistAddress, _artistVerificationId);
-    }
-    
     function lastToken() public view returns (string memory) {
         return _tokenIds.current().toString();
+    }
+
+    function mint(
+        address _artistAddress,
+        string memory _artPieceId,
+        string memory _tokenUri,
+        string memory _title,
+        string memory _description,
+        string memory _size,
+        string memory _technical,
+        string memory _material,
+        string memory _tirage,
+        string memory _movement
+    ) public onlyOwner returns(uint256) {
+        _tokenIds.increment();
+
+        uint256 newTokenId = _tokenIds.current();
+        
+        tokensById[newTokenId] = Token(
+            _artistAddress,
+            _artPieceId,
+            _title,
+            _description,
+            _size,
+            _technical,
+            _material,
+            _tirage,
+            _movement
+        );
+
+        _mint(msg.sender, newTokenId);
+        _setTokenURI(newTokenId, _tokenUri);
+        emit mintEvent(newTokenId);
+
+        return newTokenId;
+    }
+
+    function registerArtist(
+        address _artistAddress,
+        string memory _artistVerificationId
+    ) public onlyOwner {
+        artistsByAddress[_artistAddress] = Artist(_artistVerificationId);
+        emit registerArtistEvent(_artistAddress, _artistVerificationId);
     }
 }
