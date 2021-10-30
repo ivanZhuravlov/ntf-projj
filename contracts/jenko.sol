@@ -29,7 +29,8 @@ contract Jenko is ERC721, Ownable {
     mapping(uint256 => Token) public tokensById;
     
     struct Artist {
-      string verificationId;  
+      string verificationId;
+      bool hasValidateTermsAndCondition;
     }
     mapping(address => Artist) public artistsByAddress;
     
@@ -113,7 +114,7 @@ contract Jenko is ERC721, Ownable {
         address _artistAddress,
         string memory _artistVerificationId
     ) public onlyOwner {
-        artistsByAddress[_artistAddress] = Artist(_artistVerificationId);
+        artistsByAddress[_artistAddress] = Artist(_artistVerificationId, true);
         emit registerArtistEvent(_artistAddress, _artistVerificationId);
     }
 }
