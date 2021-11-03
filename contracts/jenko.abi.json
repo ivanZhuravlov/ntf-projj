@@ -216,6 +216,16 @@
       },
       {
         "internalType": "string",
+        "name": "_firstname",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "_lastname",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
         "name": "_artistVerificationId",
         "type": "string"
       }
@@ -368,6 +378,16 @@
       {
         "internalType": "string",
         "name": "verificationId",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "firstname",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "lastname",
         "type": "string"
       },
       {

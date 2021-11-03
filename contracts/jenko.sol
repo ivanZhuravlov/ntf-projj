@@ -30,6 +30,8 @@ contract Jenko is ERC721, Ownable {
     
     struct Artist {
       string verificationId;
+      string firstname;
+      string lastname;
       bool hasValidateTermsAndCondition;
     }
     mapping(address => Artist) public artistsByAddress;
@@ -38,7 +40,7 @@ contract Jenko is ERC721, Ownable {
     mapping (uint256 => string) private _tokenURIs;
     string private _baseURIextended;
 
-    constructor () ERC721("JenkoAuthenticityContract", "JNK") {}
+    constructor () ERC721("Art Fruit Token", "AFT") {}
     
     function setBaseURI(string memory baseURI_) external onlyOwner() {
         _baseURIextended = baseURI_;
@@ -112,9 +114,16 @@ contract Jenko is ERC721, Ownable {
 
     function registerArtist(
         address _artistAddress,
+        string memory _firstname,
+        string memory _lastname,
         string memory _artistVerificationId
     ) public onlyOwner {
-        artistsByAddress[_artistAddress] = Artist(_artistVerificationId, true);
+        artistsByAddress[_artistAddress] = Artist(
+            _artistVerificationId,
+            _firstname,
+            _lastname,
+            true
+        );
         emit registerArtistEvent(_artistAddress, _artistVerificationId);
     }
 }
