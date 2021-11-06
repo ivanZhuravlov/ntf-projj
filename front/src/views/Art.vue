@@ -1,6 +1,6 @@
 <template>
-  <div class="home">
-    <div class="container mx-auto grid sm:grid-cols-1 grid-cols-2 pt-6 gap-8">
+  <div class="hom">
+    <div class="container max-w-7xl sm:px-4 xs:px-2 mx-auto grid xs:grid-cols-1 sm:grid-cols-1 grid-cols-2 pt-6 gap-8">
       <img class="max-w-screen-lg h-auto" src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Tsunami_by_hokusai_19th_century.jpg">
  
       <div class="">
