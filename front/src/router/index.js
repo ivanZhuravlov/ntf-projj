@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 
 import Home from '../views/Home.vue'
 import Contact from '../views/Contact.vue'
+import Service from '../views/Service.vue'
 import Art from '../views/Art.vue'
 
 Vue.use(VueRouter)
@@ -17,6 +18,11 @@ const routes = [
     path: '/contact',
     name: 'Contact',
     component: Contact
+  },
+  {
+    path: '/service',
+    name: 'Service',
+    component: Service
   },
   {
     path: '/art/:id',
