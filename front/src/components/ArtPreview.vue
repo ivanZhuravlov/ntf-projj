@@ -1,7 +1,7 @@
 <template>
   <div class="inline-flex flex-row items-center justify-between xs:space-x-0 sm:space-x-0 space-x-12">
       
-    <button id="arrow" class="pl-12 outline-none">
+    <button id="arrow" class="md:pl-12 lg:pl-12 outline-none">
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="transform hover:scale-150 transition-all delay-100"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
     </button>
 
@@ -23,9 +23,9 @@
         <img class="max-w-screen-lg h-auto" src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Tsunami_by_hokusai_19th_century.jpg">
       </div>
 
-      <div class="justify-between flex w-full items-center">
+      <div class="justify-between flex xs:flex-col-reverse sm:flex-col-reverse w-full items-center">
         <Newsletter />
-        <div>
+        <div class="xs:pb-8 sm:pb-8">
           <button class="mx-2 my-2 bg-gray-600 transition duration-150 ease-in-out hover:bg-gray-700 rounded border border-gray-300 text-gray-100 px-6 py-2 text-xs focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-600">
             Create now
           </button>
@@ -33,7 +33,7 @@
       </div>
     </div>
 
-    <button id="arrow" class="pr-12 outline-none">
+    <button id="arrow" class="md:pr-12 lg:pr-12 outline-none">
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="transform hover:scale-150 transition-all delay-100"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
     </button>
 
