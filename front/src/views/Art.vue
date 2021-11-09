@@ -1,5 +1,6 @@
 <template>
-  <div class="hom">
+  <div class="art">
+    <Header />
     <div class="container max-w-7xl sm:px-4 xs:px-2 mx-auto grid xs:grid-cols-1 sm:grid-cols-1 grid-cols-2 pt-6 gap-8">
       <img class="max-w-screen-lg h-auto" src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Tsunami_by_hokusai_19th_century.jpg">
  
@@ -51,11 +52,13 @@
 
 <script>
 // @ is an alias to /src
-import Footer from '@/components/Footer.vue'
+import Header from '@/components/Header.vue';
+import Footer from '@/components/Footer.vue';
 
 export default {
   name: 'Art',
   components: {
+    Header,
     Footer
   },
   mounted() {

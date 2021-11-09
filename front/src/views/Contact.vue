@@ -1,5 +1,6 @@
 <template>
   <div class="about">
+    <Header />
     <div class="bg-white py-6 sm:py-8 lg:py-12 flex items-center">
       <div class="max-w-screen-md px-4 md:px-8 mx-auto">
         <!-- text - start -->
@@ -60,12 +61,14 @@
 
 <script>
 // @ is an alias to /src
+import Header from '@/components/Header.vue'
 import Footer from '@/components/Footer.vue'
 
 export default {
   name: 'Home',
   components: {
-    Footer
+    Footer,
+    Header
   }
 }
 </script>

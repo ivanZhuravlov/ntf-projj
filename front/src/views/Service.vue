@@ -1,5 +1,6 @@
 <template>
   <div class="service">
+    <Header />
     <div class="flex justify-center w-full px-4">
       <div class="max-w-4xl grid grid-cols-1 gap-2 place-items-center space-y-8">
         <h1 class="text-gray-800 text-3xl font-bold capitalize leading-relaxed">Service</h1>
@@ -37,12 +38,14 @@
 
 <script>
 // @ is an alias to /src
+import Header from '@/components/Header.vue'
 import Footer from '@/components/Footer.vue'
 
 export default {
   name: 'Service',
   components: {
-    Footer
+    Header,
+    Footer,
   }
-}
+};
 </script>
