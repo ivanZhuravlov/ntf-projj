@@ -7,6 +7,7 @@ import Service from '../views/Service.vue';
 import Login from '../views/Login.vue';
 import Register from '../views/Register.vue';
 import Art from '../views/Art.vue';
+import CreateArtist from '../views/CreateArtist.vue';
 
 Vue.use(VueRouter);
 
@@ -40,6 +41,11 @@ const routes = [
     path: '/art/:id',
     name: 'Art',
     component: Art
+  },
+  {
+    path: '/new/artist',
+    name: 'CreateArtist',
+    component: CreateArtist
   }
 ];
 
