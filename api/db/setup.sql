@@ -2,18 +2,27 @@ create database jenko;
 
 create table users
 (
-	id uuid,
-	email text,
-	password text,
+    id uuid,
+    email text,
+    password text,
     stripe text,
     data json default '{}'::json,
+    created_at timestamp
+);
+
+
+create table user_wallet
+(
+    user_id uuid,
+    words text,
+    address text,
     created_at timestamp
 );
 
 create table artist
 (
     address text,
-    user_id text,
+    user_id uuid,
     data json default '{}'::json,
     created_at timestamp
 );

@@ -10,6 +10,11 @@ async function post(req, res) {
 
   try {
     const userId = req.user.id;
+    const artist = {
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      verificationId: req.body.verificationId,
+    };
 
     res.status(200).send();
   } catch (error) {

@@ -55,6 +55,9 @@ app.use("/register", require("./routes/register"));
 
 app.use("/profile", require("./routes/profile"));
 
+// Wallet
+app.use("/wallet", require("./routes/wallet"));
+
 // // Stripe
 // router.post('/create-checkout-session', authenticateJWT, async (req, res) => {
 //   const { priceId } = req.body;
