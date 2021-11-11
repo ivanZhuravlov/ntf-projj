@@ -23,6 +23,7 @@ create table artist
 (
     address text,
     user_id uuid,
+    transaction: text,
     data json default '{}'::json,
     created_at timestamp
 );

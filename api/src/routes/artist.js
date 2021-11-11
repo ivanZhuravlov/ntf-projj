@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const sql = require("../pg");
 const { authenticateJWT } = require("../utils");
+const { createArtistTransaction } = require("../web3");
 
 async function post(req, res) {
   if (!req.body || typeof req.body !== "object") {
@@ -10,16 +11,47 @@ async function post(req, res) {
 
   try {
     const userId = req.user.id;
+    const [userArtist] = await sql`
+      select address
+      from user_wallet 
+      where user_id = ${userId};
+    `;
+    
+    if(!userArtist) {
+      throw new Error('Artist has no wallet');
+    }
+
     const artist = {
+      address: userArtist.address,
       firstName: req.body.firstName,
       lastName: req.body.lastName,
       verificationId: req.body.verificationId,
     };
 
-    res.status(200).send();
+    if(Object.values(artist).some((value) => !value)) {
+      throw new Error('Invalid values');
+    }
+
+    const transaction = await createArtistTransaction(
+      artist.address,
+      artist.firstName,
+      artist.lastName,
+      artist.verificationId,
+    );
+
+    const artistEntity = {
+      address: artist.address,
+      user_id: userId,
+      data: JSON.stringify(artist),
+      created_at: new Date(),
+      transaction,
+    };
+    await sql`insert into artist ${sql(artistEntity)}`;
+
+    res.json({ transaction });
   } catch (error) {
     console.log(error);
-    res.status(400).send("Invalid format");
+    res.status(400).send("Invalid values");
   }
 }
 
