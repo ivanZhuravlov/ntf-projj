@@ -1,9 +1,7 @@
-const artist = require('./artist');
-const provider = require('./provider');
-const transaction = require('./transaction');
+const {
+  generateWallet,
+} = require("./utils");
 
 module.exports = {
-  artist,
-  provider,
-  transaction
+  generateWallet,
 };
