@@ -83,14 +83,21 @@ From login page create a profile. # the profile shall be recorded in Blockchain.
 ## Artpiece register page Level1
 if profile register for an artist is not set, the link will not acces to the page but forward to create Profile. if the profil register is ok, the artist could create a certicate of authencity but filling the fields as described below.
 
+![Screenshot 2021-10-11 at 17 10 00](https://user-images.githubusercontent.com/91942753/136813977-16776acc-a7f8-45ce-9bd5-d3821d8fbf09.png)
 
-
+once the certificate is create #12
 
 ## Explore Artpiece page Level1
 
 ## Explore Artist page Level1
 
 ## Certificate of Authenticity design 
+the certificate of Authenticity shall be a printable in format in A5 horizontal. the informations contained in this certificate are as follow: 
+
+![Screenshot 2021-10-11 at 17 03 21](https://user-images.githubusercontent.com/91942753/136813384-0679b7cb-2dcb-4f29-b79a-80e22628c834.png)
+
+the certiciate 
+
 
 ## logic 
 
