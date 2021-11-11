@@ -1,11 +1,11 @@
 const express = require("express");
 const router = express.Router();
-const sql = require('../pg');
-const { authenticateJWT } = require('../utils');
+const sql = require("../pg");
+const { authenticateJWT } = require("../utils");
 
 async function get(req, res) {
-  if (!req.body || typeof req.body !== 'object') {
-    res.status(400).send('Bad Request');
+  if (!req.body || typeof req.body !== "object") {
+    res.status(400).send("Bad Request");
   }
 
   try {
@@ -22,22 +22,22 @@ async function get(req, res) {
       where user_id = ${userId}
       and is_active is true
     `;
-    
+
     res.json({
       user: {
         ...user.data,
-        email: user.email
+        email: user.email,
       },
       subscription: subscription || null,
     });
   } catch (error) {
     res.status(400).send(`${error.message}`);
   }
-};
+}
 
 async function post(req, res) {
-  if (!req.body || typeof req.body !== 'object') {
-    res.status(400).send('Bad Request');
+  if (!req.body || typeof req.body !== "object") {
+    res.status(400).send("Bad Request");
   }
 
   try {
@@ -54,22 +54,18 @@ async function post(req, res) {
     };
 
     const [{ email }] = await sql`
-      update users set ${sql({data: JSON.stringify(infos)})}
+      update users set ${sql({ data: JSON.stringify(infos) })}
       where id = ${userId}
       returning email
     `;
 
-
     res.status(200).send();
   } catch (error) {
-    console.log(error)
-    res.status(400).send('Invalid format');
+    console.log(error);
+    res.status(400).send("Invalid format");
   }
-};
+}
 
-
-router.route('/')
-  .get(authenticateJWT, get)
-  .post(authenticateJWT, post);
+router.route("/").get(authenticateJWT, get).post(authenticateJWT, post);
 
 module.exports = router;

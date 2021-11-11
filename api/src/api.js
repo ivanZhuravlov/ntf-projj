@@ -1,64 +1,59 @@
-require('dotenv').config();
+require("dotenv").config();
 
-const { 
-  APP_URL,
-  JWT_SECRET, 
-  STRIPE_WEBHOOK_SECRET,
-  STRIPE_API_KEY
-} = process.env;
+const { APP_URL, JWT_SECRET, STRIPE_WEBHOOK_SECRET, STRIPE_API_KEY } =
+  process.env;
 
-if(!APP_URL) {
-  throw new Error('invalid APP_URL');
+if (!APP_URL) {
+  throw new Error("invalid APP_URL");
 }
 
-
-if(!STRIPE_WEBHOOK_SECRET) {
-  throw new Error('invalid STRIPE_WEBHOOK_SECRET');
+if (!STRIPE_WEBHOOK_SECRET) {
+  throw new Error("invalid STRIPE_WEBHOOK_SECRET");
 }
 
-if(!STRIPE_API_KEY) {
-  throw new Error('invalid STRIPE_API_KEY');
+if (!STRIPE_API_KEY) {
+  throw new Error("invalid STRIPE_API_KEY");
 }
 
-const express        = require('express');
-const cors           = require('cors');
-const bodyParser     = require('body-parser');
-const expressJwt     = require('express-jwt');
-const stripe         = require('stripe')(STRIPE_API_KEY);
-const { 
-  serialize, 
+const express = require("express");
+const cors = require("cors");
+const bodyParser = require("body-parser");
+const expressJwt = require("express-jwt");
+const stripe = require("stripe")(STRIPE_API_KEY);
+const {
+  serialize,
   checkPassword,
   isValidEmail,
-  authenticateJWT
-} = require('./utils');
+  authenticateJWT,
+} = require("./utils");
 
 const PORT = process.env.PORT ?? 5000;
 const app = express();
 
 app.use(bodyParser.json());
 app.use(
-  expressJwt({secret: JWT_SECRET, algorithms: ['HS256']}).unless({
-    path: ['/register', '/login', '/stripe/webhook']
+  expressJwt({ secret: JWT_SECRET, algorithms: ["HS256"] }).unless({
+    path: ["/register", "/login", "/stripe/webhook"],
   })
 );
 
-app.use(cors({ methods: ['POST'] }));
+app.use(cors({ methods: ["POST"] }));
 
 app.use((err, req, res, next) => {
-  if(err.name === 'UnauthorizedError') {
-    res.status(err.status).send('');
+  if (err.name === "UnauthorizedError") {
+    res.status(err.status).send("");
     return;
   }
-  
+
   next();
 });
 
 // User
 
-app.use("/login", require('./routes/login'));
-app.use("/register", require('./routes/register'));
+app.use("/login", require("./routes/login"));
+app.use("/register", require("./routes/register"));
 
-app.use("/profile", require('./routes/profile'));
+app.use("/profile", require("./routes/profile"));
 
 // // Stripe
 // router.post('/create-checkout-session', authenticateJWT, async (req, res) => {
@@ -72,7 +67,7 @@ app.use("/profile", require('./routes/profile'));
 //     }
 
 //     const [activeSubscription] = await sql`select * from subscriptions where user_id = ${userId} and is_active is true`;
-    
+
 //     if (activeSubscription) {
 //       throw new Error(`User ${userId} have already a subscription, please upgrade instead create a new one`);
 //       return ;
@@ -94,7 +89,7 @@ app.use("/profile", require('./routes/profile'));
 
 //     if (customer && customer.stripe) {
 //       subscriptionSession['customer'] = customer.stripe;
-//     } 
+//     }
 //     else if (customer && customer.email) {
 //       subscriptionSession['customer_email'] = customer.email;
 //     }
@@ -171,7 +166,7 @@ app.use("/profile", require('./routes/profile'));
 //       created: invoice.created,
 //       url: invoice.hosted_invoice_url,
 //       pdf: invoice.invoice_pdf,
-//       period: { 
+//       period: {
 //         start: new Date(
 //           invoice.lines.data[0].period.start * 1000
 //         ),
@@ -188,9 +183,6 @@ app.use("/profile", require('./routes/profile'));
 //   }
 // });
 
-
-
 app.listen(PORT, async () => {
   console.log(`Server running on port ${PORT}`);
 });
-

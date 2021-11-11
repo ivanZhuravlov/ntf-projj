@@ -10,6 +10,14 @@ create table users
     created_at timestamp
 );
 
+create table artist
+(
+    address text,
+    user_id text,
+    data json default '{}'::json,
+    created_at timestamp
+);
+
 
 create table subscription
 (
