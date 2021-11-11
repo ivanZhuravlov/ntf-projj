@@ -3,6 +3,7 @@ const { JWT_SECRET } = process.env;
 
 const { v4: uuidv4 } = require('uuid');
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 
 if(!JWT_SECRET) {
   throw new Error('invalid jwt');
@@ -27,7 +28,6 @@ function authenticateJWT (req, res, next) {
 
     if (authHeader) {
       const token = authHeader.split(' ')[1];
-
       jwt.verify(token, JWT_SECRET, (err, user) => {
         if (err) {
           return res.sendStatus(403);

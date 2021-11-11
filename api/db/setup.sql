@@ -1,3 +1,5 @@
+create database jenko;
+
 create table users
 (
 	id uuid,
@@ -9,7 +11,7 @@ create table users
 );
 
 
-create table subscriptions
+create table subscription
 (
     id uuid,
     user_id uuid,
@@ -17,4 +19,14 @@ create table subscriptions
     is_active bool default false,
     created_at timestamp,
     terminated_at timestamp
+);
+
+
+create table certificate
+(
+    id uuid,
+    user_id uuid,
+    subscription_id uuid,
+    data json default '{}'::json,
+    created_at timestamp
 );
