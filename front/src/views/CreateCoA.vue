@@ -5,7 +5,7 @@
       <div class="px-4 md:px-8  mx-auto">
         <!-- text - start -->
         <div class="mb-10 md:mb-16">
-          <h2 class="text-gray-800 text-2xl lg:text-3xl font-bold text-center mb-4 md:mb-6">Create Certificate of Authenticity</h2>
+          <h2 class="text-gray-800 text-2xl lg:text-3xl font-bold text-center mb-4 md:mb-10">Create Certificate of Authenticity</h2>
 
           <p class="max-w-proce text-gray-500 md:text-lg text-center mx-auto">
             Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
@@ -15,7 +15,7 @@
         <!-- text - end -->
 
         <!-- form - start -->
-        <form class="text-gray-800 sm:grid grid-cols-2 w-9/12 md:grid grid-cols-2 w-9/12 lg:grid grid-cols-2 w-9/12 gap-7 mx-auto ">
+        <form class="text-gray-800 sm:w-9/12 md:grid grid-cols-2 w-9/12 lg:grid grid-cols-2 w-9/12 gap-7 mx-auto ">
 
           <div>
             <div>
@@ -24,7 +24,7 @@
             </div>
 
             <!-- TODO : Preview the picture -->
-            <label class="inline-block text-sm sm:text-base mt-3">Select a picture of the artpiece:*</label>
+            <label class="inline-block text-sm sm:text-base mt-3">Select a picture of the artpiece*</label>
             <div class="w-full justify-start">
               <div class="rounded border bg-gray-50">
                 <div class="m-4">
@@ -42,7 +42,6 @@
           </div>
          
           <div>
-
             <div>
                 <label for="creation-date" class="inline-block text-sm sm:text-base mt-3">Creation Date*</label>
                 <input required="true" name="creation-date" class="w-full bg-gray-50 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2" />
@@ -79,8 +78,8 @@
             </div>
 
             <div>
-                <label for="tags" class="inline-block text-sm sm:text-base mt-3">Associated Tag* #</label>
-                <input required="true" name="tags" placeholder="" class="w-full bg-gray-50 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2" />
+                <label for="associated-tag" class="inline-block text-sm sm:text-base mt-3">Associated Tag*</label>
+                <input required="true" name="associated-tag" placeholder="#" class="w-full bg-gray-50 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2" />
             </div>
 
             <div class="flex items-start mb-6 mt-3">
@@ -88,12 +87,11 @@
                 <input id="terms" aria-describedby="terms" type="checkbox" class="bg-gray-50 border focus:ring focus:ring-blue-300 h-4 w-4 rounded" required="true">
               </div>
             <div class="text-sm ml-3">
-                <label for="terms" class="font-sm">I agree with the <a href="#" class="text-blue-600 hover:underline">terms and conditions*</a></label>
+                <label for="terms" class="font-sm">I agree with the <a href="#" class="text-blue-600 hover:underline">Terms and Conditions*</a></label>
               </div>
             </div>
 
             <p class="text-gray-400 text-xs">The information given above cannot be edited after it has been recorded into the blockchain.</p>
-
 
             <button class="block mx-auto bg-gray-800 hover:bg-gray-700 active:bg-gray-600 focus-visible:ring ring-gray-300 focus:ring-2 text-white text-sm md:text-base font-semibold text-center uppercase outline-none transition duration-100 px-10 py-3 mt-12" type="submit">
             create now
