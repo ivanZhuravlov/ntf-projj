@@ -13,7 +13,7 @@ async function get(req, res) {
     const userId = req.user.id;
     const [exist] = await sql`
       select address
-      from user_wallet 
+      from users_wallet 
       where user_id = ${userId};
     `;
 
@@ -34,7 +34,7 @@ async function get(req, res) {
       created_at: new Date(),
     };
 
-    await sql`insert into user_wallet ${sql(userWallet)}`;
+    await sql`insert into users_wallet ${sql(userWallet)}`;
 
     res.json({
       words: wallet.mnemonic.phrase,

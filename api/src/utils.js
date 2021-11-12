@@ -48,7 +48,12 @@ function isValidEmail(email) {
   return /\S+@\S+\.\S+/.test(email);
 }
 
+function log(message) {
+  console.log(`[${new Date().toLocaleString()}] ${message}`);
+}
+
 module.exports = {
+  log,
   serialize,
   isValidEmail,
   checkPassword,

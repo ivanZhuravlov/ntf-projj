@@ -13,7 +13,7 @@ async function post(req, res) {
     const userId = req.user.id;
     const [userArtist] = await sql`
       select address
-      from user_wallet 
+      from users_wallet 
       where user_id = ${userId};
     `;
     
@@ -31,7 +31,7 @@ async function post(req, res) {
     if(Object.values(artist).some((value) => !value)) {
       throw new Error('Invalid values');
     }
-
+    console.log(artist)
     const transaction = await createArtistTransaction(
       artist.address,
       artist.firstName,
@@ -46,7 +46,7 @@ async function post(req, res) {
       created_at: new Date(),
       transaction,
     };
-    await sql`insert into artist ${sql(artistEntity)}`;
+    await sql`insert into artists ${sql(artistEntity)}`;
 
     res.json({ transaction });
   } catch (error) {
