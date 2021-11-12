@@ -15,7 +15,6 @@ create table subscriptions
 (
     id uuid,
     user_id uuid,
-    token_id text,
     data json default '{}'::json,
     is_active bool default false,
     created_at timestamp,
@@ -45,6 +44,8 @@ create table certificates
 (
     id uuid,
     user_id uuid,
+    token_id text,
+    token_uri text,
     subscription_id uuid,
     data json default '{}'::json,
     is_validate boolean default false,

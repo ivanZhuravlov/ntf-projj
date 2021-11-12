@@ -20,6 +20,8 @@ async function post(req, res) {
     if(!userArtist) {
       throw new Error('Artist has no wallet');
     }
+    
+    // TODO Check subscription
 
     const artist = {
       address: userArtist.address,
@@ -31,7 +33,7 @@ async function post(req, res) {
     if(Object.values(artist).some((value) => !value)) {
       throw new Error('Invalid values');
     }
-    console.log(artist)
+
     const transaction = await createArtistTransaction(
       artist.address,
       artist.firstName,
@@ -45,6 +47,7 @@ async function post(req, res) {
       data: JSON.stringify(artist),
       created_at: new Date(),
       transaction,
+      is_validate: false
     };
     await sql`insert into artists ${sql(artistEntity)}`;
 
