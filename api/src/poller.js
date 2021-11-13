@@ -13,7 +13,6 @@ if (!CONTRACT_ADDRESS) {
 
 const contract = new ethers.Contract(CONTRACT_ADDRESS, abi, provider);
 
-
 async function registerArtistEvent(_address, _artistVerificationId) {
   try {
     log(`[registerArtistEvent] ${_address}`);
@@ -22,7 +21,7 @@ async function registerArtistEvent(_address, _artistVerificationId) {
       set ${sql({ is_validate: true })}
       where address = ${_address} and is_validate IS NOT TRUE
     `;
-  } catch(error) {
+  } catch (error) {
     log(error);
   }
 }
@@ -35,7 +34,7 @@ async function mintEvent(_tokenId, _artistAddress, _artPieceId) {
       contract.tokenURI(_tokenId),
     ]);
 
-    if(tokenData[0] === '0x0000000000000000000000000000000000000000') {
+    if (tokenData[0] === "0x0000000000000000000000000000000000000000") {
       throw new Error(`Token ${_tokenId} as no artist`);
     }
 
@@ -53,7 +52,7 @@ async function mintEvent(_tokenId, _artistAddress, _artPieceId) {
 
     await sql`
       update certificates
-      set ${sql({  is_validate: true, token_id: _tokenId })}
+      set ${sql({ is_validate: true, token_id: _tokenId })}
       where is_validate IS NOT TRUE
       and data->>'artPieceId' = ${token.artPieceId}
       and data->>'artistAddress' = ${_artistAddress}
@@ -63,13 +62,13 @@ async function mintEvent(_tokenId, _artistAddress, _artPieceId) {
       set ${sql({ token_uri })}
       where token_id = ${_tokenId}
     `;
-  } catch(error) {
+  } catch (error) {
     log(error);
   }
 }
 
 async function listen() {
-  log('start poller');
+  log("start poller");
   contract.on("registerArtistEvent", registerArtistEvent);
   contract.on("mintEvent", mintEvent);
 }

@@ -5,8 +5,8 @@ const provider = require("./provider");
 
 module.exports = {
   generateWallet,
-  ownerWallet, 
+  ownerWallet,
   createArtistTransaction,
   createCertificateTransaction,
-  provider
+  provider,
 };

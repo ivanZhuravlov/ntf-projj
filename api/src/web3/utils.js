@@ -1,5 +1,5 @@
 require("dotenv").config();
-const { wordlists, Wallet } = require('ethers');
+const { wordlists, Wallet } = require("ethers");
 const provider = require("./provider");
 
 const { OWNER_PRIVATE_KEY, OWNER_ADDRESS } = process.env;
@@ -13,7 +13,7 @@ if (!OWNER_ADDRESS) {
 }
 
 function generateWallet() {
-  return Wallet.createRandom({ locale: wordlists.en })
+  return Wallet.createRandom({ locale: wordlists.en });
 }
 
 function ownerWallet() {
@@ -22,5 +22,5 @@ function ownerWallet() {
 
 module.exports = {
   generateWallet,
-  ownerWallet
-}
+  ownerWallet,
+};

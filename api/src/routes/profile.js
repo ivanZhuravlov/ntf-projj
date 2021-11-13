@@ -4,10 +4,6 @@ const sql = require("../pg");
 const { authenticateJWT } = require("../utils");
 
 async function get(req, res) {
-  if (!req.body || typeof req.body !== "object") {
-    res.status(400).send("Bad Request");
-  }
-
   try {
     const userId = req.user.id;
     const [user] = await sql`

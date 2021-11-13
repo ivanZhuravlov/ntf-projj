@@ -16,11 +16,11 @@ async function post(req, res) {
       from users_wallet 
       where user_id = ${userId};
     `;
-    
-    if(!userArtist) {
-      throw new Error('Artist has no wallet');
+
+    if (!userArtist) {
+      throw new Error("Artist has no wallet");
     }
-    
+
     // TODO Check subscription
 
     const artist = {
@@ -30,15 +30,15 @@ async function post(req, res) {
       verificationId: req.body.verificationId,
     };
 
-    if(Object.values(artist).some((value) => !value)) {
-      throw new Error('Invalid values');
+    if (Object.values(artist).some((value) => !value)) {
+      throw new Error("Invalid values");
     }
 
     const transaction = await createArtistTransaction(
       artist.address,
       artist.firstName,
       artist.lastName,
-      artist.verificationId,
+      artist.verificationId
     );
 
     const artistEntity = {
@@ -47,7 +47,7 @@ async function post(req, res) {
       data: JSON.stringify(artist),
       created_at: new Date(),
       transaction,
-      is_validate: false
+      is_validate: false,
     };
     await sql`insert into artists ${sql(artistEntity)}`;
 

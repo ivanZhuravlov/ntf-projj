@@ -17,11 +17,11 @@ async function post(req, res) {
       from users_wallet 
       where user_id = ${userId};
     `;
-    
-    if(!userArtist) {
-      throw new Error('Artist has no wallet');
+
+    if (!userArtist) {
+      throw new Error("Artist has no wallet");
     }
-    
+
     // TODO Check subscription
 
     const certificate = {
@@ -37,8 +37,8 @@ async function post(req, res) {
       movement: req.body.movement,
     };
 
-    if(Object.values(certificate).some((value) => !value)) {
-      throw new Error('Invalid values');
+    if (Object.values(certificate).some((value) => !value)) {
+      throw new Error("Invalid values");
     }
 
     const certificateEntity = {
@@ -61,12 +61,12 @@ async function post(req, res) {
       certificate.technical,
       certificate.material,
       certificate.tirage,
-      certificate.movement,
+      certificate.movement
     );
 
     await sql`
       update certificates
-      set ${sql({ data: JSON.stringify({...certificate, transaction}) })}
+      set ${sql({ data: JSON.stringify({ ...certificate, transaction }) })}
       where id = ${certificateEntity.id}
     `;
     res.json({ transaction });

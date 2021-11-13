@@ -1,0 +1,20 @@
+[
+    {
+        "id": "prod_KaWJiBPVWynkKS",
+        "price": 15,
+        "name": "15 NFT",
+        "coaCount": 15
+    },
+    {
+        "id": "prod_KaWJiBPVWynkKS",
+        "price": 25,
+        "name": "25 NFT",
+        "coaCount": 25
+    },
+    {
+        "id": "prod_KaWJiBPVWynkKS",
+        "price": 50,
+        "name": "50 NFT",
+        "coaCount": 50
+    }
+]

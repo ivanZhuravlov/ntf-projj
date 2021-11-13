@@ -2,7 +2,7 @@ require("dotenv").config();
 
 const { ethers } = require("ethers");
 const provider = require("./provider");
-const { ownerWallet } = require('./utils')
+const { ownerWallet } = require("./utils");
 const abi = require("../../../contracts/jenko.abi.json");
 
 const { CONTRACT_ADDRESS } = process.env;
@@ -18,8 +18,8 @@ async function createArtistTransaction(
 ) {
   const contract = new ethers.Contract(CONTRACT_ADDRESS, abi, provider);
   const artistExist = await contract.artistsByAddress(artistAddress);
-  
-  if(artistExist['hasValidateTermsAndCondition']) {
+
+  if (artistExist["hasValidateTermsAndCondition"]) {
     throw new Error(`Artist ${artistAddress} already exist`);
   }
 
@@ -31,10 +31,10 @@ async function createArtistTransaction(
     lastname,
     artistVerificationId
   );
-  
+
   return transaction.hash;
 }
 
 module.exports = {
-  createArtistTransaction
-}
+  createArtistTransaction,
+};

@@ -19,13 +19,6 @@ const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const expressJwt = require("express-jwt");
-const stripe = require("stripe")(STRIPE_API_KEY);
-const {
-  serialize,
-  checkPassword,
-  isValidEmail,
-  authenticateJWT,
-} = require("./utils");
 
 const PORT = process.env.PORT ?? 5000;
 const app = express();
@@ -33,7 +26,7 @@ const app = express();
 app.use(bodyParser.json());
 app.use(
   expressJwt({ secret: JWT_SECRET, algorithms: ["HS256"] }).unless({
-    path: ["/register", "/login", "/stripe/webhook"],
+    path: ["/register", "/login", "/products", "/stripe/webhook"],
   })
 );
 
@@ -57,6 +50,9 @@ app.use("/profile", require("./routes/profile"));
 
 // Wallet
 app.use("/wallet", require("./routes/wallet"));
+
+// Stripe
+app.use("/products", require("./routes/products"));
 
 // Artist
 app.use("/artist", require("./routes/artist"));

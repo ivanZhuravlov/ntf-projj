@@ -5,10 +5,6 @@ const { authenticateJWT } = require("../utils");
 const { generateWallet } = require("../web3");
 
 async function get(req, res) {
-  if (!req.body || typeof req.body !== "object") {
-    res.status(400).send("Bad Request");
-  }
-
   try {
     const userId = req.user.id;
     const [exist] = await sql`
@@ -20,9 +16,9 @@ async function get(req, res) {
     if (exist) {
       res.json({
         words: null,
-        address: exist.address
+        address: exist.address,
       });
-      return ;
+      return;
     }
 
     const wallet = generateWallet();
@@ -38,7 +34,7 @@ async function get(req, res) {
 
     res.json({
       words: wallet.mnemonic.phrase,
-      address: wallet.address
+      address: wallet.address,
     });
   } catch (error) {
     console.log(error);
