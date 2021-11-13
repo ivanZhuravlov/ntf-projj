@@ -26,7 +26,7 @@ const app = express();
 app.use(bodyParser.json());
 app.use(
   expressJwt({ secret: JWT_SECRET, algorithms: ["HS256"] }).unless({
-    path: ["/register", "/login", "/products", "/stripe/webhook"],
+    path: ["/register", "/login", "/products", "/stripe"],
   })
 );
 
@@ -51,93 +51,15 @@ app.use("/profile", require("./routes/profile"));
 // Wallet
 app.use("/wallet", require("./routes/wallet"));
 
-// Stripe
-app.use("/products", require("./routes/products"));
-
 // Artist
 app.use("/artist", require("./routes/artist"));
 
 // Certificate
 app.use("/certificate", require("./routes/certificate"));
 
-// // Stripe
-// router.post('/create-checkout-session', authenticateJWT, async (req, res) => {
-//   const { priceId } = req.body;
-//   const userId = req.user.id;
-
-//   try {
-//     const [customer] = await sql`select stripe, email from users where id = ${userId}`;
-//     if (!customer) {
-//       throw new Error(`User ${userId} not exist`);
-//     }
-
-//     const [activeSubscription] = await sql`select * from subscriptions where user_id = ${userId} and is_active is true`;
-
-//     if (activeSubscription) {
-//       throw new Error(`User ${userId} have already a subscription, please upgrade instead create a new one`);
-//       return ;
-//     }
-
-//     const subscriptionSession = {
-//       mode: "subscription",
-//       allow_promotion_codes: true,
-//       payment_method_types: ["card"],
-//       line_items: [
-//         {
-//           price: priceId,
-//           quantity: 1,
-//         },
-//       ],
-//       success_url: `${APP_URL}/settings?session_id={CHECKOUT_SESSION_ID}&status=success`,
-//       cancel_url: `${APP_URL}/settings?session_id={CHECKOUT_SESSION_ID}&status=canceled`,
-//     };
-
-//     if (customer && customer.stripe) {
-//       subscriptionSession['customer'] = customer.stripe;
-//     }
-//     else if (customer && customer.email) {
-//       subscriptionSession['customer_email'] = customer.email;
-//     }
-
-//     const session = await stripe.checkout.sessions.create(subscriptionSession);
-
-//     res.send({ sessionId: session.id });
-//   } catch (e) {
-//     console.log(`[Stripe][error][User][${userId}]`);
-//     console.log(e.message);
-//     res.status(400).send('An error occured');
-//   }
-// });
-
-// // TODO : check signature (https://stripe.com/docs/webhooks/signatures)
-// router.post('/stripe/webhook', bodyParser.raw({type: 'application/json'}), async (req, res) => {
-//   if (!req.body || typeof req.body !== 'object') {
-//     res.status(400).send('Bad Request');
-//   }
-//   if (!req.query || typeof req.query !== 'object' || req.query.sig !== STRIPE_WEBHOOK_SECRET) {
-//     res.status(400).send('Bad Request');
-//   }
-
-//   const event = req.body;
-
-//   let customer;
-//   switch (event.type) {
-//     case 'customer.created':
-//       await customerCreated(event.data.object);
-//       break;
-//     case 'customer.subscription.created':
-//       await subscriptionCreated(event.data.object);
-//       break;
-//     case 'customer.subscription.deleted':
-//       await subscriptionDeleted(event.data.object);
-//       break;
-//     default:
-//       console.log(`Unhandled event type ${event.type}`, JSON.stringify(event));
-//   }
-
-//   // Return a res to acknowledge receipt of the event
-//   res.json({received: true});
-// });
+// Stripe
+app.use("/products", require("./routes/products"));
+app.use("/stripe", require("./routes/stripe"));
 
 // router.get('/invoice', authenticateJWT, async (req, res) => {
 //   if (!req.body) {

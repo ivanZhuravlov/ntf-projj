@@ -13,9 +13,42 @@ Return a valid JWT : `{ "token":"eyJh...." }`
 
 ### Login (need a valid user)
 
-`curl localhost:5000/login -X POST --data '{"email": "test@toto.fr", "password": "toto"}' -H `
+`curl localhost:5000/login -X POST --data '{"email": "test@toto.fr", "password": "toto"}' -H "content-type: application/json"`
 
 Return a valid JWT : `{ "token":"eyJh...." }`
+
+### Products
+
+`curl localhost:5000/products -H "content-type: application/json"`
+
+```json
+[
+    {
+        "id": "prod_KaWJiBPVWynkKS",
+        "priceId": "price_1JvLcwHxzpQyW0ctBd9V1AFC",
+        "link": "https://buy.stripe.com/test_eVa6sc5zReZcdTa146",
+        "price": 15,
+        "name": "15 NFT",
+        "coaCount": 15
+    },
+    {
+        "id": "prod_KaWJiBPVWynkKS",
+        "priceId": "price_1JvLcwHxzpQyW0ctwwR6jKyI",
+        "link": "https://buy.stripe.com/test_aEUdUE4vN5oC3ew3cd",
+        "price": 25,
+        "name": "25 NFT",
+        "coaCount": 25
+    },
+    {
+        "id": "prod_KaWJiBPVWynkKS",
+        "priceId": "price_1JvLcwHxzpQyW0ctNMcjNEJ6",
+        "link": "https://buy.stripe.com/test_28og2Mgev3guaGYaEE",
+        "price": 50,
+        "name": "50 NFT",
+        "coaCount": 50
+    }
+]
+```
 
 ## Authenticated routes
 
