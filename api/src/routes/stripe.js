@@ -1,4 +1,6 @@
 require("dotenv").config();
+const sql = require("../pg");
+const { v4: uuidv4 } = require("uuid");
 const express = require("express");
 const router = express.Router();
 const { log } = require('../utils');
@@ -28,7 +30,28 @@ async function handlePayment(session) {
   if(!product) {
     throw new Error(`Invalid product ${stripeProduct.price.id}`);
   }
-  log(`[Webhook] Customer ${session.customer_details.email} buy ${product.name}`);
+  
+  const customerEmail = session.customer_details.email;
+  log(`[Webhook] Customer ${customerEmail} buy ${product.name}`);
+
+  const [user] = await sql`
+    select id 
+    from users 
+    where email = ${customerEmail}
+  `;
+
+  const subscriptionEntity = {
+    id: uuidv4(),
+    user_id: user.id,
+    data: JSON.stringify({
+      stripe_session_id: session.id,
+      product
+    }),
+    is_active: true,
+    created_at: new Date(),
+    terminated_at: null,
+  };
+  await sql`insert into subscriptions ${sql(subscriptionEntity)}`;
 }
 
 async function post(req, res) {
