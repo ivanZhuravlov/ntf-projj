@@ -23,6 +23,10 @@ async function post(req, res) {
     }
 
     const subscriptions = await findActiveSubscriptions(userId);
+    if(!subscriptions.length) {
+      throw new Error('User has no active subscription');    
+    }
+    
     const activeSubscription = subscriptions.find(
       (sub) => sub.count < parseInt(sub.coacount)
     );
