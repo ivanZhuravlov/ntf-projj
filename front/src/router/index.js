@@ -8,7 +8,9 @@ import Login from '../views/Login.vue';
 import Register from '../views/Register.vue';
 import Art from '../views/Art.vue';
 import CreateArtist from '../views/CreateArtist.vue';
+import Dashboard from '../views/Dashboard.vue';
 import CreateCoA from '../views/CreateCoA.vue';
+import store from '../store';
 
 Vue.use(VueRouter);
 
@@ -44,14 +46,28 @@ const routes = [
     component: Art
   },
   {
+    path: '/dashboard',
+    name: 'Dashboard',
+    component: Dashboard,
+    meta: {
+      requiresAuth: true
+    }
+  },
+  {
     path: '/new/artist',
     name: 'CreateArtist',
-    component: CreateArtist
+    component: CreateArtist,
+    meta: {
+      requiresAuth: true
+    }
   },
   {
     path: '/new/coa',
     name: 'CreateCoA',
-    component: CreateCoA
+    component: CreateCoA,
+    meta: {
+      requiresAuth: true
+    }
   }
 ];
 
@@ -59,6 +75,22 @@ const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes
+});
+
+router.beforeEach((to, from, next) => {
+  if(['Login', 'Register'].includes(to.name) && null !== store.getters.token) {
+    next('/');
+    return ;
+  }
+
+  if (to.matched.some(record => record.meta.requiresAuth)) {
+    if (!store.getters.token) {
+      next('/login');
+      return;
+    }    
+  }
+
+  next();
 });
 
 export default router;
