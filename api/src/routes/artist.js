@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const sql = require("../pg");
 const { authenticateJWT } = require("../utils");
+const { findActiveSubscriptions } = require("../db-utils");
 const { createArtistTransaction } = require("../web3");
 
 async function post(req, res) {
@@ -21,7 +22,14 @@ async function post(req, res) {
       throw new Error("Artist has no wallet");
     }
 
-    // TODO Check subscription
+    const subscriptions = await findActiveSubscriptions(userId);
+    const activeSubscription = subscriptions.find(
+      (sub) => sub.count < parseInt(sub.coacount)
+    );
+
+    if(!activeSubscription) {
+      throw new Error('User has no active subscription');
+    }
 
     const artist = {
       address: userArtist.address,

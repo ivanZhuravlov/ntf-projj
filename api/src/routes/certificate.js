@@ -3,6 +3,7 @@ const router = express.Router();
 const { v4: uuidv4 } = require("uuid");
 const sql = require("../pg");
 const { authenticateJWT } = require("../utils");
+const { findActiveSubscriptions } = require("../db-utils");
 const { createCertificateTransaction } = require("../web3");
 
 async function post(req, res) {
@@ -22,7 +23,19 @@ async function post(req, res) {
       throw new Error("Artist has no wallet");
     }
 
-    // TODO Check subscription
+    const subscriptions = await findActiveSubscriptions(userId);
+    const activeSubscription = subscriptions.find(
+      (sub) => sub.count < parseInt(sub.coacount)
+    );
+
+    if(!activeSubscription) {
+      await sql`
+        update subscriptions
+        set ${sql({ terminated_at: new Date(), is_active: false })}
+        where id in (${subscriptions.map(({ subscription_id }) => subscription_id)})
+      `;
+      throw new Error('User has no active subscription');
+    }
 
     const certificate = {
       artistAddress: userArtist.address,
@@ -46,6 +59,7 @@ async function post(req, res) {
       user_id: userId,
       data: JSON.stringify(certificate),
       token_id: null,
+      subscription_id: activeSubscription.subscription_id,
       created_at: new Date(),
       is_validate: false,
     };
@@ -69,6 +83,7 @@ async function post(req, res) {
       set ${sql({ data: JSON.stringify({ ...certificate, transaction }) })}
       where id = ${certificateEntity.id}
     `;
+
     res.json({ transaction });
   } catch (error) {
     console.log(error);

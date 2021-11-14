@@ -92,8 +92,6 @@ The first time the body will look like this, the other words will be null:
 
 ### Create Artist (customer need a wallet)
 
-> TODO : require an active product 
-
 ```
 curl -X POST localhost:5000/artist --data '{"firstName": "Camille", "lastName": "Toche", "verificationId": "42"}'  -H "content-type: application/json" -H "Authorization: Bearer ey..."
 ```
@@ -107,10 +105,10 @@ Create a Ethereum transaction to smart contract for create artist
 
 ### Create COA (customer need an artist profile)
 
-> TODO : require an active product 
 > Requet timeout > 60sec
+
 ```
-curl -X POST localhost:5000/certificate --data '{"artPieceId": "1", "tokenUri": "ipfs...", "title": "title test", "description": "test description", "size": "200x200", "technical": "test", "material": "paint", "tirage": "eza", "movement":"ezae"}'  -H "content-type: application/json" -H "Authorization: Bearer ey
+curl -X POST localhost:5000/certificate --data '{"artPieceId": "1", "tokenUri": "ipfs...", "title": "title test", "description": "test description", "size": "200x200", "technical": "test", "material": "paint", "tirage": "eza", "movement":"ezae"}'  -H "content-type: application/json" -H "Authorization: Bearer ey"
 ```
 
 body : 
