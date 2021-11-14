@@ -19,12 +19,15 @@
           <h2 class="font-semibold capitalize">Select your service</h2>
           <div class="grid grid-cols-4 gap-3 sm:grid-cols-2 xs:grid-cols-1 place-items-center">
             
-            <div v-for='i in [1,2,3,4]' class="w-44 h-44 inline-flex flex-col items-center space-y-6 border-2 border-gray-400">
-              <h1 class="text-gray-800 text-lg capitalize leading-relaxed pt-4">Service</h1>
-              <h1 class="text-gray-800 text-lg capitalize leading-relaxed">42€</h1>
-              <button class="border-gray-400 border-t-2 text-center px-2 py-3 hover:text-white hover:bg-gray-700 w-full bottom-0">
+            <div v-for='(product, key) in products' :key='key' class="w-44 h-44 inline-flex flex-col items-center space-y-6 border-2 border-gray-400">
+              <h1 class="text-gray-800 text-lg capitalize leading-relaxed pt-4">{{ product.name }}</h1>
+              <h1 class="text-gray-800 text-lg capitalize leading-relaxed">{{ product.price }}$</h1>
+              <a v-if='$store.getters.token' :href='product.link' class="border-gray-400 border-t-2 text-center px-2 py-3 hover:text-white hover:bg-gray-700 w-full bottom-0">
                 Select
-              </button>
+              </a>
+              <router-link v-else to="/login" class="border-gray-400 border-t-2 text-center px-2 py-3 hover:text-white hover:bg-gray-700 w-full bottom-0">
+                Select
+              </router-link>
             </div>
             
 
@@ -46,6 +49,24 @@ export default {
   components: {
     Header,
     Footer,
-  }
+  },
+  data() {
+    return {
+      products: [],
+    }
+  },
+  async mounted() {
+    await this.fetchProducts();
+  },
+  methods: {
+    async fetchProducts() {
+      this.products = await fetch(this.$store.getters.api + '/products', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        }
+      }).then((r) => r.json());
+    }
+  },
 };
 </script>

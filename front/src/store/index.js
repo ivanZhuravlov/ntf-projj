@@ -14,7 +14,7 @@ export default new Vuex.Store({
   	api: state => API,
   	token: state => null !== state.token ? state.token.token : null,
   	bearer: state => `Bearer ${state.token.token}`,
-},
+  },
   mutations: {
     setToken(state, token) {
       state.token = token;
