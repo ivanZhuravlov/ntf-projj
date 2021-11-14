@@ -13,7 +13,7 @@ contract Jenko is ERC721, Ownable {
     Counters.Counter private _tokenIds;
 
     event registerArtistEvent(address _address, string _artistVerificationId);
-    event mintEvent(uint256 _tokenId);
+    event mintEvent(uint256 _tokenId, address _artistAddress);
 
     struct Token {
         address artistAddress;
@@ -107,7 +107,7 @@ contract Jenko is ERC721, Ownable {
 
         _mint(msg.sender, newTokenId);
         _setTokenURI(newTokenId, _tokenUri);
-        emit mintEvent(newTokenId);
+        emit mintEvent(newTokenId, _artistAddress);
 
         return newTokenId;
     }
