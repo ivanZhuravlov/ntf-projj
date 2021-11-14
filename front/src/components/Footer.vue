@@ -7,8 +7,7 @@
         <div class="lg:-mt-2 mb-4">
           <a href="/" class="inline-flex items-center text-black-800 text-xl md:text-2xl font-bold gap-2" aria-label="logo">
             <!-- TODO -->
-            <img class="w-auto h-12" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Ethereum_logo_2014.svg/1200px-Ethereum_logo_2014.svg.png">
-            Jenko
+            <img class="w-auto h-12" src="../assets/logo.png">
           </a>
         </div>
         <!-- logo - end -->
