@@ -54,7 +54,7 @@ Return a valid JWT : `{ "token":"eyJh...." }`
 
 > Don't forget header : `"authorization: Bearer eyJh..."`
 
-### Profiles
+### Profile (`/profile`)
 
 #### POST (update profile)
 
@@ -73,7 +73,77 @@ Body
 
 #### GET (retrieve profile)
 
-WIP
+Response : `curl localhost:5000/profile  -H "content-type: application/json" -H "Authorization: Bearer eyJhbGc`
+
+```json
+{
+    "user": {
+      "id": "0ede6580-03ba-4be2-9c1e-393a757541b9",
+      "email": "toteoeza@asticot.fr",
+      "data": {
+        "firstName": "Camille",
+        "lastName": "Toche",
+        "country": "France",
+        "street": "Jaude",
+        "city": "Clermont Ferrand",
+        "state": "Puy de dome",
+        "zip": 6300
+      }
+    },
+    "artist": {
+      "address": "0x7731A83d3F79AD358A63150fa314Dc4aEED514C0",
+      "user_id": "0ede6580-03ba-4be2-9c1e-393a757541b9",
+      "transaction": "0x38bd1e8f885bcf0d8e1f6223f59c8b1cc6531fcb3db63d54e7c7b833b5cdbd7c",
+      "data": {
+        "address": "0x7731A83d3F79AD358A63150fa314Dc4aEED514C0",
+        "firstName": "Camille",
+        "lastName": "Toche",
+        "verificationId": "42"
+      },
+      "is_validate": true,
+      "created_at": "2021-11-12T16:34:34.083Z"
+    },
+    "subscriptions": [
+      {
+        "id": "040b5e19-f92d-4871-8b16-d2fa83f57931",
+        "is_active": false,
+        "created_at": "2021-11-13T17:12:18.033Z",
+        "terminated_at": "2021-11-14T11:17:41.715Z",
+        "product": {
+          "id": "prod_KaWJiBPVWynkKS",
+          "priceId": "price_1JvLcwHxzpQyW0ctBd9V1AFC",
+          "link": "https://buy.stripe.com/test_eVa6sc5zReZcdTa146",
+          "price": 15,
+          "name": "15 NFT",
+          "coaCount": 2
+        }
+      }
+    ],
+    "certificates": [
+      {
+        "id": "9ca83aa2-898b-447e-b9ed-b216c54638a3",
+        "subscription_id": "040b5e19-f92d-4871-8b16-d2fa83f57931",
+        "data": {
+          "artistAddress": "0x7731A83d3F79AD358A63150fa314Dc4aEED514C0",
+          "artPieceId": "1",
+          "tokenUri": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Vincent_van_Gogh_-_Self-Portrait_-_Google_Art_Project.jpg/260px-Vincent_van_Gogh_-_Self-Portrait_-_Google_Art_Project.jpg",
+          "title": "title test",
+          "description": "test description",
+          "size": "200x200",
+          "technical": "test",
+          "material": "paint",
+          "tirage": "eza",
+          "movement": "ezae",
+          "transaction": "0x412c499ae24fc1f7af47674556af97bee99a4d1d76fa8f56a869f9ae48110956"
+        },
+        "is_validate": true,
+        "created_at": "2021-11-12T17:44:17.449Z",
+        "token_id": "11",
+        "token_uri": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Vincent_van_Gogh_-_Self-Portrait_-_Google_Art_Project.jpg/260px-Vincent_van_Gogh_-_Self-Portrait_-_Google_Art_Project.jpg"
+      }
+    ]
+  }
+```
 
 ### Wallet (Generate a wallet for customer)
 

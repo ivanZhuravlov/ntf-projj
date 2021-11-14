@@ -6,25 +6,39 @@ const { authenticateJWT } = require("../utils");
 async function get(req, res) {
   try {
     const userId = req.user.id;
-    const [user] = await sql`
-      select email, data
-      from users
-      where id = ${userId}
-    `;
+    const [
+      [user],
+      [artist]
+    ] = await Promise.all([
+      sql`select id, email, data from users where id = ${userId}`,
+      sql`select * from artists where user_id = ${userId}`,
+    ]);
 
-    const [subscription] = await sql`
-      select data->'plan'->'id' as plan_id, is_active, terminated_at 
-      from subscriptions
-      where user_id = ${userId}
-      and is_active is true
-    `;
+    let subscriptions = [];
+    let certificates = [];
+    if(artist) {
+      [
+        subscriptions,
+        certificates
+      ] = await Promise.all([
+        sql`
+          select id, is_active, created_at, terminated_at, data->>'product' as product
+          from subscriptions where user_id = ${userId}`,
+        sql`
+          select id, subscription_id, data, is_validate, created_at, token_id, token_uri
+          from certificates where user_id = ${userId}`,
+      ]);
+      subscriptions.map((sub) => {
+        sub.product = JSON.parse(sub.product);
+        return sub;
+      });
+    }
 
     res.json({
-      user: {
-        ...user.data,
-        email: user.email,
-      },
-      subscription: subscription || null,
+      user,
+      artist,
+      subscriptions: [...subscriptions],
+      certificates: [...certificates],
     });
   } catch (error) {
     res.status(400).send(`${error.message}`);
@@ -49,10 +63,9 @@ async function post(req, res) {
       zip: req.body.zip,
     };
 
-    const [{ email }] = await sql`
+    await sql`
       update users set ${sql({ data: JSON.stringify(infos) })}
       where id = ${userId}
-      returning email
     `;
 
     res.status(200).send();
