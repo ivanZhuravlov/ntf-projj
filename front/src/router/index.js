@@ -9,6 +9,7 @@ import Register from '../views/Register.vue';
 import Art from '../views/Art.vue';
 import CreateArtist from '../views/CreateArtist.vue';
 import CreateCoA from '../views/CreateCoA.vue';
+import About from '../views/About.vue';
 
 Vue.use(VueRouter);
 
@@ -52,6 +53,11 @@ const routes = [
     path: '/new/coa',
     name: 'CreateCoA',
     component: CreateCoA
+  },
+  {
+    path: '/about',
+    name: 'About',
+    component: About
   }
 ];
 
