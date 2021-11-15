@@ -27,7 +27,7 @@ app.use(bodyParser.json());
 app.use(
   expressJwt({ secret: JWT_SECRET, algorithms: ["HS256"] }).unless({
     path: [
-      "/register", "/login", "/products", "/stripe", 
+      "/register", "/login", "/products", "/stripe", "/art",
       { url: /^\/art\/.*/, methods: ['GET'] },
   ],
   })

@@ -9,10 +9,31 @@ async function get(req, res) {
       throw new Error('Invalid Id')
     }
     const [certificate] = await sql`
-      select id, data, is_validate, created_at, token_id, token_uri
-      from certificates where id = ${id}`;
+      select certificates.id, certificates.data, certificates.is_validate, certificates.created_at, token_id, token_uri, artists.data as artist
+      from certificates 
+        left join artists on certificates.data->>'artistAddress' = artists.address
+      where id = ${id}`;
 
     res.json(certificate);
+  } catch (error) {
+    console.log(error.message);
+    res.status(400).send('Certificate not exist');
+  }
+}
+
+async function list(req, res) {
+  try {
+    const certificates = await sql`
+      select certificates.id, certificates.data, certificates.is_validate, certificates.created_at, token_id, token_uri, artists.data as artist
+      from certificates 
+        inner join artists on certificates.data->>'artistAddress' = artists.address
+      where certificates.is_validate is true 
+      and artists.is_validate is true
+      and token_uri is not null
+      limit 5
+    `;
+
+    res.json(certificates);
   } catch (error) {
     console.log(error.message);
     res.status(400).send('');
@@ -20,5 +41,6 @@ async function get(req, res) {
 }
 
 router.route("/:id").get(get);
+router.route("/").get(list);
 
 module.exports = router;

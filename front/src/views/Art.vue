@@ -4,9 +4,9 @@
     <div class="container max-w-7xl sm:px-4 xs:px-2 mx-auto grid xs:grid-cols-1 sm:grid-cols-1 grid-cols-2 pt-6 gap-8">
       <img class="max-w-screen-lg h-auto" :src="`https://ipfs.io/ipfs/${token.token_uri}`">
  
-      <div class="">
+      <div>
         <h1 class="text-gray-800 text-3xl font-bold capitalize leading-relaxed">{{ token.data.title }}</h1>
-        <h2 class="text-gray-500 capitalize">Artist name</h2>
+        <h2 class="text-gray-500 capitalize">{{ token.artist.lastName }} {{ token.artist.firstName }}</h2>
         <p class="text-gray-700">
           {{ token.data.description }}
         </p>
@@ -71,8 +71,7 @@ export default {
       this.token = await fetch(`${this.$store.getters.api}/art/${id}`, {
         method: 'GET',
         headers: {
-          'Content-Type': 'application/json',
-          'Authorization': this.$store.getters.bearer
+          'Content-Type': 'application/json'
         }
       }).then((r) => r.json());
     },

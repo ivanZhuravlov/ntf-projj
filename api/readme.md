@@ -17,6 +17,40 @@ Return a valid JWT : `{ "token":"eyJh...." }`
 
 Return a valid JWT : `{ "token":"eyJh...." }`
 
+### Art (`/art`) 5 validated COA
+`curl localhost:5000/art/  -H "content-type: application/json" | jq`
+
+```json
+[
+  {
+    "id": "9ca83aa2-898b-447e-b9ed-b216c54638a3",
+    "data": {
+      "artistAddress": "0x7731A83d3F79AD358A63150fa314Dc4aEED514C0",
+      "artPieceId": "1",
+      "tokenUri": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Vincent_van_Gogh_-_Self-Portrait_-_Google_Art_Project.jpg/260px-Vincent_van_Gogh_-_Self-Portrait_-_Google_Art_Project.jpg",
+      "title": "title test",
+      "description": "test description",
+      "size": "200x200",
+      "technical": "test",
+      "material": "paint",
+      "tirage": "eza",
+      "movement": "ezae",
+      "transaction": "0x412c499ae24fc1f7af47674556af97bee99a4d1d76fa8f56a869f9ae48110956"
+    },
+    "is_validate": true,
+    "created_at": "2021-11-12T17:44:17.449Z",
+    "token_id": "11",
+    "token_uri": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Vincent_van_Gogh_-_Self-Portrait_-_Google_Art_Project.jpg/260px-Vincent_van_Gogh_-_Self-Portrait_-_Google_Art_Project.jpg",
+    "artist": {
+      "address": "0x7731A83d3F79AD358A63150fa314Dc4aEED514C0",
+      "firstName": "Camille",
+      "lastName": "Toche",
+      "verificationId": "42"
+    }
+  }
+]
+```
+
 ### Art (`/art/:id`)
 `curl localhost:5000/art/b9ad9447-84dc-4bed-be48-c5ac3ded0fc3  -H "content-type: application/json" | jq`
 
@@ -39,7 +73,13 @@ Return a valid JWT : `{ "token":"eyJh...." }`
   "is_validate": true,
   "created_at": "2021-11-14T11:17:25.925Z",
   "token_id": 42,
-  "token_uri": "ipfs://"
+  "token_uri": "ipfs://",
+  "artist": {
+    "address": "0x923d5A0Ba4bBD49b9B93C752D131c253f27D6f78",
+    "firstName": "Camille",
+    "lastName": "Toche",
+    "verificationId": 42
+  }
 }
 ```
 
