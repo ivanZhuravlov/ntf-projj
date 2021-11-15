@@ -17,6 +17,32 @@ Return a valid JWT : `{ "token":"eyJh...." }`
 
 Return a valid JWT : `{ "token":"eyJh...." }`
 
+### Art (`/art/:id`)
+`curl localhost:5000/art/b9ad9447-84dc-4bed-be48-c5ac3ded0fc3  -H "content-type: application/json" | jq`
+
+```json
+{
+  "id": "b9ad9447-84dc-4bed-be48-c5ac3ded0fc3",
+  "data": {
+    "artistAddress": "0x923d5A0Ba4bBD49b9B93C752D131c253f27D6f78",
+    "artPieceId": "1",
+    "tokenUri": "ipfs...",
+    "title": "title test",
+    "description": "test description",
+    "size": "200x200",
+    "technical": "test",
+    "material": "paint",
+    "tirage": "eza",
+    "movement": "ezae",
+    "transaction": "0x016aaca7033efeb6923923c1965367501060b051fcc6788296f663bc7510412e"
+  },
+  "is_validate": true,
+  "created_at": "2021-11-14T11:17:25.925Z",
+  "token_id": 42,
+  "token_uri": "ipfs://"
+}
+```
+
 ### Products
 
 `curl localhost:5000/products -H "content-type: application/json"`

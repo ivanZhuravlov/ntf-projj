@@ -26,7 +26,10 @@ const app = express();
 app.use(bodyParser.json());
 app.use(
   expressJwt({ secret: JWT_SECRET, algorithms: ["HS256"] }).unless({
-    path: ["/register", "/login", "/products", "/stripe"],
+    path: [
+      "/register", "/login", "/products", "/stripe", 
+      { url: /^\/art\/.*/, methods: ['GET'] },
+  ],
   })
 );
 
@@ -56,6 +59,7 @@ app.use("/artist", require("./routes/artist"));
 
 // Certificate
 app.use("/certificate", require("./routes/certificate"));
+app.use("/art", require("./routes/art"));
 
 // Stripe
 app.use("/products", require("./routes/products"));
