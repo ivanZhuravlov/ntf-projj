@@ -12,10 +12,14 @@
       <router-link to="/contact" class="text-gray-600 hover:text-blue-500 active:text-blue-700 text-lg font-semibold transition duration-100">Contact (for dev)</router-link>
     </nav>
 
-    <div class="hidden lg:flex sm:flex-row sm:justify-center lg:justify-start gap-2.5 -ml-8">
+    <div v-if='!$store.getters.token' class="hidden lg:flex sm:flex-row sm:justify-center lg:justify-start gap-2.5 -ml-8">
       <router-link to="/login" class="inline-block text-gray-500 hover:text-blue-500 active:text-blue-600 text-sm md:text-base font-semibold text-center rounded-lg outline-none transition duration-100 px-4 py-3">Sign in</router-link>
 
       <router-link to="/register" class="inline-block bg-blue-500 hover:bg-blue-600 active:bg-blue-700 text-white text-sm md:text-base font-semibold text-center rounded-lg outline-none transition duration-100 px-8 py-3">Sign up</router-link>
+    </div>
+
+    <div v-else class="hidden lg:flex sm:flex-row sm:justify-center lg:justify-start gap-2.5 -ml-8">
+      <router-link to="/dashboard" class="inline-block bg-gray-600 hover:bg-gray-700 active:bg-gray-800 text-white text-sm md:text-base font-semibold text-center rounded-lg outline-none transition duration-100 px-8 py-3">Dashboard</router-link>
     </div>
 
     <!-- TODO Responsive menu -->
