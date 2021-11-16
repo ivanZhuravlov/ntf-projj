@@ -28,12 +28,12 @@ app.use(
   expressJwt({ secret: JWT_SECRET, algorithms: ["HS256"] }).unless({
     path: [
       "/register", "/login", "/products", "/stripe", "/art",
-      { url: /^\/art\/.*/, methods: ['GET'] },
+      /^\/art\/.*/,
   ],
   })
 );
 
-app.use(cors({ methods: ["POST"] }));
+app.use(cors({ methods: ["POST", "GET"] }));
 
 app.use((err, req, res, next) => {
   if (err.name === "UnauthorizedError") {

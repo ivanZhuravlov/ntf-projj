@@ -9,7 +9,9 @@
       <div class="container max-w-7xl mx-auto grid xs:grid-cols-1 sm:grid-cols-1 grid-cols-2 pt-6 gap-8">
    
         <div class="">
-          <h1 class="text-gray-800 text-3xl font-bold capitalize leading-relaxed">{{ currentToken.data.title }}</h1>
+          <router-link :to='`/art/${currentToken.id}`' class="text-gray-800 text-3xl font-bold capitalize leading-relaxed">
+            {{ currentToken.data.title }}
+          </router-link>
           <h2 class="text-gray-500 capitalize">{{ currentToken.artist.lastName }} {{ currentToken.artist.firstName }}</h2>
           <p class="text-gray-700">
             {{ currentToken.data.description }}
