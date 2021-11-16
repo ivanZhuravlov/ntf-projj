@@ -4,7 +4,7 @@ import createPersistedState from "vuex-persistedstate";
 
 Vue.use(Vuex);
 
-const API = process.env.NODE_ENV === 'production' ? 'https://api.jenko.io' : 'http://localhost:5000';
+const API = process.env.NODE_ENV === 'production' ? 'http://api.jenko.io' : 'http://localhost:5000';
 
 export default new Vuex.Store({
   state: {
