@@ -4,9 +4,9 @@
 
     <div v-if='subscriptions.length'>
       <h1 class="text-gray-800 text-3xl text-center font-bold capitalize leading-relaxed">My Invoices</h1>
-      <div class="container max-w-7xl mx-auto grid xs:grid-cols-1 sm:grid-cols-1 grid-cols-2 pt-6 gap-8">
+      <div class="container max-w-7xl grid mx-auto center xs:grid-cols-1 sm:grid-cols-1 grid-cols-2 pt-6 gap-8">
         <Subscription 
-        v-for="subscription in subscriptions" :key='subscription.id'
+          v-for="subscription in subscriptions" :key='subscription.id'
           :subscription="subscription"
           :certificatesCount="certificatesCount(subscription.id)"
         />

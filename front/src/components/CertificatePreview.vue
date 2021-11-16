@@ -1,6 +1,6 @@
 <template>
-  <div class="container max-w-7xl px-4 mx-auto space-y-8 sm:px-6 xs:px-6">
-    <div class="container mx-auto grid xs:grid-cols-1 sm:grid-cols-1 grid-cols-2 gap-8">
+  <div class="container max-w-7xl px-4 mx-auto space-y-8 sm:px-4 xs:px-4">
+    <div class="mx-auto grid xs:grid-cols-1 sm:grid-cols-1 grid-cols-2 gap-8">
       <img class="max-w-screen-lg h-auto" :src="`https://ipfs.io/ipfs/${certificate.token_uri}`">
       <div>
         <router-link :to='`/art/${certificate.id}`' class="text-gray-800 text-3xl font-bold capitalize leading-relaxed">
