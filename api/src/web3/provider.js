@@ -1,6 +1,5 @@
+require("dotenv").config({ path: `.env.${process.env.NODE_ENV}` });
 const { ethers } = require("ethers");
-
-require("dotenv").config();
 const { INFURA_PROJECT_ID, INFURA_PROJECT_SECRET, NETWORK } = process.env;
 
 if (!INFURA_PROJECT_ID) {

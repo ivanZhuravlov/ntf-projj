@@ -1,4 +1,4 @@
-require("dotenv").config();
+require("dotenv").config({ path: `.env.${process.env.NODE_ENV}` });
 
 const { ethers } = require("ethers");
 const provider = require("./provider");

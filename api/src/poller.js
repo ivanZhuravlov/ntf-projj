@@ -1,4 +1,4 @@
-require("dotenv").config();
+require("dotenv").config({ path: `.env.${process.env.NODE_ENV}` });
 
 const { ethers } = require("ethers");
 const { provider } = require("./web3");
@@ -68,7 +68,7 @@ async function mintEvent(_tokenId, _artistAddress, _artPieceId) {
 }
 
 async function listen() {
-  log("start poller");
+  log(`Start poller in ${process.env.NODE_ENV} mode`);
   contract.on("registerArtistEvent", registerArtistEvent);
   contract.on("mintEvent", mintEvent);
 }

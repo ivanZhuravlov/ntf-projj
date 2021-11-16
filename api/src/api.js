@@ -1,4 +1,4 @@
-require("dotenv").config();
+require("dotenv").config({ path: `.env.${process.env.NODE_ENV}` });
 
 const { APP_URL, JWT_SECRET, STRIPE_WEBHOOK_SECRET, STRIPE_API_KEY } =
   process.env;
@@ -115,5 +115,5 @@ app.use("/stripe", require("./routes/stripe"));
 // });
 
 app.listen(PORT, async () => {
-  console.log(`Server running on port ${PORT}`);
+  console.log(`Server running on port ${PORT} in ${process.env.NODE_ENV} mode`);
 });

@@ -1,4 +1,4 @@
-require("dotenv").config();
+require("dotenv").config({ path: `.env.${process.env.NODE_ENV}` });
 const sql = require("../pg");
 const { v4: uuidv4 } = require("uuid");
 const express = require("express");
