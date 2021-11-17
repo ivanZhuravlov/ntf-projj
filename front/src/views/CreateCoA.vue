@@ -87,7 +87,7 @@
                 <input id="terms" aria-describedby="terms" type="checkbox" class="bg-gray-50 border focus:ring focus:ring-blue-300 h-4 w-4 rounded" required="true">
               </div>
             <div class="text-sm ml-3">
-                <label for="terms" class="font-sm">I agree with the <a href="#" class="text-blue-600 hover:underline">Terms and Conditions*</a></label>
+                <label for="terms" class="font-sm">I read and approve with the <a href="#" class="text-blue-600 hover:underline">Terms and Conditions*</a></label>
               </div>
             </div>
 

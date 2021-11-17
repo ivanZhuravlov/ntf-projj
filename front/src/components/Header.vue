@@ -56,7 +56,6 @@
     methods: {
       toggle() {
         this.showMenu = !this.showMenu;
-        console.log(this.showMenu);
       }
     }
   };

@@ -10,6 +10,7 @@ import Art from '../views/Art.vue';
 import CreateArtist from '../views/CreateArtist.vue';
 import CreateCoA from '../views/CreateCoA.vue';
 import About from '../views/About.vue';
+import CreateProfile from '../views/CreateProfile.vue';
 
 Vue.use(VueRouter);
 
@@ -58,6 +59,11 @@ const routes = [
     path: '/about',
     name: 'About',
     component: About
+  }, 
+  {
+    path: '/new/profile',
+    name: 'CreateProfile',
+    component: CreateProfile
   }
 ];
 
