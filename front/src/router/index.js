@@ -79,7 +79,10 @@ const routes = [
   {
     path: '/new/profile',
     name: 'CreateProfile',
-    component: CreateProfile
+    component: CreateProfile,
+    meta: {
+      requiresAuth: true
+    }
   }
 ];
 
