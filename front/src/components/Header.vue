@@ -17,18 +17,47 @@
 
       <router-link to="/register" class="inline-block bg-blue-500 hover:bg-blue-600 active:bg-blue-700 text-white text-sm md:text-base font-semibold text-center rounded-lg outline-none transition duration-100 px-8 py-3">Sign up</router-link>
     </div>
+    <div>
+      <!-- TODO Responsive menu -->
+      <button type="button" @click="toggle()" class="inline-flex items-center lg:hidden bg-white text-gray-500 active:text-gray-700 text-sm md:text-base font-semibold rounded-lg gap-2 px-2.5 py-2 hover:transition ease-out duration-200 transform hover:scale-110">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h6a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd" />
+        </svg>
+      </button>
+      <div v-if="showMenu" class="lg:hidden block absolute right-0 bg-white text-base py-2 list-none text-left shadow-lg mt-1 z-10">
+          <router-link to="/service" class="text-sm py-2 pr-4 mx-8 font-semibold block w-full whitespace-nowrap bg-transparent text-gray-700 hover:text-blue-500">
+            Service
+          </router-link>
+          <router-link to="/art/123" class="text-sm py-2 pr-4 mx-8 font-semibold block w-full whitespace-nowrap bg-transparent text-gray-700 hover:text-blue-500">
+            Art
+          </router-link>
+          <router-link to="/contact" class="text-sm py-2 pr-4 mx-8 font-semibold block w-full whitespace-nowrap bg-transparent text-gray-700 hover:text-blue-500">
+            Contact
+          </router-link>
+          <div class="h-0 my-2 border border-solid border-t-0 border-blueGray-800 opacity-25"></div>
+          <router-link to="/about" class="text-sm py-2 pr-4 mx-8 font-semibold block w-full whitespace-nowrap bg-transparent text-gray-700 hover:text-blue-500">
+            About
+          </router-link>
+      </div>
+    </div>
 
-    <!-- TODO Responsive menu -->
-    <button type="button" class="inline-flex items-center lg:hidden bg-gray-200 hover:bg-gray-300 text-gray-500 active:text-gray-700 text-sm md:text-base font-semibold rounded-lg gap-2 px-2.5 py-2">
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
-        <path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h6a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd" />
-      </svg>
-    </button>
+
   </header>
 </template>
 
 <script>
   export default {
     name: "Header",
+    data() {
+      return {
+        showMenu: false
+      }
+    },
+    methods: {
+      toggle() {
+        this.showMenu = !this.showMenu;
+        console.log(this.showMenu);
+      }
+    }
   };
 </script>

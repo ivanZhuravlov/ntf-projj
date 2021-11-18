@@ -10,6 +10,7 @@ import Art from '../views/Art.vue';
 import CreateArtist from '../views/CreateArtist.vue';
 import Dashboard from '../views/Dashboard.vue';
 import CreateCoA from '../views/CreateCoA.vue';
+import About from '../views/About.vue';
 import store from '../store';
 
 Vue.use(VueRouter);
@@ -68,6 +69,11 @@ const routes = [
     meta: {
       requiresAuth: true
     }
+  },
+  {
+    path: '/about',
+    name: 'About',
+    component: About
   }
 ];
 
