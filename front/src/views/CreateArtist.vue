@@ -10,7 +10,7 @@
           <p class="max-w-proce text-gray-500 md:text-lg text-center mx-auto">
             Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
             tempor incididunt ut labore et dolore magna aliqua.
-          </p> 
+          </p>
         </div>
         <!-- text - end -->
 
@@ -39,7 +39,7 @@
                   </div>
                 </div>
               </div>
-            </div> 
+            </div>
 
           <div>
             <label for="email" class="inline-block text-sm sm:text-base mt-3">Email*</label>
@@ -57,21 +57,21 @@
           </div>
 
         </div>
-         
+
         <div>
           <div>
             <label for="research" class="inline-block text-sm sm:text-base mt-3">What are you doing?*</label>
             <textarea required="true" name="research" maxlength="500" class="w-full h-40 bg-gray-50 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2"></textarea>
           </div>
 
-          <div> 
+          <div>
             <label for="bio" class="inline-block  text-sm sm:text-base mt-3">Who are you?*</label>
             <textarea required="true" maxlength="500" name="bio" class="w-full h-40 bg-gray-50 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2"></textarea>
           </div>
 
           <hr class="my-4">
-          <p class="max-w-screen-md md:text-lg my-4">Proove your identity by selecting one of two options:* </p>  
-          
+          <p class="max-w-screen-md md:text-lg my-4">Proove your identity by selecting one of two options:* </p>
+
             <!-- TODO: Require one of two fields -->
           <div class="md:grid grid-cols-3 lg:grid grid-cols-5 mb-5">
             <div class="md:col-span-2 lg:col-span-2">
@@ -79,7 +79,7 @@
               <input name="artist-registration-id" class="w-full bg-gray-50 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2" />
             </div>
 
-            <p class= "text-center underline md:text-lg my-5 uppercase"> or </p>  
+            <p class= "text-center underline md:text-lg my-5 uppercase"> or </p>
 
             <div class="md:col-span-2 lg:col-span-2">
               <label for="pic-id" class="inline-block text-sm sm:text-base mb-2"> Picture of your ID, driving lincense or passport</label>
@@ -121,7 +121,6 @@
   </template>
 
 <script>
-
 // @ is an alias to /src
 import Header from '@/components/Header.vue'
 import Footer from '@/components/Footer.vue'
