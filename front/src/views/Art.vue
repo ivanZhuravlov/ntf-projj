@@ -2,32 +2,28 @@
   <div class="art">
     <Header />
     <div class="container max-w-7xl sm:px-4 xs:px-2 mx-auto grid xs:grid-cols-1 sm:grid-cols-1 grid-cols-2 pt-6 gap-8">
-      <img class="max-w-screen-lg h-auto" src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Tsunami_by_hokusai_19th_century.jpg">
+      <img class="max-w-screen-lg h-auto" :src="`https://ipfs.io/ipfs/${token.token_uri}`">
  
-      <div class="">
-        <h1 class="text-gray-800 text-3xl font-bold capitalize leading-relaxed">Name of art</h1>
-        <h2 class="text-gray-500 capitalize">Artist name</h2>
+      <div>
+        <h1 class="text-gray-800 text-3xl font-bold capitalize leading-relaxed">{{ token.data.title }}</h1>
+        <h2 class="text-gray-500 capitalize">{{ token.artist.lastName }} {{ token.artist.firstName }}</h2>
         <p class="text-gray-700">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-          tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-          quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-          consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-          cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-          proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          {{ token.data.description }}
         </p>
 
         <div class="grid grid-cols-2 mt-12">
           <div class="space-y-2">
-            <div>2010</div>
-            <div class="uppercase">120 cm x 100 cm</div>
-            <div class="uppercase">oil on canvas</div>
-            <div class="uppercase">piece unique</div>
+            <div v-if='token.data.artPieceId' class="uppercase">Art piece: {{ token.data.artPieceId }}</div>
+            <div v-if='token.data.size' class="uppercase">Size: {{ token.data.size }}</div>
+            <div v-if='token.data.material' class="uppercase">Material: {{ token.data.material }}</div>
+            <div v-if='token.data.technical' class="uppercase">Technical: {{ token.data.technical}}</div>
+            <div v-if='token.data.movment' class="uppercase">Movment: {{ token.data.movment}}</div>
           </div>
           <div class="space-y-4">
-            <div class="text-gray-500 uppercase">NFT Address</div>
-            <a href="#" class="underline hover:text-blue-700">0xdc9606795656c...80413ca</a>
+            <div class="text-gray-500 uppercase">COA Transaction</div>
+            <a :href="'https://etherscan.io/tx/' + token.data.transaction" target="_blank" class="underline hover:text-blue-700">{{ clean(token.data.transaction) }}</a>
             <div class="text-gray-500 uppercase">Owner Address</div>
-            <a href="#" class="underline hover:text-blue-700">0xdc9606795656c...80413ca</a>
+            <a :href="'https://etherscan.io/address/' + token.data.artistAddress" target="_blank" class="underline hover:text-blue-700">{{ clean(token.data.artistAddress) }}</a>
           </div>
         </div>
       </div>
@@ -61,8 +57,27 @@ export default {
     Header,
     Footer
   },
-  mounted() {
+  data() {
+    return {
+      token: {}
+    }
+  },
+  async mounted() {
     const { id } = this.$route.params;
+    await this.fetchArt(id);
+  },
+  methods: {
+    async fetchArt(id) {
+      this.token = await fetch(`${this.$store.getters.api}/art/${id}`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }).then((r) => r.json());
+    },
+    clean(longText) {
+      return longText.slice(0, 8) + ' ... ' + longText.slice(-8);
+    }
   }
 }
 </script>
