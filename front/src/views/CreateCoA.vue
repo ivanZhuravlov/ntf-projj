@@ -19,8 +19,8 @@
 
         <div>
           <div>
-            <label for="artpiece-title" class="inline-block text-sm sm:text-base mt-3">Artpiece Title*</label>
-            <input required="true" name="artistpiece-title" class="w-full bg-gray-50 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2" />
+            <label for="artpiece-name" class="inline-block text-sm sm:text-base mt-3">Name of the Artpiece*</label>
+            <input required="true" name="artpiece-name" class="w-full bg-gray-50 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2" />
           </div>
 
           <!-- TODO : Preview the picture -->
@@ -33,7 +33,7 @@
                     <div class="flex flex-col items-center justify-center pt-7">
                       <p class="text-sm tracking-wider text-gray-400 group-hover:text-gray-600">Attach a file</p>
                     </div>
-                    <input type="file" accept="image/png, image/jpeg" required="true" name="profile-picture" class="opacity-0" />
+                    <input type="file" accept="image/png, image/jpeg" required="true" name="artpiece-image" class="opacity-0" />
                   </label>
                 </div>
               </div>
@@ -43,8 +43,8 @@
 
         <div>
           <div>
-            <label for="creation-date" class="inline-block text-sm sm:text-base mt-3">Creation Date*</label>
-            <input required="true" name="creation-date" class="w-full bg-gray-50 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2" />
+            <label for="production-date" class="inline-block text-sm sm:text-base mt-3">Production Date of the Artpiece*</label>
+            <input required="true" name="production-date" class="w-full bg-gray-50 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2" />
           </div>
 
           <div>
@@ -54,32 +54,37 @@
 
           <div>
             <label for="technical" class="inline-block text-sm sm:text-base mt-3">Technical Information*</label>
-            <input required="true" name="technical" placeholder="Paint, sculpture, photography, etc..." class="w-full bg-gray-50 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2" />
+            <input required="true" name="technical" placeholder="Paint, sculpture, photography, etc..." class="w-full bg-gray-50 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2 placeholder-gray-500 placeholder-opacity-25" />
           </div>
 
           <div>
             <label for="dimension" class="inline-block text-sm sm:text-base mt-3">Dimension*</label>
-            <input required="true" name="dimension" placeholder="Height x Width x Depth cm" class="w-full bg-gray-50 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2" />
+            <input required="true" name="dimension" placeholder="Height x Width x Depth cm" class="w-full bg-gray-50 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2 placeholder-gray-500 placeholder-opacity-25" />
           </div>
 
           <div>
             <label for="support-material" class="inline-block text-sm sm:text-base mt-3">Support Material*</label>
-            <input required="true" name="support-material" placeholder="Cotton, paper, etc..." class="w-full bg-gray-50 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2" />
+            <input required="true" name="support-material" placeholder="Cotton, paper, etc..." class="w-full bg-gray-50 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2 placeholder-gray-500 placeholder-opacity-25" />
           </div>
 
           <div>
-            <label for="tirage" class="inline-block text-sm sm:text-base mt-3">Tirage*</label>
-            <input required="true" name="tirage" placeholder="Unique copy, 1 out of 10, etc..." class="w-full bg-gray-50 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2" />
+            <label for="numbering" class="inline-block text-sm sm:text-base mt-3">Numbering*</label>
+            <input required="true" name="numbering" placeholder="Unique copy, 1 out of 10, etc..." class="w-full bg-gray-50 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2 placeholder-gray-500 placeholder-opacity-25" />
           </div>
 
           <div>
-            <label for="artistic-movement" class="inline-block text-sm sm:text-base mt-3">Artistic movement*</label>
-            <input required="true" name="artistic-movement" placeholder="Abstract, figurative, portrait, etc..." class="w-full bg-gray-50 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2" />
+            <label for="artistic-movement" class="inline-block text-sm sm:text-base mt-3">Artistic Movement*</label>
+            <input required="true" name="artistic-movement" placeholder="Abstract, figurative, portrait, etc..." class="w-full bg-gray-50 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2 placeholder-gray-500 placeholder-opacity-25" />
+          </div>
+
+          <div>
+            <label for="position-signature" class="inline-block text-sm sm:text-base mt-3">Position of the Signature*</label>
+            <input required="true" name="position-signature" placeholder="right bottom corner" class="w-full bg-gray-50 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2 placeholder-gray-500 placeholder-opacity-25" />
           </div>
 
           <div>
             <label for="associated-tag" class="inline-block text-sm sm:text-base mt-3">Associated Tag*</label>
-            <input required="true" name="associated-tag" placeholder="#" class="w-full bg-gray-50 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2" />
+            <input required="true" name="associated-tag" placeholder="#" class="w-full bg-gray-50 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2 placeholder-gray-500 placeholder-opacity-25" />
           </div>
 
           <div class="flex items-start mb-6 mt-3">

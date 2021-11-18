@@ -100,7 +100,7 @@
 
         <div class="flex items-start mb-6">
           <div class="flex items-center h-5">
-            <input id="terms" aria-describedby="terms" type="checkbox" class="bg-gray-50 border focus:ring focus:ring-blue-300 h-4 w-4 rounded">
+            <input id="newsletter" aria-describedby="newsletter" type="checkbox" class="bg-gray-50 border focus:ring focus:ring-blue-300 h-4 w-4 rounded">
           </div>
           <div class="text-sm ml-3">
             <label for="newsletter" class="font-sm">Sign up to the newsletter!</label>
