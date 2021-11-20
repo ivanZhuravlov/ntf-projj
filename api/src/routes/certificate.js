@@ -16,11 +16,12 @@ async function post(req, res) {
     const [userArtist] = await sql`
       select address
       from users_wallet 
+        inner join users on user_id = users.id and type = 'artist'
       where user_id = ${userId};
     `;
 
     if (!userArtist) {
-      throw new Error("Artist has no wallet");
+      throw new Error("Artist has no wallet or user is not artist");
     }
 
     const subscriptions = await findActiveSubscriptions(userId);
