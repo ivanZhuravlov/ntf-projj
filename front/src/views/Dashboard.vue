@@ -1,7 +1,27 @@
 <template>
-  <div class="dashboard">
+  <div class="dashboard space-y-12">
     <Header />
-    Holà
+
+    <div v-if='subscriptions.length'>
+      <h1 class="text-gray-800 text-3xl text-center font-bold capitalize leading-relaxed">My Invoices</h1>
+      <div class="container max-w-7xl grid mx-auto center xs:grid-cols-1 sm:grid-cols-1 grid-cols-2 pt-6 gap-8">
+        <Subscription 
+          v-for="subscription in subscriptions" :key='subscription.id'
+          :subscription="subscription"
+          :certificatesCount="certificatesCount(subscription.id)"
+        />
+      </div>
+    </div>
+
+    <div v-if='certificates.length'>
+      <h1 class="text-gray-800 text-3xl text-center font-bold capitalize leading-relaxed">My certificates</h1>
+      <div class="container max-w-7xl sm:px-4 xs:px-2 mx-auto grid pt-6 gap-8">
+        <div v-for="certificate in certificates" :key='certificate.id' class="bg-gray-50 rounded-md py-4">
+          <CertificatePreview :certificate="certificate" />
+        </div>
+      </div>
+    </div>
+
     <Footer />
   </div>
 </template>
@@ -10,19 +30,23 @@
 // @ is an alias to /src
 import Header from '@/components/Header.vue';
 import Footer from '@/components/Footer.vue';
+import CertificatePreview from '@/components/CertificatePreview.vue';
+import Subscription from '@/components/Subscription.vue';
 
 export default {
   name: 'Dashboard',
   components: {
     Header,
-    Footer
+    Footer,
+    Subscription,
+    CertificatePreview
   },
   data() {
     return {
       user: null,
       artist: null,
       subscriptions: [],
-      certifications: [],
+      certificates: [],
     }
   },
   async mounted() {
@@ -40,8 +64,13 @@ export default {
       this.user = response.user;
       this.artist = response.artist;
       this.subscriptions = response.subscriptions;
-      this.certifications = response.certifications;
+      this.certificates = response.certificates;
     },
+    certificatesCount(subscriptionId) {
+      return this.certificates.filter(
+        (certificate) => certificate.subscription_id === subscriptionId
+      ).length;
+    }
   }
 }
 </script>
