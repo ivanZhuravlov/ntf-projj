@@ -5,7 +5,7 @@
         <h3 class="text-2xl font-bold text-center">
           {{ subscription.product.name }}<span class="text-yellow-600">.</span>
         </h3>
-        <p class="text-right mr-8">{{ new Date(subscription.created_at).toDateString() }} </p>
+        <p class="text-right mr-8">{{ new Date(subscription.created_at).toISOString().split('T')[0] }} </p>
       </div>
       <div class="px-10">
         <div class="flex mt-10 items-end justify-between">
@@ -41,7 +41,7 @@
           disabled
           class="text-center my-2 w-full cursor-not-allowed font-semibold hover:bg-gray-300 rounded border border-solid text-gray-600 py-3 bg-gray-200 disabled:opacity-50"
         >
-          Terminated ({{ new Date(subscription.terminated_at).toDateString() }})
+          Terminated ({{ new Date(subscription.terminated_at).toISOString().split('T')[0] }})
         </div>
       </div>
     </div>

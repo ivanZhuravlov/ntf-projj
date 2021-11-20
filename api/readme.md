@@ -35,6 +35,7 @@ Return a valid JWT : `{ "token":"eyJh...." }`
       "material": "paint",
       "tirage": "eza",
       "movement": "ezae",
+      "createdAt": 1636943010,
       "transaction": "0x412c499ae24fc1f7af47674556af97bee99a4d1d76fa8f56a869f9ae48110956"
     },
     "is_validate": true,
@@ -68,6 +69,7 @@ Return a valid JWT : `{ "token":"eyJh...." }`
     "material": "paint",
     "tirage": "eza",
     "movement": "ezae",
+    "createdAt": 1636943010,
     "transaction": "0x016aaca7033efeb6923923c1965367501060b051fcc6788296f663bc7510412e"
   },
   "is_validate": true,
@@ -200,6 +202,7 @@ Response : `curl localhost:5000/profile  -H "content-type: application/json" -H 
           "material": "paint",
           "tirage": "eza",
           "movement": "ezae",
+          "createdAt": 1636943010,
           "transaction": "0x412c499ae24fc1f7af47674556af97bee99a4d1d76fa8f56a869f9ae48110956"
         },
         "is_validate": true,
@@ -244,7 +247,7 @@ Create a Ethereum transaction to smart contract for create artist
 > Requet timeout > 60sec
 
 ```
-curl -X POST localhost:5000/certificate --data '{"artPieceId": "1", "tokenUri": "ipfs...", "title": "title test", "description": "test description", "size": "200x200", "technical": "test", "material": "paint", "tirage": "eza", "movement":"ezae"}'  -H "content-type: application/json" -H "Authorization: Bearer ey"
+curl -X POST localhost:5000/certificate --data '{"artPieceId": "1", "tokenUri": "ipfs...", "title": "title test", "description": "test description", "size": "200x200", "technical": "test", "material": "paint", "tirage": "eza", "movement":"ezae", "createdAt": "2021-11-15 03:23:30"}'  -H "content-type: application/json" -H "Authorization: Bearer ey"
 ```
 
 body : 
@@ -258,7 +261,8 @@ body :
     "technical": "test",
     "material": "paint",
     "tirage": "eza",
-    "movement":"ezae"
+    "movement":"ezae",
+    "createdAt": "2021-01-01 12:00:00"
 }
 ```
 

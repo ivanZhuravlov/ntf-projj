@@ -14,6 +14,7 @@
         <div class="grid grid-cols-2 mt-12">
           <div class="space-y-2">
             <div v-if='token.data.artPieceId' class="uppercase">Art piece: {{ token.data.artPieceId }}</div>
+            <div v-if='token.data.createdAt' class="uppercase">Created At: {{ new Date(token.data.createdAt * 1000).toISOString().split('T')[0] }}</div>
             <div v-if='token.data.size' class="uppercase">Size: {{ token.data.size }}</div>
             <div v-if='token.data.material' class="uppercase">Material: {{ token.data.material }}</div>
             <div v-if='token.data.technical' class="uppercase">Technical: {{ token.data.technical}}</div>
