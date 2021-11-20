@@ -22,7 +22,7 @@
     </div>
 
     <!-- Responsive menu starts -->
-    <div class="grid grid-cols-2">
+    <div class="grid grid-cols-2 mr-8">
     <div>
       <button type="button" @click="toggleProfileMenu()" class="inline-flex items-center lg:hidden bg-white text-gray-500 active:text-gray-700 text-sm md:text-base font-semibold rounded-lg gap-2 px-2.5 py-2 hover:transition ease-out duration-200 transform hover:scale-110">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
