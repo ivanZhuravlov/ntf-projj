@@ -1,11 +1,11 @@
 <template>
-<div id="create-profile">
+<div id="edit-profile">
   <Header />
   <div class="bg-white py-6 sm:py-8 lg:py-12 flex items-center">
     <div class="px-4 md:px-8 mx-auto">
       <!-- text - start -->
       <div class="mb-10 md:mb-16">
-        <h2 class="text-gray-800 text-2xl lg:text-3xl font-bold text-center mb-4 md:mb-6">Create Profile</h2>
+        <h2 class="text-gray-800 text-2xl lg:text-3xl font-bold text-center mb-4 md:mb-6">Edit Profile</h2>
         <p class="max-w-proce text-gray-500 md:text-lg text-center mx-auto">
           Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
           tempor incididunt ut labore et dolore magna aliqua.
@@ -105,7 +105,7 @@ import Header from '@/components/Header.vue'
 import Footer from '@/components/Footer.vue'
 
 export default {
-  name: 'CreateProfile',
+  name: 'EditProfile',
   components: {
     Header,
     Footer,

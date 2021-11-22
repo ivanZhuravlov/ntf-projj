@@ -10,6 +10,7 @@
 
       <div class="max-w-lg border rounded-lg mx-auto">
         <div class="flex flex-col gap-4 p-4 md:p-8">
+
           <div>
             <label for="email" class="inline-block text-gray-800 text-sm sm:text-base mb-2">Email</label>
             <input v-model='email' required type="email" name="email" class="w-full bg-gray-50 text-gray-800 border focus:ring focus:ring-2 ring-blue-300 rounded outline-none transition duration-100 px-3 py-2" />
@@ -23,6 +24,23 @@
             <label for="passwordRepeat" class="inline-block text-gray-800 text-sm sm:text-base mb-2">Password again</label>
             <input v-model='passwordRepeat' type='password' required name="passwordRepeat" class="w-full bg-gray-50 text-gray-800 border focus:ring focus:ring-2 ring-blue-300 rounded outline-none transition duration-100 px-3 py-2" />
           </div>
+
+           <p class="text-sm sm:text-base text-left auto">I am:*</p>
+          <div class="grid-cols-1 md:grid grid-cols-3 lg:grid grid-cols-3 gap-4">
+            <div>
+              <input type="radio" id="gallery" name="user-type" checked value="Artist">
+                <label for="artist" class="text-sm mx-3">Artist</label>
+            </div>
+            <div>
+              <input type="radio" id="gallery" name="user-type" value="Gallery">
+                <label for="gallery" class="text-sm mx-3">Gallery</label>
+            </div>
+            <div>
+              <input type="radio" id="collector" name="user-type" value="Collector">
+                <label for="collector" class="text-sm mx-3">Collector</label>
+            </div>
+          </div>
+          <hr class="my-4">
           <div class="flex items-start mb-6 px-6">
             <div class="flex items-center h-5">
               <input v-model="terms" required id="terms" aria-describedby="terms" type="checkbox" class="bg-gray-50 border focus:ring focus:ring-blue-300 h-4 w-4 rounded">
@@ -34,7 +52,7 @@
             </div>
           </div>
 
-          <button @click='register()' class="block bg-gray-800 hover:bg-gray-700 active:bg-gray-600 focus-visible:ring ring-gray-300 focus:ring-2 text-white text-sm md:text-base font-semibold text-center rounded-lg outline-none transition duration-100 px-8 py-3">
+          <button @click='register()' class="block bg-gray-800 hover:bg-gray-700 active:bg-gray-600 focus-visible:ring ring-gray-300 focus:ring-2 text-white text-sm md:text-base font-semibold text-center rounded outline-none transition duration-100 px-8 py-3">
             Register
           </button>
         </div>
