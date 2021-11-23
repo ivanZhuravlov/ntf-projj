@@ -18,44 +18,35 @@
 
         <div>
           <div>
-            <label for="first-name" class="inline-block text-sm sm:text-base mt-3">First name*</label>
-            <input required="true" name="first-name" class="w-full bg-gray-50 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2" />
+            <label for="firstName" class="inline-block text-sm sm:text-base mt-3">First name*</label>
+            <input required="true" name="firstName" class="w-full bg-gray-50 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2" />
           </div>
           <div>
-            <label for="last-name" class="inline-block text-sm sm:text-base mt-3">Last name*</label>
-            <input required="true" name="last-name" class="w-full bg-gray-50 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2" />
+            <label for="lastName" class="inline-block text-sm sm:text-base mt-3">Last name*</label>
+            <input required="true" name="lastName" class="w-full bg-gray-50 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2" />
           </div>
           <div>
-            <label for="email" class="inline-block text-sm sm:text-base mt-3">Email*</label>
-            <input required="true" type="email" name="email" class="w-full bg-gray-50  border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2" />
+            <label for="street" class="inline-block text-sm sm:text-base mt-3">Street*</label>
+            <input required="true" name="street" class="w-full bg-gray-50 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2" />
           </div>
           <div>
-            <label for="email-confirmation" class="inline-block text-sm sm:text-base mt-3">Email Again*</label>
-            <input required="true" type="email" name="email-confirmation" class="w-full bg-gray-50 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2" />
+            <label for="zip" class="inline-block text-sm sm:text-base mt-3">Zip*</label>
+            <input required="true" name="zip" class="w-full bg-gray-50 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2" />
           </div>
           <div>
-            <label for="phone-number" class="inline-block text-sm sm:text-base mt-3">Phone Number*</label>
-            <input required="true" name="phone-number" class="w-full bg-gray-50 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2" />
+            <label for="city" class="inline-block text-sm sm:text-base mt-3">City*</label>
+            <input required="true" name="city" class="w-full bg-gray-50 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2" />
+          </div>
+          <div>
+            <label for="state" class="inline-block text-sm sm:text-base mt-3">State*</label>
+            <input required="true" name="state" class="w-full bg-gray-50 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2" />
+          </div>
+          <div>
+            <label for="country" class="inline-block text-sm sm:text-base mt-3">Country*</label>
+            <input required="true" name="country" class="w-full bg-gray-50 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2" />
           </div>
         </div>
         <div>
-          <!-- TODO: Require one of three fields -->
-          <p class="md:text-sm text-left mt-3 auto">I am*</p>
-          <div class="grid-cols-1 md:grid grid-cols-3  lg:grid grid-cols-3 gap-4">
-            <div>
-              <input type="checkbox" id="gallery" name="profile-type" value="Gallery">
-                <label for="gallery" class="text-sm mx-3">Gallery</label>
-            </div>
-            <div>
-              <input type="checkbox" id="agent" name="profile-type" value="Agent">
-                <label for="agent" class="text-sm mx-3">Agent</label>
-            </div>
-            <div>
-              <input type="checkbox" id="collector" name="profile-type" value="Collector">
-                <label for="collector" class="text-sm mx-3">Collector</label>
-            </div>
-          </div>
-
           <div>
             <label for="description" class="inline-block text-sm sm:text-base mt-3">Description</label>
             <textarea required="true" maxlength="500" name="description" placeholder="Description will be recorded into blockchain and associated to the artpiece (optional)."
@@ -64,8 +55,8 @@
 
           <hr class="my-4">
           <div>
-            <label for="id-copy" class="inline-block text-sm sm:text-base mt-3"> A copy of your ID, driving lincense or passport*</label>
-            <input type="file" accept="image/png, image/jpeg" name="id-copy" class="w-full text-gray-500 text-sm py-2" />
+            <label for="idCopy" class="inline-block text-sm sm:text-base mt-3"> A copy of your ID, driving lincense or passport*</label>
+            <input type="file" accept="image/png, image/jpeg" name="idCopy" class="w-full text-gray-500 text-sm py-2" />
           </div>
           <hr class="my-4">
           <div class="flex items-start mb-6">
@@ -73,18 +64,18 @@
               <input id="terms" aria-describedby="terms" type="checkbox" class="bg-gray-50 border focus:ring focus:ring-blue-300 h-4 w-4 rounded" required="true">
             </div>
             <div class="text-sm ml-3">
-              <label for="terms" class="font-sm">I read and approve the <a href="#" class="text-blue-600 hover:underline">terms and conditions*</a></label>
+              <label for="terms" class="font-sm">I acknowledge that I have read and agree to the <a href="#" class="text-blue-600 hover:underline">terms and conditions*</a></label>
             </div>
           </div>
 
           <div class="flex items-start mb-6">
-            <div class="flex items-center h-5">
-              <input id="newsletter" aria-describedby="newsletter" type="checkbox" class="bg-gray-50 border focus:ring focus:ring-blue-300 h-4 w-4 rounded">
-            </div>
-            <div class="text-sm ml-3">
-              <label for="newsletter" class="font-sm">Sign up to the newsletter!</label>
-            </div>
+          <div class="flex items-center h-5">
+            <input id="newsletter" aria-describedby="newsletter" type="checkbox" class="bg-gray-50 border focus:ring focus:ring-blue-300 h-4 w-4 rounded">
           </div>
+          <div class="text-sm ml-3">
+            <label for="newsletter" class="font-sm">Sign up to the newsletter!</label>
+          </div>
+        </div>
 
           <button class="block mx-auto bg-gray-800 hover:bg-gray-700 active:bg-gray-600 focus-visible:ring ring-gray-300 focus:ring-2 text-white text-sm md:text-base font-semibold rounded text-center uppercase outline-none transition duration-100 px-10 py-3"
             type="submit">
@@ -109,6 +100,6 @@ export default {
   components: {
     Header,
     Footer,
-  }
+  },
 };
 </script>
