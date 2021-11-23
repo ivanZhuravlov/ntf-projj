@@ -28,15 +28,15 @@
            <p class="text-sm sm:text-base text-left auto">I am:*</p>
           <div class="grid-cols-1 md:grid grid-cols-3 lg:grid grid-cols-3 gap-4">
             <div>
-              <input type="radio" id="gallery" name="user-type" checked value="Artist">
+              <input type="radio" id="gallery" name="type" checked value="Artist">
                 <label for="artist" class="text-sm mx-3">Artist</label>
             </div>
             <div>
-              <input type="radio" id="gallery" name="user-type" value="Gallery">
+              <input type="radio" id="gallery" name="type" value="Gallery">
                 <label for="gallery" class="text-sm mx-3">Gallery</label>
             </div>
             <div>
-              <input type="radio" id="collector" name="user-type" value="Collector">
+              <input type="radio" id="collector" name="type" value="Collector">
                 <label for="collector" class="text-sm mx-3">Collector</label>
             </div>
           </div>
@@ -85,6 +85,7 @@ export default {
   		email: null,
   		password: null,
   		passwordRepeat: null,
+      type: null,
       terms: false,
   		error: null,
   	}
@@ -98,6 +99,7 @@ export default {
       
       const email = this.email;
       const password = this.password;
+      const type = this.user;
 
       if (password !== this.passwordRepeat) {
       	this.error = 'Passwords not match';
@@ -105,7 +107,7 @@ export default {
       }
 
   	  this.error = null;
-  	  this.$store.dispatch("register", { email, password })
+  	  this.$store.dispatch("register", { email, password, type })
   	  	.catch((e) => this.error = e.message)
   	  	.then(() => {
   	  		if (null === this.error) {
