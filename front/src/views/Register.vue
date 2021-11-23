@@ -99,7 +99,7 @@ export default {
       
       const email = this.email;
       const password = this.password;
-      const type = this.user;
+      const type = this.type;
 
       if (password !== this.passwordRepeat) {
       	this.error = 'Passwords not match';
