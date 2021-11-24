@@ -28,15 +28,15 @@
            <p class="text-sm sm:text-base text-left auto">I am:*</p>
           <div class="grid-cols-1 md:grid grid-cols-3 lg:grid grid-cols-3 gap-4">
             <div>
-              <input type="radio" id="gallery" name="type" checked value="Artist">
+              <input v-model='type' type="radio" id="artist" checked value="Artist">
                 <label for="artist" class="text-sm mx-3">Artist</label>
             </div>
             <div>
-              <input type="radio" id="gallery" name="type" value="Gallery">
+              <input v-model='type' type="radio" id="gallery" name="type" value="Gallery">
                 <label for="gallery" class="text-sm mx-3">Gallery</label>
             </div>
             <div>
-              <input type="radio" id="collector" name="type" value="Collector">
+              <input v-model='type' type="radio" id="collector" name="type" value="Collector">
                 <label for="collector" class="text-sm mx-3">Collector</label>
             </div>
           </div>
@@ -46,8 +46,8 @@
               <input v-model="terms" required id="terms" aria-describedby="terms" type="checkbox" class="bg-gray-50 border focus:ring focus:ring-blue-300 h-4 w-4 rounded">
             </div>
             <div class="text-sm ml-3">
-              <label for="newsletter" class="font-sm">
-                I acknowledge that I have read and agree to the <a class="text-blue-500 underline" href="/terms" target="_blank">Terms and Conditions</a>
+              <label for="terms" class="font-sm">
+                I acknowledge that I have read and agree to the <a class="text-blue-500 underline" href="/about#terms" target="_blank">Terms and Conditions</a>
               </label>
             </div>
           </div>
@@ -104,6 +104,11 @@ export default {
       if (password !== this.passwordRepeat) {
       	this.error = 'Passwords not match';
       	return ;
+      }
+
+      if (this.type === null) {
+        this.error = 'Please select user type';
+        return ;
       }
 
   	  this.error = null;
