@@ -144,7 +144,7 @@ export default {
       if (this.validateForm() === true) {
 
         // call api
-       try { await fetch(this.$store.getters.api + '/profile', {
+       try { const response = await fetch(this.$store.getters.api + '/profile', {
 
           method: 'POST',
           headers: {
@@ -163,12 +163,13 @@ export default {
           }).then((r) => r.json()); 
       
           // Check for error response
-          if (!r.ok) {
-            // get error message
-            const error = r.status;
+          if (!response.ok) {
+            
+            const error = response.status;
             return Promise.reject(error);
           }
-          console.log(this.r);
+          // Success
+          console.log(this.response);
           this.$router.push({name: 'Dashboard'});
           
         } catch(error) {
