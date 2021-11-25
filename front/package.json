@@ -9,6 +9,7 @@
   "dependencies": {
     "@tailwindcss/postcss7-compat": "^2.0.2",
     "core-js": "^3.6.5",
+    "nft.storage": "^5.0.0",
     "postcss": "^7",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.0.2",
     "vue": "^2.6.11",

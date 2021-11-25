@@ -235,7 +235,7 @@ The first time the body will look like this, the other words will be null:
 ### Create Artist (customer need a wallet)
 
 ```
-curl -X POST localhost:5000/artist --data '{"firstName": "Camille", "lastName": "Toche", "verificationId": "42"}'  -H "content-type: application/json" -H "Authorization: Bearer ey..."
+curl -X POST localhost:5000/artist --data '{"firstName": "Camille", "lastName": "Toche", "verificationId": "42", "artistName": "text",  "bio": "text", "phone": "text", "research": "text"}'  -H "content-type: application/json" -H "Authorization: Bearer ey..."
 ```
 
 Create a Ethereum transaction to smart contract for create artist
