@@ -7,7 +7,9 @@
 
 ### Register (create user)
 
-`curl localhost:5000/register -X POST --data '{"email": "test@toto.fr", "password": "toto"}' -H "content-type: application/json"`
+User type : `artist, gallery, collector`
+
+`curl localhost:5000/register -X POST --data '{"email": "test@toto.fr", "password": "toto", "type": "artist"}' -H "content-type: application/json"`
 
 Return a valid JWT : `{ "token":"eyJh...." }`
 
@@ -148,6 +150,7 @@ Response : `curl localhost:5000/profile  -H "content-type: application/json" -H 
     "user": {
       "id": "0ede6580-03ba-4be2-9c1e-393a757541b9",
       "email": "toteoeza@asticot.fr",
+      "type": "artist",
       "data": {
         "firstName": "Camille",
         "lastName": "Toche",
