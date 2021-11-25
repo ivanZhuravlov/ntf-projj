@@ -32,13 +32,16 @@ The royalties system will be simulated in each user profile, upon the price reco
 We Keep the privacy such as management system connected to user profil. exploration page will be needed.
 
 Royalties initial default settings for POC: 
-Artist: 15%
-Jenko: 3%
+Artist: 15% to 20%
+Jenko: 4%
 Galerie: 4%
 or Agent: 4%
-Buyer0: 2%
-Buyer1: 2%
-Buyer2: 2%
+collector0: 2%
+collector1: 2%
+collector2: 2%
+CollectorX: 2% 
+
+the sum of Royalties cannot exceed 50% (initial default setting). the % setting would be set in the futur by Artist.
 
 The User Dashboard is require to validate CoA transfer between parties 
 
