@@ -24,8 +24,19 @@
           </div>
 
           <!-- TODO : Preview the picture, add function -->
+          <!-- <div> 
+            <div v-if="!image">
+              <label class="block text-sm sm:text-base mt-3">Select a picture of the artpiece*</label>
+              <input type="file" @change='onFileChange($event)' />
+            </div>
+            <div v-else>
+              <img class="object-contain object-left flex w-full mt-3" :src="image"/>
+              <button class="rounded bg-red-400 mt-3 text-xs px-3 py-2 text-white hover:bg-gray-700" @click='removeImage($event)'>x Remove image </button>
+            </div>
+          </div> -->
+
           <label class="inline-block text-sm sm:text-base mt-3">Select a picture of the artpiece*</label>
-          <div class="w-full justify-start">
+          <div v-if="!tokenUri" class="w-full justify-start">
             <div class="rounded border bg-gray-50">
               <div class="m-4">
                 <div class="flex items-center justify-center w-full">
@@ -33,11 +44,15 @@
                     <div class="flex flex-col items-center justify-center pt-7">
                       <p class="text-sm tracking-wider text-gray-400 group-hover:text-gray-600">Attach a file</p>
                     </div>
-                    <input type="file" accept="image/png, image/jpeg" required name="tokenUri" class="opacity-0" />
+                    <input type="file" accept="image/png, image/jpeg" required @change='onFileChange($event)' name="tokenUri" class="opacity-0" />
                   </label>
                 </div>
               </div>
             </div>
+          </div>
+          <div v-else>
+            <img class="object-contain object-left flex w-96 mt-3" :src="tokenUri"/>
+              <button class="rounded bg-red-400 mt-3 text-xs px-3 py-2 text-white hover:bg-gray-700" @click='removeImage($event)'> Remove image </button>
           </div>
         </div>
 
@@ -121,7 +136,7 @@ export default {
   data() {
     return {
       title: null,
-      tokenUri: null, 
+      tokenUri: '',
       createdAt: null,
       technical: null,
       size: null,
@@ -134,6 +149,25 @@ export default {
     }
   },
   methods: {
+
+    onFileChange(event) {
+      const files = event.target.files || event.dataTransfer.files;
+      if (!files.length) {return};
+      this.createImage(files[0]);
+    },
+    createImage(file) {
+      const image = new Image();
+      const reader = new FileReader();
+
+      reader.onload = (event) => {
+        this.tokenUri = event.target.result;
+      };
+      reader.readAsDataURL(file);
+    },
+    removeImage: function (event) {
+      this.tokenUri = '';
+    },
+
     validateForm() {
       if (!this.terms) {
         this.error = 'Please accept terms';
