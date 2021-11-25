@@ -18,7 +18,7 @@
     </div>
     <div v-else class="hidden lg:flex sm:flex-row sm:justify-center mr-20 lg:justify-start gao-2.5 mr-8">
       <router-link to="/dashboard" class="inline-block bg-gray-800 hover:bg-gray-600 active:bg-blue-700 text-white text-sm md:text-base font-semibold text-center rounded outline-none transition duration-100 px-8 py-3">Dashboard</router-link>
-      <router-link to="/logout" class="inline-block text-gray-500 hover:text-gray-800 active:text-blue-600 text-sm md:text-base font-semibold text-center rounded outline-none transition duration-100 px-4 py-3">Logout</router-link>
+      <router-link @click="logout()" class="inline-block text-gray-500 hover:text-gray-800 active:text-blue-600 text-sm md:text-base font-semibold text-center rounded outline-none transition duration-100 px-4 py-3">Logout</router-link>
     </div>
 
     <!-- Responsive menu starts -->
@@ -43,7 +43,7 @@
           Dashboard
           </router-link>
         <div class="h-0 border border-solid border-t-0 border-gray-300 opacity-25"></div>
-          <router-link to="/logout" class="text-sm py-2 px-6 font-semibold block w-full whitespace-nowrap bg-transparent text-gray-800 hover:text-gray-400">
+          <router-link @click="logout()" class="text-sm py-2 px-6 font-semibold block w-full whitespace-nowrap bg-transparent text-gray-800 hover:text-gray-400">
           Logout
           </router-link>
         </div>          
@@ -93,11 +93,19 @@
       toggle() {
         this.showMenu = !this.showMenu;
         this.showProfileMenu = false;
-        
       },
       toggleProfileMenu() {
         this.showProfileMenu = !this.showProfileMenu;
         this.showMenu = false;
+      },
+      logout: function() {
+        this.$store.dispatch("logout")
+        .catch((e) => this.error = e.message)
+        .then(() => {
+          if (null === this.error) {
+            this.$router.push({name: '/'})
+          }
+        })
       }
     }
   };
