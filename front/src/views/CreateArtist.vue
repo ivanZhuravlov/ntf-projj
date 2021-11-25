@@ -118,12 +118,13 @@ export default {
           phone: this.phone,
           research: this.research,
         };
+        
         const somethingIsEmpty = Object.values(data).some((value) => !value);
         if(somethingIsEmpty) {
           this.error = 'Some fields are empty';
           return ;
         }
-        console.log(data)
+
         await fetch(this.$store.getters.api + '/artist', {
           method: 'POST',
           headers: {

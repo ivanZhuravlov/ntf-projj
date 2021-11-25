@@ -53,7 +53,7 @@ async function post(req, res) {
       material: req.body.material,
       tirage: req.body.tirage,
       movement: req.body.movement,
-      createdAt: new Date(req.body.createdAt).getTime() / 1000,
+      createdAt: new Date(req.body.createdAt).getTime(),
     };
 
     if (Object.values(certificate).some((value) => !value)) {
