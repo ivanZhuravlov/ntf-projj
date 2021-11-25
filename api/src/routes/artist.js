@@ -40,7 +40,11 @@ async function post(req, res) {
       address: userArtist.address,
       firstName: req.body.firstName,
       lastName: req.body.lastName,
+      artistName: req.body.artistName,
       verificationId: req.body.verificationId,
+      bio: req.body.bio,
+      phone: req.body.phone,
+      research: req.body.research,
     };
 
     if (Object.values(artist).some((value) => !value)) {
