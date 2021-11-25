@@ -11,6 +11,7 @@ import CreateArtist from '../views/CreateArtist.vue';
 import Dashboard from '../views/Dashboard.vue';
 import CreateCoA from '../views/CreateCoA.vue';
 import About from '../views/About.vue';
+import EditProfile from '../views/EditProfile.vue';
 import store from '../store';
 
 Vue.use(VueRouter);
@@ -74,6 +75,14 @@ const routes = [
     path: '/about',
     name: 'About',
     component: About
+  }, 
+  {
+    path: '/profile',
+    name: 'EditProfile',
+    component: EditProfile,
+    meta: {
+      requiresAuth: true
+    }
   }
 ];
 

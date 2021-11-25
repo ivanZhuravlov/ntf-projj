@@ -47,7 +47,7 @@ export default new Vuex.Store({
     		throw new Error('Invalid email or password');
 	    }
     },
-    async register({ commit }, {email, password}) {
+    async register({ commit }, {email, password, type}) {
     	try {
 	    	const { token } = await fetch(
 	    		API + '/register',
@@ -58,7 +58,8 @@ export default new Vuex.Store({
 	    			},
 	    			body: JSON.stringify({
 						"email": email,
-						"password": password
+						"password": password,
+						"type": type
 					})
     		}).then((r) => r.json());
 
@@ -70,7 +71,7 @@ export default new Vuex.Store({
 	        localStorage.setItem("token", token);
 	        commit('setToken', {token});
 	    } catch(e) {
-    		throw new Error('Invalid email or password');
+    		throw new Error('Invalid email, password or type');
 	    }
     },
     async logout({ commit }) {
