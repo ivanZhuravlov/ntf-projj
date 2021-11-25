@@ -42,20 +42,7 @@
             </div>
             <!-- TODO : Preview the picture -->
             <label class="inline-block text-sm sm:text-base mt-3">Choose a profile picture:</label>
-            <div class="w-full justify-start">
-              <div class="rounded border bg-gray-50">
-                <div class="m-4">
-                  <div class="flex items-center justify-center w-full">
-                    <label class="flex flex-col w-full h-32 border border-indigo-200 border-dashed hover:bg-gray-100 hover:border-gray-300">
-                      <div class="flex flex-col items-center justify-center pt-7">
-                        <p class="text-sm tracking-wider text-gray-400 group-hover:text-gray-600">Attach a file</p>
-                      </div>
-                      <input @change='onFileChange()' type="file" accept="image/png, image/jpeg" required name="tokenUri" class="opacity-0" />
-                    </label>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <FilePreview />
           </div>
           <div>
             <div>
@@ -115,12 +102,15 @@
 // @ is an alias to /src
 import Header from '@/components/Header.vue'
 import Footer from '@/components/Footer.vue'
+import FilePreview from '@/components/FilePreview.vue'
+
 
 export default {
   name: 'CreateArtist',
   components: {
     Header,
     Footer,
+    FilePreview,
   },
   data() {
     return {
@@ -130,7 +120,7 @@ export default {
       // phoneNumber: null,
       // email: null,
       // emailRepeat: null,
-      // tokenUri: null,
+       tokenUri: '',
       // research: null,
       // bio: null, 
       // artistID: null,
