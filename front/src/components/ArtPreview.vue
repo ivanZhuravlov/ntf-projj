@@ -6,7 +6,7 @@
     </button>
 
     <div class="container max-w-6xl mx-auto px-8 space-y-8">
-      <div class="max-w-7xl mx-auto grid xs:grid-cols-1 sm:grid-cols-1 grid-cols-2 pt-6 gap-8">
+      <div class="container max-w-7xl mx-auto grid xs:grid-cols-1 sm:grid-cols-1 grid-cols-2 pt-6 gap-8">
    
         <div class="">
           <router-link :to='`/art/${currentToken.id}`' class="text-gray-800 text-3xl font-bold capitalize leading-relaxed">

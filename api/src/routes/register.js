@@ -12,8 +12,6 @@ if (!JWT_SECRET) {
   throw new Error("invalid jwt");
 }
 
-const USER_TYPES = ['artist', 'gallery', 'collector'];
-
 router.route("/").post(async (req, res) => {
   if (!req.body) {
     console.log("no body");
@@ -32,10 +30,6 @@ router.route("/").post(async (req, res) => {
       throw new Error("bad password");
     }
 
-    if(!USER_TYPES.includes(data.type)) {
-      throw new Error('invalid user type');
-    }
-
     const [userAlreadyExist] =
       await sql`select email from users where email = ${data.email}`;
     if (userAlreadyExist) {
@@ -48,15 +42,10 @@ router.route("/").post(async (req, res) => {
       email: data.email,
       password: passwordHash,
       created_at: new Date(),
-      type: data.type,
     };
 
     await sql`insert into users ${sql(user)}`;
-    console.log("New email added", { 
-      id: user.id,
-      email: user.email,
-      type: user.type
-    });
+    console.log("New email added", { id: user.id, email: user.email });
 
     const token = jwt.sign({ id: user.id, email: user.email }, JWT_SECRET);
     res.json({ token });

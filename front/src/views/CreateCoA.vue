@@ -11,90 +11,81 @@
           Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
           tempor incididunt ut labore et dolore magna aliqua.
         </p>
-        <div v-if='error' class="max-w-lg mx-auto bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative my-8" role="alert">
-          <span class="block sm:inline">{{ error }}</span>
-        </div>
       </div>
       <!-- text - end -->
 
-      <div class="text-gray-800 xs:block grid grid-cols-2 w-9/12 gap-7 mx-auto ">
+      <!-- form - start -->
+      <div class="text-gray-800 sm:w-9/12 md:grid grid-cols-2 w-9/12 lg:grid grid-cols-2 w-9/12 gap-7 mx-auto ">
 
         <div>
           <div>
-            <label class="inline-block text-sm sm:text-base mt-6 mb-1">Name of the Artpiece *</label>
-            <input required v-model="title" class="w-full bg-gray-50 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2" />
+            <label for="title" class="inline-block text-sm sm:text-base mt-3">Title of the Artpiece*</label>
+            <input v-model='title' required name="title" class="w-full bg-gray-50 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2" />
           </div>
-
-          <!-- TODO : Preview the picture -->
-          <label class="inline-block text-sm sm:text-base mt-6 mb-1">Select a picture of the artpiece *</label>
-          <div class="w-full justify-start">
-            <img v-if='tokenUri' class="max-w-64 my-6 h-auto" :src="`https://ipfs.io/ipfs/${tokenUri}`">
-            <div class="rounded border bg-gray-50" v-else>
-              <div class="flex flex-col items-center justify-center w-full h-64 border border-indigo-200 border-dashed hover:bg-gray-100 hover:border-gray-300">
-                <p class="text-sm tracking-wider text-gray-400 group-hover:text-gray-600">Attach a file</p>
-                <input type="file" accept="image/png, image/jpeg" required name="artpiece-image" class="opacity-0" />
-              </div>
-            </div>
-          </div>
-
-          <div>
-            <label class="inline-block text-sm sm:text-base mt-3">Brief description? *</label>
-            <textarea required maxlength="200" v-model="description" class="w-full h-40 bg-gray-50 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2"></textarea>
-          </div>
-        </div>
+          <label class="inline-block text-sm sm:text-base mt-3">Image of Artpiece*</label>
+          <FilePreview/>
+        </div> 
 
         <div>
+          <!--TODO: DATE PICKER -->
           <div>
-            <label class="inline-block text-sm sm:text-base mt-6 mb-1">Production Date of the Artpiece *</label>
-            <input required v-model="createdAt" type="date" class="w-full bg-gray-50 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2" />
+            <label for="createdAt" class="inline-block text-sm sm:text-base mt-3">The Artpiece was created at:*</label>
+            <input v-model='createdAt' required name="createdAt" class="w-full bg-gray-50 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2" />
+          </div>
+
+          <!-- <div>
+            <label for="price" class="inline-block text-sm sm:text-base mt-3">Price*</label>
+            <input required="true" name="price" class="w-full bg-gray-50 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2" />
+          </div> -->
+
+          <div>
+            <label for="technical" class="inline-block text-sm sm:text-base mt-3">Technical Information*</label>
+            <input v-model='technical' required name="technical" placeholder="Paint, sculpture, photography, etc..." class="w-full bg-gray-50 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2 placeholder-gray-500 placeholder-opacity-25" />
           </div>
 
           <div>
-            <label class="inline-block text-sm sm:text-base mt-6 mb-1">Technical Information *</label>
-            <input required v-model="technical" placeholder="Paint, sculpture, photography, etc..." class="w-full bg-gray-50 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2 placeholder-gray-500 placeholder-opacity-25" />
+            <label for="size" class="inline-block text-sm sm:text-base mt-3">Dimension/Size*</label>
+            <input v-model='size' required name="size" placeholder="Height x Width x Depth cm" class="w-full bg-gray-50 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2 placeholder-gray-500 placeholder-opacity-25" />
           </div>
 
           <div>
-            <label class="inline-block text-sm sm:text-base mt-6 mb-1">Dimension *</label>
-            <input required v-model="size" placeholder="Height x Width x Depth cm" class="w-full bg-gray-50 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2 placeholder-gray-500 placeholder-opacity-25" />
+            <label for="material" class="inline-block text-sm sm:text-base mt-3">Support Material*</label>
+            <input v-model='material' required name="material" placeholder="Cotton, paper, etc..." class="w-full bg-gray-50 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2 placeholder-gray-500 placeholder-opacity-25" />
           </div>
 
           <div>
-            <label class="inline-block text-sm sm:text-base mt-6 mb-1">Tirage *</label>
-            <input required v-model="tirage" class="w-full bg-gray-50 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2 placeholder-gray-500 placeholder-opacity-25" />
+            <label for="tirage" class="inline-block text-sm sm:text-base mt-3">Tirage*</label>
+            <input v-model='tirage' required name="tirage" placeholder="Unique copy, 1 out of 10, etc..." class="w-full bg-gray-50 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2 placeholder-gray-500 placeholder-opacity-25" />
           </div>
 
           <div>
-            <label class="inline-block text-sm sm:text-base mt-6 mb-1">Support Material *</label>
-            <input required v-model="material" placeholder="Cotton, paper, etc..." class="w-full bg-gray-50 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2 placeholder-gray-500 placeholder-opacity-25" />
+            <label for="movement" class="inline-block text-sm sm:text-base mt-3">Artistic Movement*</label>
+            <input v-model='movement' required name="movement" placeholder="Abstract, figurative, portrait, etc..." class="w-full bg-gray-50 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2 placeholder-gray-500 placeholder-opacity-25" />
           </div>
 
           <div>
-            <label class="inline-block text-sm sm:text-base mt-6 mb-1">Numbering *</label>
-            <input required v-model="artPieceId" placeholder="Unique copy, 1 out of 10, etc..." class="w-full bg-gray-50 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2 placeholder-gray-500 placeholder-opacity-25" />
-          </div>
-
-          <div>
-            <label class="inline-block text-sm sm:text-base mt-6 mb-1">Artistic Movement *</label>
-            <input required v-model="movement" placeholder="Abstract, figurative, portrait, etc..." class="w-full bg-gray-50 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2 placeholder-gray-500 placeholder-opacity-25" />
+            <label for="description" class="inline-block text-sm sm:text-base mt-3">Short description*</label>
+            <input v-model='description' required name="description" class="w-full bg-gray-50 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2 placeholder-gray-500 placeholder-opacity-25" />
           </div>
 
           <div class="flex items-start mb-6 mt-3">
             <div class="flex items-center h-5">
-              <input v-model="terms" aria-described by="terms" type="checkbox" class="bg-gray-50 border focus:ring focus:ring-blue-300 h-4 w-4 rounded" required>
+              <input v-model='terms' id="terms" aria-describedby="terms" type="checkbox" class="bg-gray-50 border focus:ring focus:ring-blue-300 h-4 w-4 rounded" required="true">
             </div>
             <div class="text-sm ml-3">
-              <label class="font-sm">I read and approve with the <a href="#" class="text-blue-600 hover:underline">Terms and Conditions*</a></label>
+              <label for="terms" class="font-sm">I acknowledge that I have read and agree to the <a href="#" class="text-blue-600 hover:underline">Terms and Conditions*</a></label>
             </div>
           </div>
 
           <p class="text-gray-400 text-xs">The information given above cannot be edited after it has been recorded into the blockchain.</p>
 
-          <button @click="createCOA()" class="block mx-auto bg-gray-800 hover:bg-gray-700 active:bg-gray-600 focus-visible:ring ring-gray-300 focus:ring-2 text-white text-sm md:text-base font-semibold text-center uppercase outline-none transition duration-100 px-10 py-3 mt-12">
+          <button @click='createCertificate()' class="block mx-auto bg-gray-800 tracking-widest hover:bg-gray-700 active:bg-gray-600 focus-visible:ring ring-gray-300 focus:ring-2 text-white text-sm md:text-base font-semibold text-center uppercase rounded outline-none transition duration-100 px-10 py-3 mt-12"
+            type="submit">
             create now
           </button>
         </div>
       </div>
+      <!-- form - end -->
     </div>
   </div>
   <Footer />
@@ -105,92 +96,85 @@
 // @ is an alias to /src
 import Header from '@/components/Header.vue'
 import Footer from '@/components/Footer.vue'
-import { NFTStorage, File } from 'nft.storage'
-
-const API_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweGI2YzY5MTMzMDkyYkM1QjE5NTgwNDZmNEMzNTc4OUFhRTdEYjhGNTQiLCJpc3MiOiJuZnQtc3RvcmFnZSIsImlhdCI6MTYzNzAwMDQ5MDg2NSwibmFtZSI6ImplbmtvIn0.Sfkb_ZTyygEHkEEMnXxNDQ0gTrwdexEG2nCam2nrFSA';
+import FilePreview from '@/components/FilePreview.vue'
 
 export default {
   name: 'CreateCoa',
   components: {
     Header,
     Footer,
+    FilePreview,
   },
   data() {
     return {
       title: null,
+      tokenUri: '',
       createdAt: null,
       technical: null,
       size: null,
-      tirage: null,
       material: null,
-      artPieceId: null,
-      description: null,
+      tirage: null,
       movement: null,
-      tokenUri: null,
-      terms: null,
+      description: null,
+      terms: false,
       error: null,
     }
   },
   methods: {
-    async uploadFileToIPFS(event) {
-      this.tokenUri = null;
-      const client = new NFTStorage({ 
-        endpoint: 'https://api.nft.storage',
-        token: API_KEY
-      })
-
-      const files = event.target.files;
-      if (!files.length) {
-        return;
+    // Validate
+    validateForm() {
+      if (!this.terms) {
+        this.error = 'Please accept terms';
+        return false;
       }
-
-      const metadata = await client.store({
-        name: this.title,
-        description: this.description,
-        image: new File(files[0], this.title, { type: 'image/jpg' })
-      })
-      console.log(metadata)
-      this.tokenUri = metadata.url;
-    },
-    async createCOA() {
+      if (!this.title || !this.tokenUri || !this.createdAt || !this.technical || !this.size || !this.material || !this.tirage || !this.movement || !this.description) {
+        this.error = 'Please fill up the requirered (*) fields';
+        return false;
+      }
       this.error = null;
+      return true;
+    },
 
-      try {
-        if(!this.terms) {
-          this.error = 'You need to read and approve terms and condition';
-          return ;
-        }
+    // API call
+    createCertificate: async function() {
+      
+      if (this.validateForm() === true) {
 
-        const data = {
-          title: this.title,
-          createdAt: this.createdAt,
-          technical: this.technical,
-          size: this.size,
-          tirage: this.tirage,
-          material: this.material,
-          artPieceId: this.artPieceId,
-          description: this.description,
-          movement: this.movement,
-          tokenUri: this.tokenUri,
-        }
-        const somethingIsEmpty = Object.values(data).some((value) => !value);
-        if(somethingIsEmpty) {
-          this.error = 'Some fields are empty';
-          return ;
-        }
-        console.log(data)
-        await fetch(this.$store.getters.api + '/certificate', {
+       try { const response = await fetch(this.$store.getters.api + '/certificate', {
+
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
-            'Authorization': this.$store.getters.bearer
+            'Authorization': this.$store.getters.bearer,
           },
-          body: JSON.stringify(data)
-        }).then((r) => r.json());
-      } catch(err) {
-        this.error = 'Error, please contact an administrator';
-      }
-    }
-  },
+          body: JSON.stringify({
+            "title": this.title,
+            "tokenUri": this.tokenUri,
+            //"createdAt": this.createdAt,
+            "technical": this.technical,
+            "size": this.size,
+            "material": this.material,
+            "tirage": this.tirage,
+            "movement": this.movement,
+            "description": this.description
+          })
+          }).then((r) => r.json()); 
+      
+          // Check for error response
+          if (!response.ok) {
+            
+            const error = response.status;
+            return Promise.reject(error);
+          }
+          // Success
+          // Do something
+          console.log(this.response);
+          
+        } catch(error) {
+          throw new Error('Undefined error. Please try again later.');
+        }
+      } 
+    },
+  }
 };
 </script>

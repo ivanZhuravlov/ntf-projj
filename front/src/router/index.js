@@ -9,7 +9,6 @@ import Register from '../views/Register.vue';
 import Art from '../views/Art.vue';
 import CreateArtist from '../views/CreateArtist.vue';
 import Dashboard from '../views/Dashboard.vue';
-import GenerateWallet from '../views/GenerateWallet.vue';
 import CreateCoA from '../views/CreateCoA.vue';
 import About from '../views/About.vue';
 import EditProfile from '../views/EditProfile.vue';
@@ -52,14 +51,6 @@ const routes = [
     path: '/dashboard',
     name: 'Dashboard',
     component: Dashboard,
-    meta: {
-      requiresAuth: true
-    }
-  },
-  {
-    path: '/new/wallet',
-    name: 'GenerateWallet',
-    component: GenerateWallet,
     meta: {
       requiresAuth: true
     }

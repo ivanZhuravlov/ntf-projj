@@ -20,8 +20,7 @@ async function createCertificateTransaction(
   _technical,
   _material,
   _tirage,
-  _movement,
-  _createdAt
+  _movement
 ) {
   const contract = new ethers.Contract(CONTRACT_ADDRESS, abi, provider);
   const artistExist = await contract.artistsByAddress(_artistAddress);
@@ -42,8 +41,7 @@ async function createCertificateTransaction(
     _technical,
     _material,
     _tirage,
-    _movement,
-    _createdAt
+    _movement
   );
 
   return transaction.hash;

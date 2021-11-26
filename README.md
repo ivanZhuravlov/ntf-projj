@@ -1,5 +1,5 @@
 # Jenko.io
-Jenko.io is a platform enable to create and provide Certificated of Authenticity recorded in Blockchain for a piece of Art. This website platform is dedicated to Artists, Galeries, Collectors and will be able to contain a royalties systems.
+Jenko.io is a platform enable to create and provide Certificated of Authenticity recorded in Blockchain for a piece of Art. This website platform is dedicated to Artists, Galeries, Art buyers and will be able to contain a royalties systems.
 
 "Property together with a contract, is the core institutional component of Market and a core institutional element of liberal society" Yochai Benkler - the wealth of network 2006
 
@@ -8,22 +8,21 @@ users access to jenko.io.
 
 the platform enable artists who wants to protect and register a piece of art into the blockchain such as NFT, and to generate an associated certificate of authenticity in order to build a Contract around the Artpiece that is including royalties system. 
 
-the information given around the Artpiece' life by users (Artist, Galeries, collectors) will be recorded into the Blockchain and accessible through the platform in ipfs. the Certificate of Authencity (CoA) is linked to a legal contract between users enable to deploy fair conditions and reinforce user's legal rights aside the physical transaction of the associated piece of Art. The CoA cannot be changed once it is created. The CoA Ownership will be shown in Jenko Dashboard by all the Users involved into the Legal Contract whenever a Royalties system have been set.
-
+the information given around the Artpiece' life by users (Artist, Galeries, Buyers) will be recorded into the Blockchain and accessible through the platform in ipfs. the Certificate of Authencity (CoA) contains the contract of sale between users who have a physical transaction of a piece of Art and enable to claim legal rights. the CoA will be accessible only on ipfs website and the Contract of sale will sent by Email to user (including the CoA link).
 
 # POC
 
 the website is accessible from jenko.io.
 
-once registered, the Artist can upload an Artpiece and create Artpiece certificate of authenthicity.
+once registered, the Artist can download an Artpiece and create Artpiece certificate of authenthicity.
 
-the Artpiece is certified and ready to be transfered to ("the Parties" : an agent, a galery, a Collector) with associated Contract that includes Royalties system.
+the Artpiece is certified and ready to be transfered to ("the Parties" : an agent, a galery, a Buyer) with associated Contract that includes Royalties system.
 
-"A Partie", once registered, accept the Legal Contract, and obtain the certificate of Authencity  once the Artpiece' property is transfered.
+"A Partie", once registered, accept the Contract of sale, and obtain the certificate of Authencity at his name once the Artpiece' property is transfered.
 
-"Another Partie", once registered, accept the Legal Contract, and obtain the certificate of Authencity Ownership once the Artpiece' property is transfered.
+"Another Partie", once registered, accept the Contract of sale, and obtain the certificate of Authencity at his name once the Artpiece' property is transfered.
 
-"Another Partie etc .." once registered, accept the Legal Contract, and obtain the certificate of Authencity Ownership once the Artpiece' property is transfered. 
+"Another Partie etc .." once registered, accept the Contract of sale, and obtain the certificate of Authencity at his name once the Artpiece' property is transfered. 
 
 the payment system in fiat must be included once clicking on create (last step of Artpiece creation). this payment will not be necessary for each piece if the Artist buy a credit of XX Artpiece. 
 
@@ -31,19 +30,14 @@ The royalties system will be simulated in each user profile, upon the price reco
 
 We Keep the privacy such as management system connected to user profil. exploration page will be needed.
 
-Royalties initial default settings for POC: 
-Artist: 15% to 20%
-Jenko: 4%
-Galerie: 4%
-or Agent: 4%
-collector0: 2%
-collector1: 2%
-collector2: 2%
-CollectorX: 2% 
-
-the sum of Royalties cannot exceed 50% (initial default setting). the % setting would be set in the futur by Artist.
-
-The User Dashboard is require to validate CoA transfer between parties 
+Royalties default settings for POC: 
+Artist: 15%
+Jenko: 2%
+Galerie: 2%
+or Agent: 2%
+Buyer0: 2%
+Buyer1: 2%
+Buyer2: 2%
 
 
 ### From the Front page, the objective is show immediately the main action for user ( Create Now or Explore).
