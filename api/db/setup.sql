@@ -1,5 +1,7 @@
 create database jenko;
 
+create type user_type as enum ('artist', 'gallery', 'collector');
+
 create table users
 (
     id uuid,
@@ -7,6 +9,7 @@ create table users
     password text,
     stripe text,
     data json default '{}'::json,
+    type user_type,
     created_at timestamp
 );
 

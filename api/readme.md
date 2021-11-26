@@ -7,7 +7,9 @@
 
 ### Register (create user)
 
-`curl localhost:5000/register -X POST --data '{"email": "test@toto.fr", "password": "toto"}' -H "content-type: application/json"`
+User type : `artist, gallery, collector`
+
+`curl localhost:5000/register -X POST --data '{"email": "test@toto.fr", "password": "toto", "type": "artist"}' -H "content-type: application/json"`
 
 Return a valid JWT : `{ "token":"eyJh...." }`
 
@@ -35,6 +37,7 @@ Return a valid JWT : `{ "token":"eyJh...." }`
       "material": "paint",
       "tirage": "eza",
       "movement": "ezae",
+      "createdAt": 1636943010,
       "transaction": "0x412c499ae24fc1f7af47674556af97bee99a4d1d76fa8f56a869f9ae48110956"
     },
     "is_validate": true,
@@ -68,6 +71,7 @@ Return a valid JWT : `{ "token":"eyJh...." }`
     "material": "paint",
     "tirage": "eza",
     "movement": "ezae",
+    "createdAt": 1636943010,
     "transaction": "0x016aaca7033efeb6923923c1965367501060b051fcc6788296f663bc7510412e"
   },
   "is_validate": true,
@@ -146,6 +150,7 @@ Response : `curl localhost:5000/profile  -H "content-type: application/json" -H 
     "user": {
       "id": "0ede6580-03ba-4be2-9c1e-393a757541b9",
       "email": "toteoeza@asticot.fr",
+      "type": "artist",
       "data": {
         "firstName": "Camille",
         "lastName": "Toche",
@@ -200,6 +205,7 @@ Response : `curl localhost:5000/profile  -H "content-type: application/json" -H 
           "material": "paint",
           "tirage": "eza",
           "movement": "ezae",
+          "createdAt": 1636943010,
           "transaction": "0x412c499ae24fc1f7af47674556af97bee99a4d1d76fa8f56a869f9ae48110956"
         },
         "is_validate": true,
@@ -229,7 +235,7 @@ The first time the body will look like this, the other words will be null:
 ### Create Artist (customer need a wallet)
 
 ```
-curl -X POST localhost:5000/artist --data '{"firstName": "Camille", "lastName": "Toche", "verificationId": "42"}'  -H "content-type: application/json" -H "Authorization: Bearer ey..."
+curl -X POST localhost:5000/artist --data '{"firstName": "Camille", "lastName": "Toche", "verificationId": "42", "artistName": "text",  "bio": "text", "phone": "text", "research": "text"}'  -H "content-type: application/json" -H "Authorization: Bearer ey..."
 ```
 
 Create a Ethereum transaction to smart contract for create artist
@@ -244,7 +250,7 @@ Create a Ethereum transaction to smart contract for create artist
 > Requet timeout > 60sec
 
 ```
-curl -X POST localhost:5000/certificate --data '{"artPieceId": "1", "tokenUri": "ipfs...", "title": "title test", "description": "test description", "size": "200x200", "technical": "test", "material": "paint", "tirage": "eza", "movement":"ezae"}'  -H "content-type: application/json" -H "Authorization: Bearer ey"
+curl -X POST localhost:5000/certificate --data '{"artPieceId": "1", "tokenUri": "ipfs...", "title": "title test", "description": "test description", "size": "200x200", "technical": "test", "material": "paint", "tirage": "eza", "movement":"ezae", "createdAt": "2021-11-15 03:23:30"}'  -H "content-type: application/json" -H "Authorization: Bearer ey"
 ```
 
 body : 
@@ -258,7 +264,8 @@ body :
     "technical": "test",
     "material": "paint",
     "tirage": "eza",
-    "movement":"ezae"
+    "movement":"ezae",
+    "createdAt": "2021-01-01 12:00:00"
 }
 ```
 

@@ -15,11 +15,12 @@ async function post(req, res) {
     const [userArtist] = await sql`
       select address
       from users_wallet 
+        inner join users on user_id = users.id and type = 'artist'
       where user_id = ${userId};
     `;
 
     if (!userArtist) {
-      throw new Error("Artist has no wallet");
+      throw new Error("Artist has no wallet is not artist");
     }
 
     const subscriptions = await findActiveSubscriptions(userId);
@@ -39,7 +40,11 @@ async function post(req, res) {
       address: userArtist.address,
       firstName: req.body.firstName,
       lastName: req.body.lastName,
+      artistName: req.body.artistName,
       verificationId: req.body.verificationId,
+      bio: req.body.bio,
+      phone: req.body.phone,
+      research: req.body.research,
     };
 
     if (Object.values(artist).some((value) => !value)) {
