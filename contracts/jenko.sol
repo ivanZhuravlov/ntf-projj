@@ -106,7 +106,7 @@ contract Jenko is ERC721, Ownable {
         string memory _material,
         string memory _tirage,
         string memory _movement,
-        uint256 memory _createdAt
+        uint256 _createdAt
     ) public onlyOwner returns(uint256) {
         _tokenIds.increment();
 
@@ -145,7 +145,7 @@ contract Jenko is ERC721, Ownable {
         totalRewardPercent += _roylaties._roylatiesCollector2;
         totalRewardPercent += _roylaties._roylatiesCollectorX;
         
-        require (totalRewardPercent > _maxRewardPercent, "INVALID_REWARDS_PERCENT");
+        require (totalRewardPercent < _maxRewardPercent, "INVALID_REWARDS_PERCENT");
 
         royaltiesByTokenId[_tokenId] = _roylaties;
         emit royaltiesEvent(_tokenId);
