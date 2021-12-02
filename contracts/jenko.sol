@@ -14,6 +14,7 @@ contract Jenko is ERC721, Ownable {
 
     event registerArtistEvent(address _address, string _artistVerificationId);
     event mintEvent(uint256 _tokenId, address _artistAddress);
+    event royaltiesEvent(uint256 _tokenId);
 
     struct Token {
         address artistAddress;
@@ -29,6 +30,16 @@ contract Jenko is ERC721, Ownable {
     }
     mapping(uint256 => Token) public tokensById;
     
+    struct Royalties {
+        uint _roylatiesArtist;
+        uint _roylatiesGallery;
+        uint _roylatiesCollector0;
+        uint _roylatiesCollector1;
+        uint _roylatiesCollector2;
+        uint _roylatiesCollectorX;
+    }
+    mapping(uint256 => Royalties) public royaltiesByTokenId;
+
     struct Artist {
       string verificationId;
       string firstname;
@@ -40,11 +51,17 @@ contract Jenko is ERC721, Ownable {
     using Strings for uint256;
     mapping (uint256 => string) private _tokenURIs;
     string private _baseURIextended;
+    
+    uint private _maxRewardPercent = 30;
 
     constructor () ERC721("Art Fruit Token", "AFT") {}
     
     function setBaseURI(string memory baseURI_) external onlyOwner() {
         _baseURIextended = baseURI_;
+    }
+    
+    function setMaxRewardPercent(uint reward_) external onlyOwner() {
+        _maxRewardPercent = reward_;
     }
     
     function _setTokenURI(uint256 tokenId, string memory _tokenURI) internal virtual {
@@ -113,6 +130,25 @@ contract Jenko is ERC721, Ownable {
         emit mintEvent(newTokenId, _artistAddress);
 
         return newTokenId;
+    }
+
+    function setTokenReward(
+        uint256 _tokenId,
+        Royalties memory _roylaties
+    ) public onlyOwner {
+        uint totalRewardPercent = 0;
+
+        totalRewardPercent += _roylaties._roylatiesArtist;
+        totalRewardPercent += _roylaties._roylatiesGallery;
+        totalRewardPercent += _roylaties._roylatiesCollector0;
+        totalRewardPercent += _roylaties._roylatiesCollector1;
+        totalRewardPercent += _roylaties._roylatiesCollector2;
+        totalRewardPercent += _roylaties._roylatiesCollectorX;
+        
+        require (totalRewardPercent > _maxRewardPercent, "INVALID_REWARDS_PERCENT");
+
+        royaltiesByTokenId[_tokenId] = _roylaties;
+        emit royaltiesEvent(_tokenId);
     }
 
     function registerArtist(
