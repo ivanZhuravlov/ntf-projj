@@ -122,60 +122,42 @@ export default {
     }
   },
   methods: {
-    // Validate the input data 
-    validateForm() {
-      
+    async editProfile () {
+    
       if (!this.terms) {
         this.error = 'Please accept terms';
-        return false;
+        return ;
       }
-      if (!this.firstName || !this.lastName || !this.street || !this.zip || !this.city || !this.state || !this.country) {
+
+      const data = {
+        "firstName": this.firstName,
+        "lastName": this.lastName,
+        "street": this.street,
+        "zip": this.zip,
+        "city": this.city,
+        "state": this.state,
+        "country": this.country,
+      };
+
+      if(Object.values(data).some(value => !value)) {
         this.error = 'Please fill up the requirered (*) fields';
-        return false;
+        return;
       }
-      this.error = null;
-      return true;
-    },
-    
-    // Make an api call to update user data
-    editProfile: async function() {
 
-      console.log(this.validateForm());
-      if (this.validateForm() === true) {
-
-        // call api
-       try { const response = await fetch(this.$store.getters.api + '/profile', {
-
+      try {  
+        await fetch(this.$store.getters.api + '/profile', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
             'Authorization': this.$store.getters.bearer,
           },
-          body: JSON.stringify({
-            "firstName": this.firstName,
-            "lastName": this.lastName,
-            "street": this.street,
-            "zip": this.zip,
-            "city": this.city,
-            "state": this.state,
-            "country": this.country,
-          })
-          }).then((r) => r.json()); 
-      
-          // Check for error response
-          if (!response.ok) {
-            
-            const error = response.status;
-            return Promise.reject(error);
-          }
-          // Success
-          console.log(this.response);
-          this.$router.push({name: 'Dashboard'});
-          
-        } catch(error) {
-          throw new Error('Undefined error. Please try again later.');
-        }
-      } 
+          body: JSON.stringify(data)
+        }).then((r) => r.json()); 
+        this.$router.push({name: 'Dashboard'});
+
+      } catch(error) {
+        this.error = 'Undefined error. Please try again later.';
+      }
     } 
   }
 };
