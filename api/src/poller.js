@@ -67,10 +67,47 @@ async function mintEvent(_tokenId, _artistAddress, _artPieceId) {
   }
 }
 
+async function royaltiesEvent(_tokenId) {
+  try {
+    log(`[royaltiesEvent] ${_tokenId}`);
+    const data = await contract.royaltiesByTokenId(_tokenId);
+    const royalties = {
+      roylatiesArtist: parseInt(data[0]._hex ?? '0x0', 16),
+      roylatiesGallery: parseInt(data[1]._hex ?? '0x0', 16),
+      roylatiesCollector0: parseInt(data[2]._hex ?? '0x0', 16),
+      roylatiesCollector1: parseInt(data[3]._hex ?? '0x0', 16),
+      roylatiesCollector2: parseInt(data[4]._hex ?? '0x0', 16),
+      roylatiesCollectorX: parseInt(data[5]._hex ?? '0x0', 16),
+    };
+
+    const [{ id, data: tokenData}] = await sql`
+      select id, data 
+      from certificates 
+      where token_id = ${_tokenId}
+    `;
+
+    await sql`
+      update certificates
+      set ${sql({ 
+        data: JSON.stringify({ 
+          ...tokenData,
+          royalties
+        })
+      })}
+      where id = ${id}
+    `;
+
+  } catch (error) {
+    log(error);
+  }
+}
+
 async function listen() {
   log(`Start poller in ${process.env.NODE_ENV} mode`);
+  
   contract.on("registerArtistEvent", registerArtistEvent);
   contract.on("mintEvent", mintEvent);
+  contract.on("royaltiesEvent", royaltiesEvent);
 }
 
 listen();

@@ -41,6 +41,14 @@ Return a valid JWT : `{ "token":"eyJh...." }`
       "transaction": "0x412c499ae24fc1f7af47674556af97bee99a4d1d76fa8f56a869f9ae48110956"
     },
     "is_validate": true,
+    "royalties": {
+      "roylatiesArtist": 18,
+      "roylatiesGallery": 3,
+      "roylatiesCollector0": 2,
+      "roylatiesCollector1": 2,
+      "roylatiesCollector2": 2,
+      "roylatiesCollectorX": 2
+    },
     "created_at": "2021-11-12T17:44:17.449Z",
     "token_id": "11",
     "token_uri": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Vincent_van_Gogh_-_Self-Portrait_-_Google_Art_Project.jpg/260px-Vincent_van_Gogh_-_Self-Portrait_-_Google_Art_Project.jpg",
@@ -274,4 +282,17 @@ Create a Ethereum transaction to smart contract for create coa
 {
   "transaction": "0xc353584de44066af2e68e0486c74a98778e8a83736378656310f3f140fbf3e7f"
 }
+```
+
+## Add royalties
+
+After COA creation add Royalties with this endpoint:
+
+- TokenId represent uuid of COA
+- return transaction
+- on error return 400, invalid values
+
+```
+curl http://localhost:5000/royalties -X POST -H "content-type: application/json" --data '{"tokenId": "348eeacd-32eb-4b60-9c78-a1451ac1e6dd", "roylatiesArtist": 18, "roylatiesGallery": 3, "roylatiesCollector0": 2, "roylatiesCollector1": 2, "roylatiesCollector2": 2, "roylatiesCollectorX": 2}'
+-H 'Authorization: Bearer eyJhbGciOiJ'
 ```

@@ -137,6 +137,19 @@
 		"type": "event"
 	},
 	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "_tokenId",
+				"type": "uint256"
+			}
+		],
+		"name": "royaltiesEvent",
+		"type": "event"
+	},
+	{
 		"inputs": [
 			{
 				"internalType": "address",
@@ -415,6 +428,50 @@
 	{
 		"inputs": [
 			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "royaltiesByTokenId",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "_roylatiesArtist",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_roylatiesGallery",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_roylatiesCollector0",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_roylatiesCollector1",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_roylatiesCollector2",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_roylatiesCollectorX",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
 				"internalType": "address",
 				"name": "from",
 				"type": "address"
@@ -490,6 +547,69 @@
 			}
 		],
 		"name": "setBaseURI",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "reward_",
+				"type": "uint256"
+			}
+		],
+		"name": "setMaxRewardPercent",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_tokenId",
+				"type": "uint256"
+			},
+			{
+				"components": [
+					{
+						"internalType": "uint256",
+						"name": "_roylatiesArtist",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_roylatiesGallery",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_roylatiesCollector0",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_roylatiesCollector1",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_roylatiesCollector2",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_roylatiesCollectorX",
+						"type": "uint256"
+					}
+				],
+				"internalType": "struct Jenko.Royalties",
+				"name": "_roylaties",
+				"type": "tuple"
+			}
+		],
+		"name": "setTokenReward",
 		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"

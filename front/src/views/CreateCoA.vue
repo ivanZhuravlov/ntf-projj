@@ -28,11 +28,17 @@
           <!-- TODO : Preview the picture -->
           <label class="inline-block text-sm sm:text-base mt-6 mb-1">Select a picture of the artpiece *</label>
           <div class="w-full justify-start">
-            <img v-if='tokenUri' class="max-w-64 my-6 h-auto" :src="`https://ipfs.io/ipfs/${tokenUri}`">
-            <div class="rounded border bg-gray-50" v-else>
-              <div class="flex flex-col items-center justify-center w-full h-64 border border-indigo-200 border-dashed hover:bg-gray-100 hover:border-gray-300">
-                <p class="text-sm tracking-wider text-gray-400 group-hover:text-gray-600">Attach a file</p>
-                <input type="file" accept="image/png, image/jpeg" required name="artpiece-image" class="opacity-0" />
+
+            <div v-if='tokenUri' class="inline-flex flex-col">
+              <button @click="tokenUri = null" class="block mx-auto bg-red-800 hover:bg-red-700 active:bg-red-600 focus-visible:ring ring-red-300 focus:ring-2 text-white text-sm font-medium text-center outline-none transition duration-100 px-4 py-1 mt-4">
+                Remove image
+              </button>
+              <img class="max-w-64 mb-6 mt-2 h-auto" :src="`https://ipfs.io/ipfs/${tokenUri}`">
+            </div>
+            <div class="rounded border bg-gray-50 cursor-pointer" v-else>
+              <div class="flex flex-col items-center justify-center w-full border border-indigo-200 border-dashed hover:bg-gray-100 hover:border-gray-300">
+                <p class="absolute text-sm tracking-wider select-none text-gray-400 group-hover:text-gray-600">Attach a file</p>
+                <input @change="uploadFileToIPFS" type="file" accept="image/png, image/jpeg" required name="artpiece-image" class="h-full w-full cursor-pointer opacity-0" />
               </div>
             </div>
           </div>
@@ -105,7 +111,7 @@
 // @ is an alias to /src
 import Header from '@/components/Header.vue'
 import Footer from '@/components/Footer.vue'
-import { NFTStorage, File } from 'nft.storage'
+const axios = require('axios');
 
 const API_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweGI2YzY5MTMzMDkyYkM1QjE5NTgwNDZmNEMzNTc4OUFhRTdEYjhGNTQiLCJpc3MiOiJuZnQtc3RvcmFnZSIsImlhdCI6MTYzNzAwMDQ5MDg2NSwibmFtZSI6ImplbmtvIn0.Sfkb_ZTyygEHkEEMnXxNDQ0gTrwdexEG2nCam2nrFSA';
 
@@ -126,7 +132,7 @@ export default {
       artPieceId: null,
       description: null,
       movement: null,
-      tokenUri: null,
+      tokenUri: 'bafybeiggvjtiwodyso37ojwjf54kio426pjynh2t6c5hj3fnq7cbro5cam/T2C_app_pub_mockup.png',
       terms: null,
       error: null,
     }
@@ -134,23 +140,26 @@ export default {
   methods: {
     async uploadFileToIPFS(event) {
       this.tokenUri = null;
-      const client = new NFTStorage({ 
-        endpoint: 'https://api.nft.storage',
-        token: API_KEY
-      })
-
       const files = event.target.files;
       if (!files.length) {
         return;
       }
 
-      const metadata = await client.store({
-        name: this.title,
-        description: this.description,
-        image: new File(files[0], this.title, { type: 'image/jpg' })
-      })
-      console.log(metadata)
-      this.tokenUri = metadata.url;
+      const formData = new FormData();
+      formData.append('file', files[0]);
+
+      const { data } = await axios.post('https://api.nft.storage/upload', formData, {
+        maxBodyLength: 'Infinity',
+        headers: {
+            'Content-Type': `multipart/form-data; boundary=${formData._boundary}`,
+            'Authorization': `Bearer ${API_KEY}`
+        }
+      });
+      if(!data.ok) {
+        this.error = 'An error occurred while uploading the image';
+      }
+
+      this.tokenUri = `${data.value.cid}/${data.value.files[0].name}`;
     },
     async createCOA() {
       this.error = null;
@@ -178,7 +187,6 @@ export default {
           this.error = 'Some fields are empty';
           return ;
         }
-        console.log(data)
         await fetch(this.$store.getters.api + '/certificate', {
           method: 'POST',
           headers: {
@@ -190,6 +198,8 @@ export default {
       } catch(err) {
         this.error = 'Error, please contact an administrator';
       }
+
+      await this.$router.push('/dashboard');
     }
   },
 };
