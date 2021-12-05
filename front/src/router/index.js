@@ -12,8 +12,8 @@ import Dashboard from '../views/Dashboard.vue';
 import GenerateWallet from '../views/GenerateWallet.vue';
 import CreateCoA from '../views/CreateCoA.vue';
 import About from '../views/About.vue';
+import EditProfile from '../views/EditProfile.vue';
 import store from '../store';
-import CreateProfile from '../views/CreateProfile.vue';
 
 Vue.use(VueRouter);
 
@@ -86,9 +86,12 @@ const routes = [
     component: About
   }, 
   {
-    path: '/new/profile',
-    name: 'CreateProfile',
-    component: CreateProfile
+    path: '/profile',
+    name: 'EditProfile',
+    component: EditProfile,
+    meta: {
+      requiresAuth: true
+    }
   }
 ];
 

@@ -79,6 +79,8 @@
 // @ is an alias to /src
 import Header from '@/components/Header.vue'
 import Footer from '@/components/Footer.vue'
+import FilePreview from '@/components/FilePreview.vue'
+
 
 export default {
   name: 'CreateArtist',

@@ -3,9 +3,8 @@
     <a href="/" class="inline-flex items-center ml-3 text-black-800 text-2xl md:text-3xl font-bold gap-2.5" aria-label="logo">
       <img class="w-auto h-12" src="../assets/logo.png">
     </a>
-
+    
     <div class="flex gap-10 xs:gap-0">
-
       <div v-if='!$store.getters.token' class="xs:hidden lg:flex leading-none sm:flex-row sm:justify-center gap-2.5">
         <router-link to="/login" class="filter drop-shadow-lg inline-block text-black active:text-black text-sm md:text-base font-semibold text-center rounded-full border border-gray-800 px-4 py-3 mr-2 hover:text-gray-700 hover:transition ease-in-out transform hover:scale-105">Sign in</router-link>
         <router-link to="/register" class="filter drop-shadow-lg inline-block bg-black text-white text-sm md:text-base font-semibold text-center rounded-full px-8 py-3 ml-1 hover:transition ease-out transform hover:scale-105 hover:bg-gray-700">Sign up</router-link>

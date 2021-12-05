@@ -47,7 +47,11 @@
           </div>
 
           <div class="sm:col-span-2 flex justify-between items-center">
-            <button class="inline-block bg-indigo-500 hover:bg-indigo-600 active:bg-indigo-700 focus-visible:ring ring-indigo-300 text-white text-sm md:text-base font-semibold text-center rounded-lg outline-none transition duration-100 px-8 py-3">Send</button>
+            <button
+            class="block mx-auto bg-gray-800 hover:bg-gray-700 active:bg-gray-500 rounded tracking-widest focus-visible:ring ring-gray-300 focus:ring-2 text-white text-sm md:text-base font-semibold text-center uppercase outline-none transition duration-100 px-10 py-3 mt-12"
+            type="submit">
+            send
+            </button>         
           </div>
           <!-- TODO -->
           <p class="text-gray-400 text-xs">By signing up to our newsletter you agree to our <a href="#" class="hover:text-indigo-500 active:text-indigo-600 underline transition duration-100">Privacy Policy</a>.</p>
