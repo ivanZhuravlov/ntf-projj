@@ -14,6 +14,7 @@ import CreateCoA from '../views/CreateCoA.vue';
 import About from '../views/About.vue';
 import EditProfile from '../views/EditProfile.vue';
 import store from '../store';
+import SetRoyalties from '../views/SetRoyalties.vue';
 
 Vue.use(VueRouter);
 
@@ -89,6 +90,14 @@ const routes = [
     path: '/profile',
     name: 'EditProfile',
     component: EditProfile,
+    meta: {
+      requiresAuth: true
+    }
+  },
+  {
+    path: '/royalties',
+    name: 'SetRoyalties',
+    component: SetRoyalties,
     meta: {
       requiresAuth: true
     }
