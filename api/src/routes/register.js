@@ -58,7 +58,11 @@ router.route("/").post(async (req, res) => {
       type: user.type
     });
 
-    const token = jwt.sign({ id: user.id, email: user.email }, JWT_SECRET);
+    const token = jwt.sign({ 
+      id: user.id,
+      email: user.email,
+      type: user.type,
+    }, JWT_SECRET);
     res.json({ token });
   } catch (error) {
     console.log(error.message);
