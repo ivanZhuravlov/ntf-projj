@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import createPersistedState from "vuex-persistedstate";
+import jwt_decode from "jwt-decode";
 
 Vue.use(Vuex);
 
@@ -13,7 +14,8 @@ export default new Vuex.Store({
   getters: {
   	api: state => API,
   	token: state => null !== state.token ? state.token.token : null,
-  	bearer: state => `Bearer ${state.token.token}`,
+  	bearer: state => `Bearer ${state.token.token}`, 
+	isArtist: state => jwt_decode(state.token.token).type === 'artist' ? true : false,
   },
   mutations: {
     setToken(state, token) {
@@ -39,7 +41,7 @@ export default new Vuex.Store({
 	    	if (null === token || !token) {
 	    		throw new Error('Invalid token');
 	    	}
-	        
+
 	        this.state.token = token;
 	        localStorage.setItem("token", token);
 	        commit('setToken', {token});
@@ -66,7 +68,7 @@ export default new Vuex.Store({
 	    	if (null === token || !token) {
 	    		throw new Error('Invalid token');
 	    	}
-	        
+
 	        this.state.token = token;
 	        localStorage.setItem("token", token);
 	        commit('setToken', {token});
