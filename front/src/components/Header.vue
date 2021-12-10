@@ -41,9 +41,9 @@
         <router-link to="/service" class="text-sm py-2 px-10 font-semibold block w-full whitespace-nowrap bg-transparent text-black hover:bg-gray-300 rounded">
           Service
         </router-link>
-        <router-link v-if='$store.getters.token' to="/logout" class="text-sm py-2 px-10 font-semibold block w-full whitespace-nowrap bg-gray-700 text-white hover:bg-gray-300 rounded">
+        <button v-if='$store.getters.token' @click="logout()" to="/logout" class="text-sm py-2 px-10 font-semibold block w-full whitespace-nowrap bg-gray-700 text-white hover:bg-gray-300 rounded">
           Logout
-        </router-link>
+        </button>
       </div>
     </div>
   </header>
@@ -55,20 +55,21 @@
     data() {
       return {
         showMenu: false,
+        error: null,
       }
     },
     methods: { 
       toggle() {
         this.showMenu = !this.showMenu;
       },
+
+      
       logout: function() {
-        this.$store.dispatch("logout")
-        .catch((e) => this.error = e.message)
-        .then(() => {
-          if (null === this.error) {
-            this.$router.push({name: '/'})
-          }
-        })
+     
+        this.$store.dispatch("logout");
+        this.$router.push('/');
+          
+      
       }
     }
   };
