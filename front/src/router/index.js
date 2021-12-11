@@ -95,7 +95,7 @@ const routes = [
     }
   },
   {
-    path: '/royalties',
+    path: '/royalties/:id',
     name: 'SetRoyalties',
     component: SetRoyalties,
     meta: {
@@ -117,11 +117,16 @@ router.beforeEach((to, from, next) => {
     return ;
   }
 
+  if (['CreateCoA', 'SetRoyalties', 'CreateArtist'].includes(to.name) && !store.getters.isArtist) {
+    next('/');
+    return ;
+  }
+
   if (to.matched.some(record => record.meta.requiresAuth)) {
     if (!store.getters.token) {
       next('/login');
-      return;
-    }    
+      return ;
+    }   
   }
 
   next();
