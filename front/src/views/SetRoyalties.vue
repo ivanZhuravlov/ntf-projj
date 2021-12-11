@@ -44,7 +44,7 @@
           </div>
           <div class="flex justify-between border-t-2">
             <h2 class="px-3 py-2 text-md font-bold sm:text-base my-6 mr-6 ">Total*</h2>
-            <h3 class="px-3 py-2 text-md font-bold sm:text-base text-center my-6"> {{this.sum}} %</h3>
+            <h3 class="px-3 py-2 text-md font-bold sm:text-base text-center my-6"> {{ this.sum }} </h3>
           </div>
           <p class="text-xs font-base text-left pb-2 text-gray-500">*Jenko's 3 % royalty fee included.</p>
         </div>
@@ -69,11 +69,11 @@
               <input v-model="terms" aria-describedby="terms" type="checkbox" class="bg-gray-50 border focus:ring focus:ring-indigo-300 h-4 w-4 rounded" required>
             </div>
             <div class="text-sm ml-3">
-              <label for="terms" class="font-sm font-semibold">I read and approve the <a href="#" class="text-blue-400 hover:underline">terms and conditions*</a></label>
+              <label for="terms" class="font-sm font-semibold">I read and approve the <a href="#" class="text-blue-300 hover:underline">terms and conditions*</a></label>
             </div>
           </div>
           <!-- form - end -->
-          <router-link  to="/dashboard" class="rounded-md inline-block mx-auto bg-red-400 hover:bg-gray-700 active:bg-gray-600 focus-visible:ring ring-gray-300 focus:ring-2 text-white text-sm md:text-base font-semibold text-center uppercase outline-none transition px-10 py-3 hover:transition ease-out duration-200 transform hover:scale-110 tracking-widest" type="submit">
+          <router-link  to="/" class="rounded-md inline-block mx-auto bg-red-400 hover:bg-gray-700 active:bg-gray-600 focus-visible:ring ring-gray-300 focus:ring-2 text-white text-sm md:text-base font-semibold text-center uppercase outline-none transition px-10 py-3 hover:transition ease-out duration-200 transform hover:scale-110 tracking-widest" type="submit">
             SKIP*
           </router-link>
           <button @click="setRoyalties()" class="rounded-md inline-block mx-auto bg-gray-800 hover:bg-gray-700 active:bg-gray-600 focus-visible:ring ring-gray-300 focus:ring-2 text-white text-sm md:text-base font-semibold text-center uppercase outline-none transition px-10 py-3 hover:transition ease-out duration-200 transform hover:scale-110 tracking-widest" type="submit">
@@ -107,13 +107,10 @@ export default {
         roylatiesCollectorX: null,
         error: null,
         terms: null,
-        sum: 3,
-        tokenId: null,
+        sum: 3 + ' %',
     }
   },
   methods: {
-
-      // TODO: Get tokenId, user is artist, no royalties already
 
     total: function(){
 
@@ -125,19 +122,22 @@ export default {
         this.roylatiesCollector2,
         this.roylatiesCollectorX,
       ];
-      this.sum = royalties.reduce((a, b) => a + b, 3);  
+      const outOfRange = royalties.some(a => a < 0 || a > 47 || typeof(a) != 'number'); 
+        if (outOfRange) {
+          this.sum = 'Wrong input.';
+          return;
+      };
+      this.sum = royalties.reduce((a, b) => a + b, 3) + '%';  
     },
 
     async setRoyalties() {
 
       this.error = null;
-
       try {
         if(!this.terms) {
           this.error = 'You need to read and approve terms and condition to add royalties.';
           return ;
         };
-
         const data = {
           roylatiesArtist: this.roylatiesArtist,
           roylatiesGallery: this.roylatiesGallery,
@@ -145,9 +145,8 @@ export default {
           roylatiesCollector1: this.roylatiesCollector1,
           roylatiesCollector2: this.roylatiesCollector2,
           roylatiesCollectorX: this.roylatiesCollectorX,
-          tokenID: this.tokenID,
-        };
-              
+          tokenID: this.$route.params,
+        };              
         const royaltyArr = Object.values(data);
         royaltyArr.pop();
 
@@ -164,7 +163,6 @@ export default {
             this.error = 'The amount of royalties exceeded the maximum royalties percentage.';
             return ;
         };
-
         await fetch(this.$store.getters.api + '/royalties', {
           method: 'POST',
           headers: {
