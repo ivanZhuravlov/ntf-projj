@@ -13,8 +13,8 @@ import GenerateWallet from '../views/GenerateWallet.vue';
 import CreateCoA from '../views/CreateCoA.vue';
 import About from '../views/About.vue';
 import EditProfile from '../views/EditProfile.vue';
-import store from '../store';
 import SetRoyalties from '../views/SetRoyalties.vue';
+import store from '../store';
 
 Vue.use(VueRouter);
 
