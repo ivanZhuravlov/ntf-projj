@@ -70,7 +70,8 @@ const routes = [
     name: 'CreateArtist',
     component: CreateArtist,
     meta: {
-      requiresAuth: true
+      requiresAuth: true,
+      requiresArtist: true
     }
   },
   {
@@ -78,7 +79,8 @@ const routes = [
     name: 'CreateCoA',
     component: CreateCoA,
     meta: {
-      requiresAuth: true
+      requiresAuth: true,
+      requiresArtist: true
     }
   },
   {
@@ -99,7 +101,8 @@ const routes = [
     name: 'SetRoyalties',
     component: SetRoyalties,
     meta: {
-      requiresAuth: true
+      requiresAuth: true,
+      requiresArtist: true
     }
   }
 ];
@@ -117,16 +120,18 @@ router.beforeEach((to, from, next) => {
     return ;
   }
 
-  if (['CreateCoA', 'SetRoyalties', 'CreateArtist'].includes(to.name) && !store.getters.isArtist) {
-    next('/');
-    return ;
-  }
-
   if (to.matched.some(record => record.meta.requiresAuth)) {
     if (!store.getters.token) {
       next('/login');
       return ;
     }   
+  }
+
+  if (to.matched.some(record => record.meta.requiresArtist)) {
+    if (!store.getters.isArtist) {
+      next('/');
+      return ;
+    }
   }
 
   next();

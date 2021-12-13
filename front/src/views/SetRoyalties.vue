@@ -24,23 +24,23 @@
           </div>
           <div class="flex justify-between ">
             <label class="inline-block text-md font-semibold sm:text-base my-6 mr-6">Gallery</label>
-            <input v-on:change="total()" required maxlength="2" v-model.number="roylatiesGallery" placeholder="5" class="my-3 bg-white border text-md font-semibold focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2 placeholder-gray-500 text-center w-16" />
+            <input v-on:change="total()" required maxlength="2" v-model="roylatiesGallery" type="number" placeholder="5" class="my-3 bg-white border text-md font-semibold focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2 placeholder-gray-500 text-center w-16" />
           </div>
           <div class="flex justify-between ">
             <label class="inline-block text-md font-semibold sm:text-base my-6 mr-6">First Collector</label>
-            <input v-on:change="total()" required maxlength="2" v-model.number="roylatiesCollector0" placeholder="2" class="my-3 bg-white border text-md font-semibold focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2 placeholder-gray-500 text-center w-16" />
+            <input v-on:change="total()" required maxlength="2" v-model="roylatiesCollector0" type="number" placeholder="2" class="my-3 bg-white border text-md font-semibold focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2 placeholder-gray-500 text-center w-16" />
           </div>
           <div class="flex justify-between ">
             <label class="inline-block text-md font-semibold sm:text-base my-6 mr-6">Second Collector</label>
-            <input v-on:change="total()" required maxlength="2" v-model.number="roylatiesCollector1" placeholder="2" class="my-3 bg-white border text-md font-semibold focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2 placeholder-gray-500 text-center w-16" />
+            <input v-on:change="total()" required maxlength="2" v-model="roylatiesCollector1" type="number" placeholder="2" class="my-3 bg-white border text-md font-semibold focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2 placeholder-gray-500 text-center w-16" />
           </div>
           <div class="flex justify-between ">
             <label class="inline-block text-md font-semibold sm:text-base my-6 mr-6">Third Collector</label>
-            <input v-on:change="total()" required maxlength="2" v-model.number="roylatiesCollector2" placeholder="2" class=" my-3 bg-white border text-md font-semibold focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2 placeholder-gray-500 text-center w-16" />
+            <input v-on:change="total()" required maxlength="2" v-model="roylatiesCollector2" type="number" placeholder="2" class=" my-3 bg-white border text-md font-semibold focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2 placeholder-gray-500 text-center w-16" />
           </div>
           <div class="flex justify-between ">
             <label class="inline-block text-md font-semibold sm:text-base my-6 mr-6">X Collector</label>
-            <input v-on:change="total()" required maxlength="2" v-model.number="roylatiesCollectorX" placeholder="2" class=" my-3 bg-white border text-md font-semibold focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2 placeholder-gray-500 text-center w-16" />
+            <input v-on:change="total()" required maxlength="2" v-model="roylatiesCollectorX" type="number" placeholder="2" class=" my-3 bg-white border text-md font-semibold focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2 placeholder-gray-500 text-center w-16" />
           </div>
           <div class="flex justify-between border-t-2">
             <h2 class="px-3 py-2 text-md font-bold sm:text-base my-6 mr-6 ">Total*</h2>
@@ -122,11 +122,6 @@ export default {
         this.roylatiesCollector2,
         this.roylatiesCollectorX,
       ];
-      const outOfRange = royalties.some(a => a < 0 || a > 47 || typeof(a) != 'number'); 
-        if (outOfRange) {
-          this.sum = 'Wrong input.';
-          return;
-      };
       this.sum = royalties.reduce((a, b) => a + b, 3) + '%';  
     },
 
@@ -145,13 +140,13 @@ export default {
           roylatiesCollector1: this.roylatiesCollector1,
           roylatiesCollector2: this.roylatiesCollector2,
           roylatiesCollectorX: this.roylatiesCollectorX,
-          tokenID: this.$route.params,
+          tokenId: this.$route.params.tokenId,
         };              
         const royaltyArr = Object.values(data);
         royaltyArr.pop();
 
         // Check input it between 0 - 47 and it's a number
-        const outOfRange = royaltyArr.some(a => a < 0 || a > 47 || typeof(a) != 'number'); 
+        const outOfRange = royaltyArr.some(a => a < 0 || a > 47); 
         if (outOfRange) {
             this.error = 'Invalid input. You can set the fee between 0-47 but the total must not be more than 50%';
             return ;
