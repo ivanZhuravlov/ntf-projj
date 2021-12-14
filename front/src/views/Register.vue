@@ -28,15 +28,15 @@
            <p class="text-sm sm:text-base text-left auto">I am:*</p>
           <div class="grid-cols-1 md:grid grid-cols-3 lg:grid grid-cols-3 gap-4">
             <div>
-              <input v-model='type' type="radio" id="artist" checked value="Artist">
+              <input v-model='type' type="radio" id="artist" checked value="artist">
                 <label for="artist" class="text-sm mx-3">Artist</label>
             </div>
             <div>
-              <input v-model='type' type="radio" id="gallery" name="type" value="Gallery">
+              <input v-model='type' type="radio" id="gallery" name="type" value="gallery">
                 <label for="gallery" class="text-sm mx-3">Gallery</label>
             </div>
             <div>
-              <input v-model='type' type="radio" id="collector" name="type" value="Collector">
+              <input v-model='type' type="radio" id="collector" name="type" value="collector">
                 <label for="collector" class="text-sm mx-3">Collector</label>
             </div>
           </div>

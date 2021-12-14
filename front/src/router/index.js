@@ -13,6 +13,7 @@ import GenerateWallet from '../views/GenerateWallet.vue';
 import CreateCoA from '../views/CreateCoA.vue';
 import About from '../views/About.vue';
 import EditProfile from '../views/EditProfile.vue';
+import SetRoyalties from '../views/SetRoyalties.vue';
 import store from '../store';
 
 Vue.use(VueRouter);
@@ -69,7 +70,8 @@ const routes = [
     name: 'CreateArtist',
     component: CreateArtist,
     meta: {
-      requiresAuth: true
+      requiresAuth: true,
+      requiresArtist: true
     }
   },
   {
@@ -77,7 +79,8 @@ const routes = [
     name: 'CreateCoA',
     component: CreateCoA,
     meta: {
-      requiresAuth: true
+      requiresAuth: true,
+      requiresArtist: true
     }
   },
   {
@@ -91,6 +94,15 @@ const routes = [
     component: EditProfile,
     meta: {
       requiresAuth: true
+    }
+  },
+  {
+    path: '/royalties/:id',
+    name: 'SetRoyalties',
+    component: SetRoyalties,
+    meta: {
+      requiresAuth: true,
+      requiresArtist: true
     }
   }
 ];
@@ -111,8 +123,15 @@ router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.requiresAuth)) {
     if (!store.getters.token) {
       next('/login');
-      return;
-    }    
+      return ;
+    }   
+  }
+
+  if (to.matched.some(record => record.meta.requiresArtist)) {
+    if (!store.getters.isArtist) {
+      next('/');
+      return ;
+    }
   }
 
   next();
