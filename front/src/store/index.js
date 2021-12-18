@@ -5,21 +5,32 @@ import jwt_decode from "jwt-decode";
 
 Vue.use(Vuex);
 
-const API = process.env.NODE_ENV === 'production' ? 'http://api.jenko.io' : 'http://localhost:5000';
+const API = process.env.NODE_ENV === 'production' ? 'http://api.jenko.io' : 'http://localhost:4000';
 
 export default new Vuex.Store({
   state: {
   	token: null,
+	  type: null,
   },
   getters: {
   	api: state => API,
-  	token: state => null !== state.token ? state.token.token : null,
-  	bearer: state => `Bearer ${state.token.token}`, 
-	isArtist: state => jwt_decode(state.token.token).type === 'artist' ? true : false,
+  	token: state => state.token,
+  	bearer: state => `Bearer ${state.token}`,
+    type: state => state.type,
+    isArtist: state => state.type === 'artist',
   },
   mutations: {
     setToken(state, token) {
+ 	    console.log({token})
       state.token = token;
+	    localStorage.setItem("token", token);
+	  
+      try {
+        state.type = token ? jwt_decode(token).type : null;
+        localStorage.setItem("type", state.type);
+      } catch(e) {
+        console.log(e)
+      }
     },
   },
   actions: {
@@ -42,10 +53,12 @@ export default new Vuex.Store({
 	    		throw new Error('Invalid token');
 	    	}
 
-	        this.state.token = token;
-	        localStorage.setItem("token", token);
-	        commit('setToken', {token});
+        // Prevent router guard from async commit
+        this.state.token = token;
+        localStorage.setItem("token", token);
+        commit('setToken', token);
 	    } catch(e) {
+		  	console.log(e)
     		throw new Error('Invalid email or password');
 	    }
     },
@@ -66,20 +79,20 @@ export default new Vuex.Store({
     		}).then((r) => r.json());
 
 	    	if (null === token || !token) {
-	    		throw new Error('Invalid token');
+			  	throw new Error('Invalid token');
 	    	}
-
-	        this.state.token = token;
-	        localStorage.setItem("token", token);
-	        commit('setToken', {token});
+        
+        // Prevent router guard from async commit
+        this.state.token = token;
+        localStorage.setItem("token", token);
+        commit('setToken', token);
 	    } catch(e) {
+		  	console.log(e)
     		throw new Error('Invalid email, password or type');
 	    }
     },
     async logout({ commit }) {
-        this.state.token = null;
-        localStorage.setItem("token", null);
-        commit('setToken', {token: null});
+      commit('setToken', null);
     },
   },
   modules: {

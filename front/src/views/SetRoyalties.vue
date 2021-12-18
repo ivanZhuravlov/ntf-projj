@@ -73,7 +73,7 @@
             </div>
           </div>
           <!-- form - end -->
-          <router-link  to="/" class="rounded-md inline-block mx-auto bg-red-400 hover:bg-gray-700 active:bg-gray-600 focus-visible:ring ring-gray-300 focus:ring-2 text-white text-sm md:text-base font-semibold text-center uppercase outline-none transition px-10 py-3 hover:transition ease-out duration-200 transform hover:scale-110 tracking-widest" type="submit">
+          <router-link :to="`/art/${this.$route.params.id}`" class="rounded-md inline-block mx-auto bg-red-400 hover:bg-gray-700 active:bg-gray-600 focus-visible:ring ring-gray-300 focus:ring-2 text-white text-sm md:text-base font-semibold text-center uppercase outline-none transition px-10 py-3 hover:transition ease-out duration-200 transform hover:scale-110 tracking-widest" type="submit">
             SKIP*
           </router-link>
           <button @click="setRoyalties()" class="rounded-md inline-block mx-auto bg-gray-800 hover:bg-gray-700 active:bg-gray-600 focus-visible:ring ring-gray-300 focus:ring-2 text-white text-sm md:text-base font-semibold text-center uppercase outline-none transition px-10 py-3 hover:transition ease-out duration-200 transform hover:scale-110 tracking-widest" type="submit">
@@ -111,7 +111,6 @@ export default {
     }
   },
   methods: {
-
     total() {
       const royalties = [
         this.roylatiesArtist,
@@ -121,9 +120,34 @@ export default {
         this.roylatiesCollector2,
         this.roylatiesCollectorX,
       ];
-      this.sum = royalties.reduce((a, b) => a + b, 3) + '%';  
-    },
 
+      this.error = null;
+      const isOk = this.validate(royalties);
+      if(!isOk) {
+        return ;
+      }
+      
+      this.sum = royalties.reduce((a, b) => a + b, 3) + '%'; 
+    },
+    validate(royalties) {
+      if(royalties.some((r) => r < 0)) {
+        this.error = 'Invalid input. Fee must be positive.';
+        return false;
+      }
+      
+      const outOfRange = royalties.some(a => a < 0 || a > 47); 
+      if (outOfRange) {
+        this.error = 'Invalid input. You can set the fee between 0-47 but the total must not be more than 50%';
+        return false;
+      };
+      const sum = royalties.reduce((a, b) => a + b, 0);
+      if(sum > 47 || sum < 0) {
+        this.error = 'The amount of royalties exceeded the maximum royalties percentage.';
+        return false;
+      };
+
+      return true;
+    },
     async setRoyalties() {
       this.error = null;
       try {
@@ -140,20 +164,15 @@ export default {
           roylatiesCollectorX: this.roylatiesCollectorX,
           tokenId: this.$route.params.id,
         };              
-        console.log(data);
-        const royaltyArr = Object.values(data);
-        royaltyArr.pop();
 
-        const outOfRange = royaltyArr.some(a => a < 0 || a > 47); 
-        if (outOfRange) {
-            this.error = 'Invalid input. You can set the fee between 0-47 but the total must not be more than 50%';
-            return ;
-        };
-        const sum = royaltyArr.reduce((a, b) => a + b, 0);
-        if(sum > 47 || sum < 0) {
-            this.error = 'The amount of royalties exceeded the maximum royalties percentage.';
-            return ;
-        };
+        const royalties = Object.values(data);
+        royalties.pop();
+
+        const isOk = this.validate(royalties);
+        if(!isOk) {
+          return ;
+        }
+
         await fetch(this.$store.getters.api + '/royalties', {
           method: 'POST',
           headers: {
@@ -161,7 +180,8 @@ export default {
             'Authorization': this.$store.getters.bearer
           },
           body: JSON.stringify(data)
-        }).then((r) => r.json());
+        });
+        this.$router.push(`/art/${this.$route.params.id}`);
       } catch(err) {
         this.error = 'Error, please contact an administrator';
       }

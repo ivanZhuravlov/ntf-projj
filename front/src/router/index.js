@@ -124,7 +124,7 @@ router.beforeEach((to, from, next) => {
     if (!store.getters.token) {
       next('/login');
       return ;
-    }   
+    }
   }
 
   if (to.matched.some(record => record.meta.requiresArtist)) {

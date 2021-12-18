@@ -1,5 +1,5 @@
 {
-  "name": "front",
+  "name": "jenko",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -10,6 +10,7 @@
     "@tailwindcss/postcss7-compat": "^2.0.2",
     "axios": "^0.24.0",
     "core-js": "^3.6.5",
+    "jwt-decode": "^3.1.2",
     "postcss": "^7",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.0.2",
     "vue": "^2.6.11",

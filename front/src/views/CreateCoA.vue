@@ -28,9 +28,8 @@
           <!-- TODO : Preview the picture -->
           <label class="inline-block text-sm sm:text-base mt-6 mb-1">Select a picture of the artpiece *</label>
           <div class="w-full justify-start">
-
-            <div v-if='tokenUri' class="inline-flex flex-col">
-              <button @click="tokenUri = null" class="block mx-auto bg-red-800 hover:bg-red-700 active:bg-red-600 focus-visible:ring ring-red-300 focus:ring-2 text-white text-sm font-medium text-center outline-none transition duration-100 px-4 py-1 mt-4">
+            <div v-if='tokenUri' class="inline-flex flex-col justify-center">
+              <button @click="tokenUri = null" class="rounded text-white mx-auto bg-red-400 hover:bg-red-500 text-sm font-medium text-center outline-none transition duration-100 px-4 py-1 mt-4">
                 Remove image
               </button>
               <img class="max-w-64 mb-6 mt-2 h-auto" :src="`https://ipfs.io/ipfs/${tokenUri}`">
@@ -113,7 +112,8 @@ import Header from '@/components/Header.vue'
 import Footer from '@/components/Footer.vue'
 const axios = require('axios');
 
-const API_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweGI2YzY5MTMzMDkyYkM1QjE5NTgwNDZmNEMzNTc4OUFhRTdEYjhGNTQiLCJpc3MiOiJuZnQtc3RvcmFnZSIsImlhdCI6MTYzNzAwMDQ5MDg2NSwibmFtZSI6ImplbmtvIn0.Sfkb_ZTyygEHkEEMnXxNDQ0gTrwdexEG2nCam2nrFSA';
+// From nft.storage
+const API_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweGI3RjcxYTMyQTg3MzhENzFGMzZjNTIzNTczZDIyRTA4QjNlODIyMmIiLCJpc3MiOiJuZnQtc3RvcmFnZSIsImlhdCI6MTYzOTgyNzg3MjM1MiwibmFtZSI6ImplbmtvIn0.04WK7i-3C2ujAoeyRiHxoINCkE5LANFBfL70KhAIlpE';
 
 export default {
   name: 'CreateCoa',
@@ -132,7 +132,7 @@ export default {
       artPieceId: null,
       description: null,
       movement: null,
-      tokenUri: 'bafybeiggvjtiwodyso37ojwjf54kio426pjynh2t6c5hj3fnq7cbro5cam/T2C_app_pub_mockup.png',
+      tokenUri: null,
       terms: null,
       error: null,
     }

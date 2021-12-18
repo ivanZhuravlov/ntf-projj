@@ -5,3 +5,11 @@
 html {
   font-family: "Avenir Next", sans-serif;
 }
+
+@media print
+{    
+    .no-print, .no-print *
+    {
+        display: none !important;
+    }
+}

@@ -13,7 +13,7 @@
         <div class="grid grid-cols-2 mt-6">
           <div class="space-y-2">
             <div v-if='certificate.data.artPieceId' class="uppercase">Art piece: {{ certificate.data.artPieceId  }}</div>
-            <div v-if='certificate.data.createdAt' class="uppercase">Created At: {{ new Date(certificate.data.createdAt * 1000).toISOString().split('T')[0] }}</div>
+            <div v-if='certificate.data.createdAt' class="uppercase">Created At: {{ new Date(certificate.data.createdAt).toISOString().split('T')[0] }}</div>
             <div v-if='certificate.data.size' class="uppercase">Size: {{ certificate.data.size  }}</div>
             <div v-if='certificate.data.material' class="uppercase">Material: {{ certificate.data.material  }}</div>
             <div v-if='certificate.data.technical' class="uppercase">Technical: {{ certificate.data.technical }}</div>
@@ -40,7 +40,7 @@ export default {
   },
   methods: {
     clean(longText) {
-      return longText.slice(0, 8) + ' ... ' + longText.slice(-8);
+      return longText ? longText.slice(0, 8) + ' ... ' + longText.slice(-8) : '';
     }
   },
 };

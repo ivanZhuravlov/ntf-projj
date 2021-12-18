@@ -1,12 +1,10 @@
 const express = require("express");
 const router = express.Router();
-const { v4: uuidv4 } = require("uuid");
 const sql = require("../pg");
 const { authenticateJWT } = require("../utils");
-const { findActiveSubscriptions } = require("../db-utils");
 const { createRoyaltiesTransaction } = require("../web3");
 
-const MAX_ROYALTIES_PERCENTAGE = 30;
+const MAX_ROYALTIES_PERCENTAGE = 47;
 const ROYALTIES_MAX = {
   roylatiesArtist: 18,
   roylatiesGallery: 4,
@@ -31,7 +29,6 @@ function validateRoyalties(royalties) {
     }
   }
 }
-
 
 async function post(req, res) {
   if (!req.body || typeof req.body !== "object") {

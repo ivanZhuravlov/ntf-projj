@@ -1,5 +1,5 @@
 <template>
-  <header class="w-full flex justify-between p-4 md:py-8 xs:justify-between">
+  <header class="w-full flex justify-between p-4 md:py-8 xs:justify-between no-print">
     <a href="/" class="inline-flex items-center ml-3 text-black-800 text-2xl md:text-3xl font-bold gap-2.5" aria-label="logo">
       <img class="w-auto h-12" src="../assets/logo.png">
     </a>
@@ -25,7 +25,7 @@
         </svg>
       </button>
 
-      <div v-if="showMenu" class="absolute mt-14 right-5 bg-white text-base list-none text-center rounded border border-gray-100 filter drop-shadow-2xl">
+      <div v-if="showMenu" class="absolute mt-14 right-5 bg-white text-base list-none text-center rounded border border-gray-100 filter drop-shadow-2xl space-y-2">
         <router-link  v-if='!$store.getters.token' to="/login" class="text-sm py-2 px-10 font-semibold block w-full whitespace-nowrap bg-transparent text-black hover:bg-gray-300 rounded md:hidden lg:hidden">
           Login 
         </router-link>
