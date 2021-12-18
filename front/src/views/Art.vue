@@ -49,7 +49,7 @@
             <div v-if='token.data.royalties.roylatiesCollectorX' class="uppercase tracking-widest text-xs">X Collector: {{ token.data.royalties.roylatiesCollectorX }} %</div>
             <div class="uppercase tracking-widest text-xs">Jenko: 3%</div>
           </div>
-          <div v-else-if='$store.getters.isArtist' class="h-full">
+          <div v-else-if='$store.getters.isArtist && $store.getters.userId === token.user_id' class="h-full">
             <p class="text-sm text-gray-500 pb-3 mb-6">Jenko: 3%</p> 
             <router-link :to='`/royalties/${token.id}`' class="mt-6 my-10 bg-gray-100 transition duration-150 ease-in-out hover:bg-gray-200 rounded border border-gray-300 text-gray-600 px-6 py-2 text-xs focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-600">
             Add Royalties

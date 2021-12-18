@@ -63,7 +63,8 @@ router.route("/").post(async (req, res) => {
       email: user.email,
       type: user.type,
     }, JWT_SECRET);
-    res.json({ token });
+    
+    res.json({ token, userId: user.id });
   } catch (error) {
     console.log(error.message);
     res.status(500).send();

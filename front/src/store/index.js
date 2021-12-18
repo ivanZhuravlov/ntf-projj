@@ -10,20 +10,21 @@ const API = process.env.NODE_ENV === 'production' ? 'http://api.jenko.io' : 'htt
 export default new Vuex.Store({
   state: {
   	token: null,
-	  type: null,
+	type: null,
+	userId: null,
   },
   getters: {
   	api: state => API,
   	token: state => state.token,
   	bearer: state => `Bearer ${state.token}`,
+  	userId: state => state.userId,
     type: state => state.type,
     isArtist: state => state.type === 'artist',
   },
   mutations: {
     setToken(state, token) {
- 	    console.log({token})
       state.token = token;
-	    localStorage.setItem("token", token);
+	  localStorage.setItem("token", token);
 	  
       try {
         state.type = token ? jwt_decode(token).type : null;
@@ -36,7 +37,7 @@ export default new Vuex.Store({
   actions: {
     async login({ commit }, {email, password}) {
     	try {
-	    	const { token } = await fetch(
+			const { token, userId } = await fetch(
 	    		API + '/login',
 	    		{
 	    			method: 'POST',
@@ -53,18 +54,19 @@ export default new Vuex.Store({
 	    		throw new Error('Invalid token');
 	    	}
 
-        // Prevent router guard from async commit
-        this.state.token = token;
-        localStorage.setItem("token", token);
-        commit('setToken', token);
+			// Prevent router guard from async commit
+			this.state.token = token;
+			this.state.userId = userId;
+			localStorage.setItem("token", token);
+			commit('setToken', token);
 	    } catch(e) {
-		  	console.log(e)
-    		throw new Error('Invalid email or password');
+			console.log(e)
+			throw new Error('Invalid email or password');
 	    }
     },
     async register({ commit }, {email, password, type}) {
     	try {
-	    	const { token } = await fetch(
+	    	const { token, userId } = await fetch(
 	    		API + '/register',
 	    		{
 	    			method: 'POST',
@@ -84,6 +86,7 @@ export default new Vuex.Store({
         
         // Prevent router guard from async commit
         this.state.token = token;
+        this.state.userId = userId;
         localStorage.setItem("token", token);
         commit('setToken', token);
 	    } catch(e) {
@@ -93,6 +96,8 @@ export default new Vuex.Store({
     },
     async logout({ commit }) {
       commit('setToken', null);
+	  this.state.userId = null;
+
     },
   },
   modules: {

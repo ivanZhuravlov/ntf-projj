@@ -9,7 +9,15 @@ async function get(req, res) {
       throw new Error('Invalid Id')
     }
     const [certificate] = await sql`
-      select certificates.id, certificates.data, certificates.is_validate, certificates.created_at, token_id, token_uri, artists.data as artist
+      select 
+        certificates.id, 
+        certificates.data, 
+        certificates.is_validate, 
+        certificates.created_at, 
+        token_id, 
+        token_uri, 
+        artists.data as artist, 
+        artists.user_id as user_id
       from certificates 
         left join artists on certificates.data->>'artistAddress' = artists.address
       where id = ${id}`;
