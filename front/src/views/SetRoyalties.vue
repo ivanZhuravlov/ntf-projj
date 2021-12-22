@@ -121,7 +121,19 @@ export default {
         roylatiesCollector2: this.roylatiesCollector2,
         roylatiesCollectorX: this.roylatiesCollectorX,
       };
-        const royaltiesMax = {
+
+
+      this.error = null;
+      const isOk = this.validate(royaltiesData);
+      if(!isOk) {
+        return ;
+      }
+      this.sum = Object.values(royaltiesData).reduce((a, b) => a + b, 3) + '%'; 
+    },
+
+    validate(royaltiesData) {
+
+      const royaltiesMax = {
         roylatiesArtist: 18,
         roylatiesGallery: 4,
         roylatiesCollector0: 2,
@@ -133,19 +145,11 @@ export default {
       for(const [royalty, percentage] of Object.entries(royaltiesMax)) {
         if(royaltiesData[royalty] > percentage) {
         this.error= `Invalide ${royalty} value, (${royaltiesData[royalty]}, max ${percentage})`;
-          return ;
-        }
-      }   
+          return false;
+        };
+      };   
 
-      this.error = null;
-      const isOk = this.validate(royaltiesData);
-      if(!isOk) {
-        return ;
-      }
-      this.sum = Object.values(royaltiesData).reduce((a, b) => a + b, 3) + '%'; 
-    },
 
-    validate(royaltiesData) {
       if(Object.values(royaltiesData).some((r) => r < 0)) {
         this.error = 'Invalid input. Fee must be positive.';
         return false;
@@ -185,7 +189,7 @@ export default {
         const isOk = this.validate(royalties);
         if(!isOk) {
           return ;
-        }
+        };
 
         await fetch(this.$store.getters.api + '/royalties', {
           method: 'POST',
