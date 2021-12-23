@@ -40,7 +40,7 @@
           </div>
           <div class="flex justify-between ">
             <label class="inline-block text-md font-semibold sm:text-base my-6 mr-6">X Collector</label>
-            <input v-on:change="total()" required max=2 min=0 v-model.number="roylatiesCollectorX" type="number" placeholder="0" class=" my-3 bg-white border text-md font-semibold focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2 placeholder-gray-300 text-center w-20" />
+            <input v-on:change="total()" required max="2" min="0" v-model.number="roylatiesCollectorX" type="number" placeholder="0" class=" my-3 bg-white border text-md font-semibold focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2 placeholder-gray-300 text-center w-20" />
           </div>
           <div class="flex justify-between border-t-2">
             <h2 class="px-3 py-2 text-md font-bold sm:text-base my-6 mr-6 ">Total*</h2>
