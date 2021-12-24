@@ -99,12 +99,12 @@ export default {
   },
   data() {
     return {
-        roylatiesArtist: null,
-        roylatiesGallery: null,
-        roylatiesCollector0: null,
-        roylatiesCollector1: null,
-        roylatiesCollector2: null,
-        roylatiesCollectorX: null,
+        royaltiesArtist: null,
+        royaltiesGallery: null,
+        royaltiesCollector0: null,
+        royaltiesCollector1: null,
+        royaltiesCollector2: null,
+        royaltiesCollectorX: null,
         error: null,
         terms: null,
         sum: 3 + ' %',
@@ -114,12 +114,12 @@ export default {
     total() {
     
       const royaltiesData = {
-        roylatiesArtist: this.roylatiesArtist,
-        roylatiesGallery: this.roylatiesGallery,
-        roylatiesCollector0: this.roylatiesCollector0,
-        roylatiesCollector1: this.roylatiesCollector1,
-        roylatiesCollector2: this.roylatiesCollector2,
-        roylatiesCollectorX: this.roylatiesCollectorX,
+        royaltiesArtist: this.roylatiesArtist,
+        royaltiesGallery: this.royaltiesGallery,
+        royaltiesCollector0: this.royaltiesCollector0,
+        royaltiesCollector1: this.royaltiesCollector1,
+        royaltiesCollector2: this.royaltiesCollector2,
+        royaltiesCollectorX: this.royaltiesCollectorX,
       };
 
       this.error = null;
@@ -132,12 +132,12 @@ export default {
 
     validate(royaltiesData) {
       const royaltiesMax = {
-        roylatiesArtist: 18,
-        roylatiesGallery: 4,
-        roylatiesCollector0: 2,
-        roylatiesCollector1: 2,
-        roylatiesCollector2: 2,
-        roylatiesCollectorX: 2,
+        royaltiesArtist: 18,
+        royaltiesGallery: 4,
+        royaltiesCollector0: 2,
+        royaltiesCollector1: 2,
+        royaltiesCollector2: 2,
+        royaltiesCollectorX: 2,
       };
 
       for(const [royalty, percentage] of Object.entries(royaltiesMax)) {
@@ -171,12 +171,12 @@ export default {
           return ;
         };
         const data = {
-          roylatiesArtist: this.roylatiesArtist,
-          roylatiesGallery: this.roylatiesGallery,
-          roylatiesCollector0: this.roylatiesCollector0,
-          roylatiesCollector1: this.roylatiesCollector1,
-          roylatiesCollector2: this.roylatiesCollector2,
-          roylatiesCollectorX: this.roylatiesCollectorX,
+          royaltiesArtist: this.royaltiesArtist,
+          royaltiesGallery: this.royaltiesGallery,
+          royaltiesCollector0: this.royaltiesCollector0,
+          royaltiesCollector1: this.royaltiesCollector1,
+          royaltiesCollector2: this.royaltiesCollector2,
+          royaltiesCollectorX: this.royaltiesCollectorX,
           tokenId: this.$route.params.id,
         };              
 
