@@ -245,6 +245,7 @@ module.exports = {
     },
     fontFamily: {
       sans: [
+        'proxima-nova',
         'ui-sans-serif',
         'system-ui',
         '-apple-system',
@@ -262,6 +263,7 @@ module.exports = {
       ],
       serif: ['ui-serif', 'Georgia', 'Cambria', '"Times New Roman"', 'Times', 'serif'],
       mono: [
+        'proxima-nova',
         'ui-monospace',
         'SFMono-Regular',
         'Menlo',
