@@ -20,27 +20,27 @@
           <p class="border-b-2 text-xs font-base text-left pb-2 text-gray-500 xs:text-sm">You can set fees of up to 50 % in total.</p>
           <div class="flex justify-between">
             <label class="inline-block text-md font-semibold sm:text-base my-6">Artist</label>
-            <input v-on:change="total()" required  max="18" min="0" v-model.number="roylatiesArtist" type="number" placeholder="20" class="my-3 bg-white border text-md font-semibold focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2 placeholder-gray-300 text-center w-20" />
+            <input v-on:change="total()" required  max="18" min="0" v-model.number="royaltiesArtist" type="number" placeholder="20" class="my-3 bg-white border text-md font-semibold focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2 placeholder-gray-300 text-center w-20" />
           </div>
           <div class="flex justify-between ">
             <label class="inline-block text-md font-semibold sm:text-base my-6 mr-6">Gallery</label>
-            <input v-on:change="total()" required max="4" min="0" v-model.number="roylatiesGallery" type="number" placeholder="0" class="my-3 bg-white border text-md font-semibold focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2 placeholder-gray-300 text-center w-20" />
+            <input v-on:change="total()" required max="4" min="0" v-model.number="royaltiesGallery" type="number" placeholder="0" class="my-3 bg-white border text-md font-semibold focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2 placeholder-gray-300 text-center w-20" />
           </div>
           <div class="flex justify-between ">
             <label class="inline-block text-md font-semibold sm:text-base my-6 mr-6">First Collector</label>
-            <input v-on:change="total()" required max="2" min="0" v-model.number="roylatiesCollector0" type="number" placeholder="0" class="my-3 bg-white border text-md font-semibold focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2 placeholder-gray-300 text-center w-20" />
+            <input v-on:change="total()" required max="2" min="0" v-model.number="royaltiesCollector0" type="number" placeholder="0" class="my-3 bg-white border text-md font-semibold focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2 placeholder-gray-300 text-center w-20" />
           </div>
           <div class="flex justify-between ">
             <label class="inline-block text-md font-semibold sm:text-base my-6 mr-6">Second Collector</label>
-            <input v-on:change="total()" required max="2" min="0" v-model.number="roylatiesCollector1" type="number" placeholder="0" class="my-3 bg-white border text-md font-semibold focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2 placeholder-gray-300 text-center w-20" />
+            <input v-on:change="total()" required max="2" min="0" v-model.number="royaltiesCollector1" type="number" placeholder="0" class="my-3 bg-white border text-md font-semibold focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2 placeholder-gray-300 text-center w-20" />
           </div>
           <div class="flex justify-between ">
             <label class="inline-block text-md font-semibold sm:text-base my-6 mr-6">Third Collector</label>
-            <input v-on:change="total()" required max="2" min="0" v-model.number="roylatiesCollector2" type="number" placeholder="0" class=" my-3 bg-white border text-md font-semibold focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2 placeholder-gray-300 text-center w-20" />
+            <input v-on:change="total()" required max="2" min="0" v-model.number="royaltiesCollector2" type="number" placeholder="0" class=" my-3 bg-white border text-md font-semibold focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2 placeholder-gray-300 text-center w-20" />
           </div>
           <div class="flex justify-between ">
             <label class="inline-block text-md font-semibold sm:text-base my-6 mr-6">X Collector</label>
-            <input v-on:change="total()" required max="2" min="0" v-model.number="roylatiesCollectorX" type="number" placeholder="0" class=" my-3 bg-white border text-md font-semibold focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2 placeholder-gray-300 text-center w-20" />
+            <input v-on:change="total()" required max="2" min="0" v-model.number="royaltiesCollectorX" type="number" placeholder="0" class=" my-3 bg-white border text-md font-semibold focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2 placeholder-gray-300 text-center w-20" />
           </div>
           <div class="flex justify-between border-t-2">
             <h2 class="px-3 py-2 text-md font-bold sm:text-base my-6 mr-6 ">Total*</h2>
@@ -114,7 +114,7 @@ export default {
     total() {
     
       const royaltiesData = {
-        royaltiesArtist: this.roylatiesArtist,
+        royaltiesArtist: this.royaltiesArtist,
         royaltiesGallery: this.royaltiesGallery,
         royaltiesCollector0: this.royaltiesCollector0,
         royaltiesCollector1: this.royaltiesCollector1,
