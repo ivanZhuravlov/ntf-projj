@@ -293,6 +293,6 @@ After COA creation add Royalties with this endpoint:
 - on error return 400, invalid values
 
 ```
-curl http://localhost:5000/royalties -X POST -H "content-type: application/json" --data '{"tokenId": "348eeacd-32eb-4b60-9c78-a1451ac1e6dd", "roylatiesArtist": 18, "roylatiesGallery": 3, "roylatiesCollector0": 2, "roylatiesCollector1": 2, "roylatiesCollector2": 2, "roylatiesCollectorX": 2}'
+curl http://localhost:5000/royalties -X POST -H "content-type: application/json" --data '{"tokenId": "348eeacd-32eb-4b60-9c78-a1451ac1e6dd", "royaltiesArtist": 18, "royaltiesGallery": 3, "royaltiesCollector0": 2, "royaltiesCollector1": 2, "royaltiesCollector2": 2, "royaltiesCollectorX": 2}'
 -H 'Authorization: Bearer eyJhbGciOiJ'
 ```

@@ -63,12 +63,12 @@ async function post(req, res) {
       throw new Error('Royalties already exist');
     }
     const royalties = {
-      roylatiesArtist: req.body.roylatiesArtist ?? 0,
-      roylatiesGallery: req.body.roylatiesGallery ?? 0,
-      roylatiesCollector0: req.body.roylatiesCollector0 ?? 0,
-      roylatiesCollector1: req.body.roylatiesCollector1 ?? 0,
-      roylatiesCollector2: req.body.roylatiesCollector2 ?? 0,
-      roylatiesCollectorX: req.body.roylatiesCollectorX ?? 0,
+      roylatiesArtist: req.body.royaltiesArtist ?? 0,
+      roylatiesGallery: req.body.royaltiesGallery ?? 0,
+      roylatiesCollector0: req.body.royaltiesCollector0 ?? 0,
+      roylatiesCollector1: req.body.royaltiesCollector1 ?? 0,
+      roylatiesCollector2: req.body.royaltiesCollector2 ?? 0,
+      roylatiesCollectorX: req.body.royaltiesCollectorX ?? 0,
     }
     validateRoyalties(royalties);
 
