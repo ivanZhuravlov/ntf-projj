@@ -20,27 +20,27 @@
           <p class="border-b-2 text-xs font-base text-left pb-2 text-gray-500 xs:text-sm">You can set fees of up to 50 % in total.</p>
           <div class="flex justify-between">
             <label class="inline-block text-md font-semibold sm:text-base my-6">Artist</label>
-            <input v-on:change="total()" required  max=47 min=0 v-model.number="roylatiesArtist" type="number" placeholder="20" class="my-3 bg-white border text-md font-semibold focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2 placeholder-gray-300 text-center w-16" />
+            <input v-on:change="total()" required  max="18" min="0" v-model.number="royaltiesArtist" type="number" placeholder="20" class="my-3 bg-white border text-md font-semibold focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2 placeholder-gray-300 text-center w-20" />
           </div>
           <div class="flex justify-between ">
             <label class="inline-block text-md font-semibold sm:text-base my-6 mr-6">Gallery</label>
-            <input v-on:change="total()" required max=47 min=0 v-model.number="roylatiesGallery" type="number" placeholder="5" class="my-3 bg-white border text-md font-semibold focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2 placeholder-gray-300 text-center w-16" />
+            <input v-on:change="total()" required max="4" min="0" v-model.number="royaltiesGallery" type="number" placeholder="0" class="my-3 bg-white border text-md font-semibold focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2 placeholder-gray-300 text-center w-20" />
           </div>
           <div class="flex justify-between ">
             <label class="inline-block text-md font-semibold sm:text-base my-6 mr-6">First Collector</label>
-            <input v-on:change="total()" required max=47 min=0 v-model.number="roylatiesCollector0" type="number" placeholder="2" class="my-3 bg-white border text-md font-semibold focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2 placeholder-gray-300 text-center w-16" />
+            <input v-on:change="total()" required max="2" min="0" v-model.number="royaltiesCollector0" type="number" placeholder="0" class="my-3 bg-white border text-md font-semibold focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2 placeholder-gray-300 text-center w-20" />
           </div>
           <div class="flex justify-between ">
             <label class="inline-block text-md font-semibold sm:text-base my-6 mr-6">Second Collector</label>
-            <input v-on:change="total()" required max=47 min=0 v-model.number="roylatiesCollector1" type="number" placeholder="2" class="my-3 bg-white border text-md font-semibold focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2 placeholder-gray-300 text-center w-16" />
+            <input v-on:change="total()" required max="2" min="0" v-model.number="royaltiesCollector1" type="number" placeholder="0" class="my-3 bg-white border text-md font-semibold focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2 placeholder-gray-300 text-center w-20" />
           </div>
           <div class="flex justify-between ">
             <label class="inline-block text-md font-semibold sm:text-base my-6 mr-6">Third Collector</label>
-            <input v-on:change="total()" required max=47 min=0 v-model.number="roylatiesCollector2" type="number" placeholder="2" class=" my-3 bg-white border text-md font-semibold focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2 placeholder-gray-300 text-center w-16" />
+            <input v-on:change="total()" required max="2" min="0" v-model.number="royaltiesCollector2" type="number" placeholder="0" class=" my-3 bg-white border text-md font-semibold focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2 placeholder-gray-300 text-center w-20" />
           </div>
           <div class="flex justify-between ">
             <label class="inline-block text-md font-semibold sm:text-base my-6 mr-6">X Collector</label>
-            <input v-on:change="total()" required max=47 min=0 v-model.number="roylatiesCollectorX" type="number" placeholder="2" class=" my-3 bg-white border text-md font-semibold focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2 placeholder-gray-300 text-center w-16" />
+            <input v-on:change="total()" required max="2" min="0" v-model.number="royaltiesCollectorX" type="number" placeholder="0" class=" my-3 bg-white border text-md font-semibold focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2 placeholder-gray-300 text-center w-20" />
           </div>
           <div class="flex justify-between border-t-2">
             <h2 class="px-3 py-2 text-md font-bold sm:text-base my-6 mr-6 ">Total*</h2>
@@ -99,12 +99,12 @@ export default {
   },
   data() {
     return {
-        roylatiesArtist: null,
-        roylatiesGallery: null,
-        roylatiesCollector0: null,
-        roylatiesCollector1: null,
-        roylatiesCollector2: null,
-        roylatiesCollectorX: null,
+        royaltiesArtist: null,
+        royaltiesGallery: null,
+        royaltiesCollector0: null,
+        royaltiesCollector1: null,
+        royaltiesCollector2: null,
+        royaltiesCollectorX: null,
         error: null,
         terms: null,
         sum: 3 + ' %',
@@ -112,40 +112,55 @@ export default {
   },
   methods: {
     total() {
-      const royalties = [
-        this.roylatiesArtist,
-        this.roylatiesGallery, 
-        this.roylatiesCollector0,
-        this.roylatiesCollector1,
-        this.roylatiesCollector2,
-        this.roylatiesCollectorX,
-      ];
+    
+      const royaltiesData = {
+        royaltiesArtist: this.royaltiesArtist,
+        royaltiesGallery: this.royaltiesGallery,
+        royaltiesCollector0: this.royaltiesCollector0,
+        royaltiesCollector1: this.royaltiesCollector1,
+        royaltiesCollector2: this.royaltiesCollector2,
+        royaltiesCollectorX: this.royaltiesCollectorX,
+      };
 
       this.error = null;
-      const isOk = this.validate(royalties);
+      const isOk = this.validate(royaltiesData);
       if(!isOk) {
         return ;
       }
-      
-      this.sum = royalties.reduce((a, b) => a + b, 3) + '%'; 
+      this.sum = Object.values(royaltiesData).reduce((a, b) => a + b, 3) + '%'; 
     },
-    validate(royalties) {
-      if(royalties.some((r) => r < 0)) {
+
+    validate(royaltiesData) {
+      const royaltiesMax = {
+        royaltiesArtist: 18,
+        royaltiesGallery: 4,
+        royaltiesCollector0: 2,
+        royaltiesCollector1: 2,
+        royaltiesCollector2: 2,
+        royaltiesCollectorX: 2,
+      };
+
+      for(const [royalty, percentage] of Object.entries(royaltiesMax)) {
+        if(royaltiesData[royalty] > percentage) {
+        this.error= `Invalide ${royalty} value, (${royaltiesData[royalty]}, max ${percentage})`;
+          return false;
+        };
+      };   
+
+      if(Object.values(royaltiesData).some((r) => r < 0)) {
         this.error = 'Invalid input. Fee must be positive.';
         return false;
-      }
-      
-      const outOfRange = royalties.some(a => a < 0 || a > 47); 
-      if (outOfRange) {
+      };
+    
+      if (Object.values(royaltiesData).some(a => a < 0 || a > 47)) {
         this.error = 'Invalid input. You can set the fee between 0-47 but the total must not be more than 50%';
         return false;
       };
-      const sum = royalties.reduce((a, b) => a + b, 0);
+      const sum = Object.values(royaltiesData).reduce((a, b) => a + b, 0);
       if(sum > 47 || sum < 0) {
         this.error = 'The amount of royalties exceeded the maximum royalties percentage.';
         return false;
       };
-
       return true;
     },
     async setRoyalties() {
@@ -156,12 +171,12 @@ export default {
           return ;
         };
         const data = {
-          roylatiesArtist: this.roylatiesArtist,
-          roylatiesGallery: this.roylatiesGallery,
-          roylatiesCollector0: this.roylatiesCollector0,
-          roylatiesCollector1: this.roylatiesCollector1,
-          roylatiesCollector2: this.roylatiesCollector2,
-          roylatiesCollectorX: this.roylatiesCollectorX,
+          royaltiesArtist: this.royaltiesArtist,
+          royaltiesGallery: this.royaltiesGallery,
+          royaltiesCollector0: this.royaltiesCollector0,
+          royaltiesCollector1: this.royaltiesCollector1,
+          royaltiesCollector2: this.royaltiesCollector2,
+          royaltiesCollectorX: this.royaltiesCollectorX,
           tokenId: this.$route.params.id,
         };              
 
@@ -171,7 +186,7 @@ export default {
         const isOk = this.validate(royalties);
         if(!isOk) {
           return ;
-        }
+        };
 
         await fetch(this.$store.getters.api + '/royalties', {
           method: 'POST',
