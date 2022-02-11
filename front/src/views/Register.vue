@@ -63,7 +63,7 @@
 
         <div class="flex justify-center items-center bg-gray-100 p-4">
           <p class="text-gray-500 text-sm text-center">
-            Have already an account? 
+            I don't have a JENKO Account 
             <router-link to='/login' class="text-blue-500 hover:text-blue-600 active:text-blue-700 transition duration-100">Sign in</router-link>
           </p>
         </div>
