@@ -47,7 +47,7 @@
             </div>
             <div class="text-sm ml-3">
               <label for="terms" class="font-sm">
-                I acknowledge that I have read and agree to the <a class="text-blue-500 underline" href="/about#terms" target="_blank">Terms and Conditions</a>
+                I have read, understood and approve the terms and conditions specified in <a class="text-blue-500 underline" href="/about#terms" target="_blank">JENKO Services Agreement</a>
               </label>
             </div>
           </div>
