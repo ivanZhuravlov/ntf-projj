@@ -25,8 +25,8 @@
             <input v-model='passwordRepeat' type='password' required name="passwordRepeat" class="w-full bg-gray-50 text-gray-800 border focus:ring focus:ring-2 ring-blue-300 rounded outline-none transition duration-100 px-3 py-2" />
           </div>
 
-           <p class="text-sm sm:text-base text-left auto">I am:*</p>
-          <div class="grid-cols-1 md:grid grid-cols-3 lg:grid grid-cols-3 gap-4">
+           <p class="text-sm sm:text-base text-left auto">I register a JENKO Accound as:*</p>
+          <div class="grid-cols-1 md:grid grid-cols-4 lg:grid grid-cols-4 gap-2">
             <div>
               <input v-model='type' type="radio" id="artist" checked value="artist">
                 <label for="artist" class="text-sm mx-3">Artist</label>
@@ -38,6 +38,10 @@
             <div>
               <input v-model='type' type="radio" id="collector" name="type" value="collector">
                 <label for="collector" class="text-sm mx-3">Collector</label>
+            </div>
+            <div>
+              <input v-model='type' type="radio" id="beneficiary" name="type" value="beneficiary">
+                <label for="beneficiary" class="text-sm mx-3">Beneficiary</label>
             </div>
           </div>
           <hr class="my-4">
