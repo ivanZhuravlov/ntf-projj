@@ -10,7 +10,8 @@
     <div class="mt-10">
       <ArtPreview />
     </div>
-    <router-link to="/dashboard" tag="button" class="items-center px-3 text-white text-center mt-20 bg-orange tracking-widest rounded inline-block uppercase text-sm md:text-base font-bold md:w-2/3 lg:w-1/6 h-16 sm:w-3/4 xs:w-3/4 hover:transition ease-out duration-200 transform hover:scale-105 hover:bg-black xs:mt-10">Create now!</router-link>    <div class="mb-10 lg:px-20 lg:my-20">
+    <router-link to="/dashboard" tag="button" class="items-center px-3 text-white text-center mt-20 bg-orange tracking-widest rounded inline-block uppercase text-sm md:text-base font-bold md:w-2/3 lg:w-1/6 h-16 sm:w-3/4 xs:w-3/4 hover:transition ease-out duration-200 transform hover:scale-105 hover:bg-black xs:mt-10">Create now!</router-link>    
+    <div class="mb-10 lg:px-20 lg:my-20">
       <Introduction />
     </div>
     <div class="filter drop-shadow-md flex w-screen-2/3 py-3 px-3 flex xs:flex-col-reverse sm:flex-col-reverse mt-10">
