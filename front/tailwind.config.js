@@ -33,6 +33,10 @@ module.exports = {
       pink: colors.pink,
       dark: '#363D4B',
       orange: '#EA5701',
+      headerWhite: '#FBFBFB',
+      darkGray: '#5A5656',
+
+
     },
     spacing: {
       px: '1px',

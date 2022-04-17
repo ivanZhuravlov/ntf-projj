@@ -1,10 +1,23 @@
 <template>
-  <header class="w-full flex justify-between p-4 md:py-8 xs:justify-between no-print">
-    <a href="/" class="inline-flex ml-3 text-black-800 text-2xl md:text-3xl font-bold gap-2.5" aria-label="logo">
-      <img class="w-auto h-20" src="../assets/logo.png">
+  <header class="w-full flex justify-between place-items-center h-20 border-b-2 bg-headerWhite filter drop-shadow-lg md:py-8 xs:justify-between no-print">
+    <a href="/" class="inline-flex " aria-label="logo">
+      <img class="w-auto h-14 ml-10" src="../assets/logo.png"> 
     </a>
-    
-    <div class="flex gap-10 xs:gap-0 ">
+
+    <div class="justify-between flex p-4 space-x-6 text-darkGray">
+      <router-link to="/features" class="font-medium text-base uppercase hover:text-gray-900">Features</router-link>
+      <router-link to="/pricing" class="font-medium text-base uppercase hover:text-gray-900">Pricing</router-link>
+      <router-link to="/community" class="font-medium text-base uppercase hover:text-gray-900">Communities</router-link>
+    </div>
+     <div>
+     <button type="button" class="mr-3 bg-white text-black active:text-gray-700 text-sm md:text-base font-semibold rounded-lg gap-2 px-2.5 py-2 hover:transition ease-out duration-200 transform hover:scale-110">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h6a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd" />
+        </svg>
+      </button>
+    </div>
+        
+    <!-- <div class="flex gap-10 xs:gap-0 ">
       <div v-if='!$store.getters.token' class="items-center xs:hidden gap-2.5">
         <router-link to="/login" class="filter drop-shadow-lg inline-block text-black active:text-black text-sm md:text-base font-semibold text-center rounded border border-gray-800 px-4 py-3 mr-2 w-40 hover:text-gray-700 hover:transition ease-in-out transform hover:scale-105">Sign in</router-link>
         <router-link to="/register" class=" filter drop-shadow-lg inline-block bg-orange text-white text-sm md:text-base font-semibold text-center rounded px-8 py-3 ml-1 w-40 hover:transition ease-out transform hover:scale-105 hover:bg-gray-700">Sign up</router-link>
@@ -45,7 +58,7 @@
           Logout
         </button>
       </div>
-    </div>
+    </div> -->
   </header>
 </template>
 
