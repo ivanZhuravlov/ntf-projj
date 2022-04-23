@@ -32,9 +32,14 @@ module.exports = {
       purple: colors.violet,
       pink: colors.pink,
       dark: '#363D4B',
-      orange: '#EA5701',
+      orange: '#FF5F04',
       headerWhite: '#FBFBFB',
       darkGray: '#5A5656',
+      mediumGray: '#646161',
+      darkerGray: '#555444',
+      fontGray: '#333333',
+      textGray: '#666666',
+      
 
 
     },
@@ -102,6 +107,7 @@ module.exports = {
       'gradient-to-bl': 'linear-gradient(to bottom left, var(--tw-gradient-stops))',
       'gradient-to-l': 'linear-gradient(to left, var(--tw-gradient-stops))',
       'gradient-to-tl': 'linear-gradient(to top left, var(--tw-gradient-stops))',
+      'hero': 'url(../assets/images/hero.png)',
     },
     backgroundOpacity: (theme) => theme('opacity'),
     backgroundPosition: {
@@ -440,6 +446,10 @@ module.exports = {
       '3/6': '50%',
       '4/6': '66.666667%',
       '5/6': '83.333333%',
+      '150':  '150px',
+      '300': '300px',
+      '400': '400px',
+      '600': '600px',
       full: '100%',
       screen: '100vh',
     }),
@@ -513,6 +523,8 @@ module.exports = {
       8: '2rem',
       9: '2.25rem',
       10: '2.5rem',
+      11: '50 px',
+      12: '18 px',
     },
     listStyleType: {
       none: 'none',
@@ -806,6 +818,8 @@ module.exports = {
       screen: '100vw',
       min: 'min-content',
       max: 'max-content',
+      '600': '600px',
+      '30': '30px',
     }),
     zIndex: {
       auto: 'auto',
