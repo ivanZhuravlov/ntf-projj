@@ -8,13 +8,13 @@
           <div class="uppercase text-xs font-medium leading-12 text-textGray mb-3">Features</div>
           <nav class="flex flex-col">
             <div>
-              <router-link to="/about#about-us"
+              <router-link to="/features#aft-certificate"
                 class="text-textGray text-xs font-normal leading-12 hover:text-gray-800 transition duration-100">AFT
                 Certificate
               </router-link>
             </div>
             <div>
-              <router-link to="/contact"
+              <router-link to="/features#secure-stickers"
                 class="text-textGray text-xs font-normal leading-12 hover:text-gray-800 transition duration-100">Secure
                 Stickers</router-link>
             </div>
@@ -27,12 +27,12 @@
           <div class="uppercase text-xs font-medium leading-12 text-textGray mb-3">Pricing</div>
           <nav class="flex flex-col">
             <div>
-              <router-link to="/about#about-us"
+              <router-link to="/pricing#individual"
                 class="text-textGray text-xs font-normal leading-12 hover:text-gray-800 transition duration-100">
                 Individual</router-link>
             </div>
             <div>
-              <router-link to="/contact"
+              <router-link to="/pricing#business"
                 class="text-textGray text-xs font-normal leading-12 hover:text-gray-800 transition duration-100">
                 Business</router-link>
             </div>
@@ -45,22 +45,22 @@
           <div class="uppercase text-xs font-medium leading-12 text-textGray mb-3">Learn</div>
           <nav class="flex flex-col">
             <div>
-              <router-link to="/about#terms"
+              <router-link to="/about"
                 class="text-textGray text-xs font-normal leading-12 hover:text-gray-800 transition duration-100">About
               </router-link>
             </div>
             <div>
-              <router-link to="/about#privacy-policy"
+              <router-link to="/about#getting-started"
                 class="text-textGray text-xs font-normal leading-12 hover:text-gray-800 transition duration-100">Getting
                 Started</router-link>
             </div>
             <div>
-              <router-link to="/about#terms-of-use"
+              <router-link to="/about#how-it-works"
                 class="text-textGray text-xs font-normal leading-12 hover:text-gray-800 transition duration-100">How it
                 Works</router-link>
             </div>
             <div>
-              <router-link to="/about#terms-of-use"
+              <router-link to="/about#help"
                 class="text-textGray text-xs font-normal leading-12 hover:text-gray-800 transition duration-100">Help
               </router-link>
             </div>
@@ -74,19 +74,19 @@
 
           <nav class="flex flex-col">
             <div>
-              <router-link to="/service"
+              <router-link to="/community#newsletter"
                 class="text-textGray text-xs font-normal leading-12 hover:text-gray-800 transition duration-100">
                 Newsletter</router-link>
             </div>
 
             <div>
-              <router-link to="/about#help"
+              <router-link to="/community#contact"
                 class="text-textGray text-xs font-normal leading-12 hover:text-gray-800 transition duration-100">Contact
               </router-link>
             </div>
 
             <div>
-              <router-link to="/about#faq"
+              <router-link to="/community#join"
                 class="text-textGray text-xs font-normal leading-12 hover:text-gray-800 transition duration-100">Join
                 our community</router-link>
             </div>
@@ -123,7 +123,7 @@
             <router-link to="/about#privacy-policy"
               class="text-xs font-normal leading-12 text-gray-500 text-center hover:text-gray-800 transition duration-100 px-3">
               Privacy Policy</router-link>
-            <router-link to="/about#privacy-policy"
+            <router-link to="/about#terms"
               class="text-xs font-normal leading-12 text-gray-500 text-center hover:text-gray-800 transition duration-100 px-3">
               Terms</router-link>
           </div>
