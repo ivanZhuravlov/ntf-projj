@@ -21,7 +21,7 @@
     <div class="justify-between flex p-4 space-x-6 text-darkGray sm:hidden xs:hidden">
       <router-link to="/features" class="font-medium text-base uppercase hover:text-gray-900">Features</router-link>
       <router-link to="/pricing" class="font-medium text-base uppercase hover:text-gray-900">Pricing</router-link>
-      <router-link to="/community" class="font-medium text-base uppercase hover:text-gray-900">Communities</router-link>
+      <router-link to="/community" class="font-medium text-base uppercase hover:text-gray-900">Community</router-link>
     </div>
     <!--  Menu - end -->
 
