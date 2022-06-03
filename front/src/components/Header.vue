@@ -53,12 +53,12 @@
 
     <!--  Dashboard menu - start -->
     <!-- <div class="flex gap-10 xs:gap-0 ">
-      <div v-if='!$store.getters.token' class="items-center xs:hidden gap-2.5">
+      <div v-if='!isConnected' class="items-center xs:hidden gap-2.5">
         <router-link to="/login" class="filter drop-shadow-lg inline-block text-black active:text-black text-sm md:text-base font-semibold text-center rounded border border-gray-800 px-4 py-3 mr-2 w-40 hover:text-gray-700 hover:transition ease-in-out transform hover:scale-105">Sign in</router-link>
         <router-link to="/register" class=" filter drop-shadow-lg inline-block bg-orange text-white text-sm md:text-base font-semibold text-center rounded px-8 py-3 ml-1 w-40 hover:transition ease-out transform hover:scale-105 hover:bg-gray-700">Sign up</router-link>
       </div>
 
-      <div v-if='$store.getters.token'>  
+      <div v-if='isConnected'>  
         <router-link to="/dashboard" class="xs:hidden md:filter drop-shadow-lg inline-block text-white bg-orange active:text-black text-base font-mono text-center rounded-full outline-none transition duration-100 py-3 px-6">Dashboard</router-link>
         <router-link to="/dashboard" class="sm:hidden md:hidden lg:hidden inline-flex mr-1 mt-1 bg-white text-black active:text-gray-700 text-sm md:text-base font-semibold rounded-lg gap-2 px-2.5 py-2 hover:transition ease-out duration-200 transform hover:scale-110">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -69,32 +69,36 @@
     <!--  Dashboard menu - end -->
 
     <!--  Dropdown menu - start -->
-    <div v-if="showMenu"
-      class="absolute mt-48 right-5 bg-white text-base list-none text-center rounded border border-gray-100 filter drop-shadow-2xl space-y-2">
-      <router-link v-if='!$store.getters.token' to="/login"
-        class="text-sm py-2 px-10 font-semibold block w-full whitespace-nowrap bg-transparent text-black hover:bg-gray-300 rounded md:hidden lg:hidden">
+    <div v-if="showMenu" class="absolute mt-72 right-5 bg-white text-base list-none text-center rounded border border-gray-100 filter drop-shadow-2xl space-y-2">
+      <router-link v-if='!isConnected' to="/login" class="link pt-4">
         Login
       </router-link>
-      <router-link v-if='!$store.getters.token' to="/register"
-        class="text-sm py-2 px-10 font-semibold block w-full whitespace-nowrap bg-transparent text-black hover:bg-gray-300 rounded md:hidden lg:hidden">
+      <router-link v-if='!isConnected' to="/register" class="link">
         Register
       </router-link>
-      <router-link to="/about"
-        class="text-sm py-2 px-10 font-semibold block w-full whitespace-nowrap bg-transparent text-black hover:bg-gray-300 rounded">
-        About
+      <router-link v-else to="/profile" class="link">
+        Profile
       </router-link>
-      <router-link to="/contact"
-        class="text-sm py-2 px-10 font-semibold block w-full whitespace-nowrap bg-transparent text-black hover:bg-gray-300 rounded">
+      <router-link to="/contact" class="link">
         Contact
       </router-link>
-      <button v-if='$store.getters.token' @click="logout()" to="/logout"
-        class="text-sm py-2 px-10 font-semibold block w-full whitespace-nowrap bg-gray-700 text-white hover:bg-gray-300 rounded">
+      <button v-if='isConnected' @click="logout()" to="/logout" class="link">
         Logout
       </button>
+      <hr class="">
+      <router-link to="/about" class="link">
+        About
+      </router-link>
     </div>
     <!--  Dropdown menu - end -->
   </header>
 </template>
+
+<style>
+  .link {
+    @apply text-sm py-2 px-10 font-semibold block w-full whitespace-nowrap bg-transparent text-gray-800 hover:bg-gray-100 hover:bg-opacity-75;
+  }
+</style>
 
 <script>
   export default {
@@ -106,6 +110,11 @@
         showSecondMenu: false,
       }
     },
+    computed: {
+      isConnected() {
+        return this.$store.getters.token;
+      }
+    },
     methods: {
       toggle() {
         this.showMenu = !this.showMenu;
@@ -114,13 +123,9 @@
         this.showSecondMenu = !this.showSecondMenu;
         console.log(this.toggleSecondMenu);
       },
-
       logout: function () {
-
         this.$store.dispatch("logout");
         this.$router.push('/');
-
-
       }
     }
   };
