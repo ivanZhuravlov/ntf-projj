@@ -18,7 +18,23 @@
     <!--  Jenko icon - end -->
 
     <!--  Menu - start -->
-    <div class="justify-between flex p-4 space-x-6 text-darkGray sm:hidden xs:hidden">
+    
+    <div class="flex justify-between items-center p-4 space-x-6 text-darkGray sm:hidden xs:hidden"  v-if='isConnected && onDashboard'>
+      <div class="relative">
+        <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-gray-500"  viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        </div>
+        <input
+          type="text" v-model="search" placeholder="Search"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md block w-full pl-10 p-2.5"
+        >
+      </div>
+      <router-link to="/artworks" class="font-medium text-base uppercase hover:text-gray-900">Artworks</router-link>
+      <router-link to="/portfolio" class="font-medium text-base uppercase hover:text-gray-900">Portfolio</router-link>
+      <router-link to="/biography" class="font-medium text-base uppercase hover:text-gray-900">Biography</router-link>
+      <router-link to="/exhibitions" class="font-medium text-base uppercase hover:text-gray-900">Exhibitions</router-link>
+    </div>
+    <div class="flex justify-between items-center p-4 space-x-6 text-darkGray sm:hidden xs:hidden" v-else>
       <router-link to="/features" class="font-medium text-base uppercase hover:text-gray-900">Features</router-link>
       <router-link to="/pricing" class="font-medium text-base uppercase hover:text-gray-900">Pricing</router-link>
       <router-link to="/community" class="font-medium text-base uppercase hover:text-gray-900">Community</router-link>
@@ -34,6 +50,7 @@
     <!-- Hamburger menu icon - end -->
 
     <!--  Mobile Dropdown menu - start -->
+    <!-- TODO: fix all this mess -->
     <div v-if="showSecondMenu"
       class="left-2 absolute mt-48 bg-white text-base list-none text-center rounded border border-gray-100 filter drop-shadow-2xl space-y-2">
       <router-link to="/features"
@@ -108,11 +125,15 @@
         showMenu: false,
         error: null,
         showSecondMenu: false,
+        search: null,
       }
     },
     computed: {
       isConnected() {
         return this.$store.getters.token;
+      },
+      onDashboard() {
+        return this.$route.name === 'Dashboard';
       }
     },
     methods: {
@@ -121,11 +142,16 @@
       },
       toggleSecondMenu() {
         this.showSecondMenu = !this.showSecondMenu;
-        console.log(this.toggleSecondMenu);
       },
-      logout: function () {
+      logout () {
         this.$store.dispatch("logout");
         this.$router.push('/');
+      },
+      search() {
+        if(!this.search) return; 
+
+        // TODO: Search from store to ArtPreview + add api endpoint
+        // this.$store.dispatch("search", { search });
       }
     }
   };
