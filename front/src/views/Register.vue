@@ -13,20 +13,20 @@
 
           <div>
             <label for="email" class="inline-block text-gray-800 text-sm sm:text-base mb-2">Email</label>
-            <input v-model='email' required type="email" name="email" class="w-full bg-gray-50 text-gray-800 border focus:ring focus:ring-2 ring-blue-300 rounded outline-none transition duration-100 px-3 py-2" />
+            <input v-model='email' required type="email" name="email" class="w-full bg-gray-50 text-gray-800 border focus:ring-2 ring-blue-300 rounded outline-none transition duration-100 px-3 py-2" />
           </div>
 
           <div>
             <label for="password" class="inline-block text-gray-800 text-sm sm:text-base mb-2">Password</label>
-            <input v-model='password' type='password' required name="password" class="w-full bg-gray-50 text-gray-800 border focus:ring focus:ring-2 ring-blue-300 rounded outline-none transition duration-100 px-3 py-2" />
+            <input v-model='password' type='password' required name="password" class="w-full bg-gray-50 text-gray-800 border focus:ring-2 ring-blue-300 rounded outline-none transition duration-100 px-3 py-2" />
           </div>
           <div>
             <label for="passwordRepeat" class="inline-block text-gray-800 text-sm sm:text-base mb-2">Password again</label>
-            <input v-model='passwordRepeat' type='password' required name="passwordRepeat" class="w-full bg-gray-50 text-gray-800 border focus:ring focus:ring-2 ring-blue-300 rounded outline-none transition duration-100 px-3 py-2" />
+            <input v-model='passwordRepeat' type='password' required name="passwordRepeat" class="w-full bg-gray-50 text-gray-800 border focus:ring-2 ring-blue-300 rounded outline-none transition duration-100 px-3 py-2" />
           </div>
 
            <p class="text-sm sm:text-base text-left auto">I register a JENKO Accound as:*</p>
-          <div class="grid-cols-1 md:grid grid-cols-4 lg:grid grid-cols-4 gap-2">
+          <div class="md:grid grid-cols-4 lg:grid gap-2">
             <div>
               <input v-model='type' type="radio" id="artist" checked value="artist">
                 <label for="artist" class="text-sm mx-3">Artist</label>

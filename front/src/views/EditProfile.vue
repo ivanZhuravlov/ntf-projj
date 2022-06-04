@@ -59,6 +59,7 @@
 
           <hr class="my-4">
           <div>
+            <!-- TODO: Use Saas to check ID -->
             <label for="copyID" class="inline-block text-sm sm:text-base mt-3"> A copy of your ID, driving lincense or passport*</label>
             <input type="file" accept="image/png, image/jpeg" name="copyID" class="w-full text-gray-500 text-sm py-2" />
           </div>
@@ -121,22 +122,42 @@ export default {
       error: null,
     }
   },
+  async mounted() {
+    const { user } = await fetch(this.$store.getters.api + '/profile', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': this.$store.getters.bearer
+      }
+    }).then((r) => r.json());
+
+    this.firstName = user.data.firstName;
+    this.lastName = user.data.lastName;
+    this.zip = user.data.zip;
+    this.city = user.data.city;
+    this.state = user.data.state;
+    this.country = user.data.country;
+    this.description = user.data.description;
+    this.street = user.data.street;
+    this.terms = user.data.terms;
+    this.newsletter = user.data.newsletter;
+  },
   methods: {
     async editProfile () {
-    
       if (!this.terms) {
         this.error = 'Please accept terms';
         return ;
       }
 
       const data = {
-        "firstName": this.firstName,
-        "lastName": this.lastName,
-        "street": this.street,
-        "zip": this.zip,
-        "city": this.city,
-        "state": this.state,
-        "country": this.country,
+        firstName: this.firstName,
+        lastName: this.lastName,
+        street: this.street,
+        zip: this.zip,
+        city: this.city,
+        state: this.state,
+        country: this.country,
+        terms: this.terms,
       };
 
       if(Object.values(data).some(value => !value)) {
@@ -151,11 +172,17 @@ export default {
             'Content-Type': 'application/json',
             'Authorization': this.$store.getters.bearer,
           },
-          body: JSON.stringify(data)
-        }).then((r) => r.json()); 
+          body: JSON.stringify({
+            ...data,
+            description: this.description,
+            newsletter: this.newsletter
+          })
+        }); 
+
         this.$router.push({name: 'Dashboard'});
 
       } catch(error) {
+        console.log(error)
         this.error = 'Undefined error. Please try again later.';
       }
     } 

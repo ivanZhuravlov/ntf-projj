@@ -23,7 +23,6 @@ router.route("/").post(async (req, res) => {
 
   try {
     const data = req.body;
-
     if (!data.email || !isValidEmail(data.email)) {
       throw new Error("bad email");
     }
@@ -39,7 +38,7 @@ router.route("/").post(async (req, res) => {
     const [userAlreadyExist] =
       await sql`select email from users where email = ${data.email}`;
     if (userAlreadyExist) {
-      throw new Error(`Duplicate user registration: ${email}`);
+      throw new Error(`Duplicate user registration: ${data.email}`);
     }
 
     const passwordHash = await serialize(data.password);

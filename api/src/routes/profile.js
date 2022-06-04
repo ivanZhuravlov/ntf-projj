@@ -50,6 +50,10 @@ async function post(req, res) {
     res.status(400).send("Bad Request");
   }
 
+  if(!req.body.terms) {
+    res.status(400).send("You need to accept terms");
+  }
+
   try {
     const userId = req.user.id;
     // TODO
@@ -61,6 +65,9 @@ async function post(req, res) {
       city: req.body.city,
       state: req.body.state,
       zip: req.body.zip,
+      description: req.body.description,
+      terms: req.body.terms,
+      newsletter: req.body.newsletter,
     };
 
     await sql`
