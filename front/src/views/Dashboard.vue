@@ -2,24 +2,13 @@
   <div class="dashboard space-y-12">
     <Header />
 
-    <div v-if='subscriptions.length'>
-      <h1 class="text-gray-800 text-3xl text-center font-bold capitalize leading-relaxed">My Invoices</h1>
-      <div class="container max-w-7xl grid mx-auto center xs:grid-cols-1 sm:grid-cols-1 grid-cols-2 pt-6 gap-8">
-        <Subscription 
-          v-for="subscription in subscriptions" :key='subscription.id'
-          :subscription="subscription"
-          :certificatesCount="certificatesCount(subscription.id)"
-        />
-      </div>
-    </div>
-
     <div v-if='certificates.length'>
-      <h1 class="text-gray-800 text-3xl text-center font-bold capitalize leading-relaxed">My certificates</h1>
-      <div class="container max-w-7xl sm:px-4 xs:px-2 mx-auto grid pt-6 gap-8">
-        <div v-for="certificate in certificates" :key='certificate.id' class="bg-gray-50 rounded-md py-4">
-          <CertificatePreview :certificate="certificate" />
+      <div class="container max-w-7xl sm:px-4 xs:px-2 mx-auto grid lg:grid-cols-4 grid-cols-2 pt-6 gap-8">
+        <div v-for="certificate in certificates" :key='certificate.id' class=" hover:shadow-md rounded-md">
+          <Preview :certificate="certificate" />
         </div>
-      </div>
+      </div> 
+
     </div>
 
     <Footer />
@@ -30,7 +19,7 @@
 // @ is an alias to /src
 import Header from '@/components/Header.vue';
 import Footer from '@/components/Footer.vue';
-import CertificatePreview from '@/components/CertificatePreview.vue';
+import Preview from '@/components/Preview.vue';
 import Subscription from '@/components/Subscription.vue';
 
 export default {
@@ -39,7 +28,7 @@ export default {
     Header,
     Footer,
     Subscription,
-    CertificatePreview
+    Preview
   },
   data() {
     return {
