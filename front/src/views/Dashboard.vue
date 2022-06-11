@@ -43,17 +43,26 @@ export default {
   },
   methods: {
     async fetchProfile() {
-      const response = await fetch(this.$store.getters.api + '/profile', {
+      const config = {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
           'Authorization': this.$store.getters.bearer
         }
-      }).then((r) => r.json());
-      this.user = response.user;
-      this.artist = response.artist;
-      this.subscriptions = response.subscriptions;
-      this.certificates = response.certificates;
+      };
+
+      const [
+        {user, artist, subscriptions},
+        {certificates}
+      ] = await Promise.all([
+        fetch(this.$store.getters.api + '/profile', config).then((r) => r.json()),
+        fetch(`${this.$store.getters.api}/art/search/${this.$store.getters.search ?? ''}`, config).then((r) => r.json()),
+      ]);
+
+      this.user = user;
+      this.artist = artist;
+      this.subscriptions = subscriptions;
+      this.certificates = certificates;
     },
     certificatesCount(subscriptionId) {
       return this.certificates.filter(

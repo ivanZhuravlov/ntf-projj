@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const sql = require("../pg");
+const { authenticateJWT } = require("../utils");
 
 async function get(req, res) {
   try {
@@ -48,7 +49,46 @@ async function list(req, res) {
   }
 }
 
-router.route("/:id").get(get);
+async function listUser(req, res) {
+  try {
+    const userId = req.user.id;
+    if(req.user.type !== 'artist') {
+      return null;
+    }
+
+    let certificates = [];
+    if(req.params.search) {
+      certificates = await sql`
+        select id, subscription_id, data, is_validate, created_at, token_id, token_uri
+        from certificates
+        where user_id = ${userId}
+          and data->>'artPieceId' like ${req.params.search}
+          or data->>'title' like ${req.params.search}
+          or data->>'description' like ${req.params.search}
+          or data->>'size' like ${req.params.search}
+          or data->>'technical' like ${req.params.search}
+          or data->>'material' like ${req.params.search}
+          or data->>'tirage' like ${req.params.search}
+          or data->>'movement' like ${req.params.search}
+          or data->>'transaction' like ${req.params.search}
+        `;
+    } else {
+      certificates = await sql` 
+        select id, subscription_id, data, is_validate, created_at, token_id, token_uri
+        from certificates
+        where user_id = ${userId}
+      `
+    }
+
+    res.json({ certificates, });
+  } catch (error) {
+    res.status(400).send(`${error.message}`);
+  }
+}
+
 router.route("/").get(list);
+router.route("/search/").get(authenticateJWT, listUser);
+router.route("/search/:search").get(authenticateJWT, listUser);
+router.route("/detail/:id").get(get);
 
 module.exports = router;

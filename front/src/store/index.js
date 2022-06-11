@@ -12,6 +12,7 @@ export default new Vuex.Store({
   	token: null,
 		type: null,
 		userId: null,
+		search: null,
   },
   getters: {
   	api: state => API,
@@ -20,6 +21,7 @@ export default new Vuex.Store({
   	userId: state => state.userId,
     type: state => state.type,
     isArtist: state => state.type === 'artist',
+    search: state => state.search,
   },
   mutations: {
     setToken(state, token) {
@@ -97,6 +99,9 @@ export default new Vuex.Store({
     async logout({ commit }) {
       commit('setToken', null);
 			this.state.userId = null;
+    },
+    async search({ commit }, {search}) {
+			this.state.search = search;
     },
   },
   modules: {

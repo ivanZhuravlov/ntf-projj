@@ -93,7 +93,7 @@ export default {
   },
   methods: {
     async fetchArt(id) {
-      this.token = await fetch(`${this.$store.getters.api}/art/${id}`, {
+      this.token = await fetch(`${this.$store.getters.api}/art/detail/${id}`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json'

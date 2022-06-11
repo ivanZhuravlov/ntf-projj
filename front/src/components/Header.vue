@@ -148,10 +148,7 @@
         this.$router.push('/');
       },
       search() {
-        if(!this.search) return; 
-
-        // TODO: Search from store to ArtPreview + add api endpoint
-        // this.$store.dispatch("search", { search });
+        this.$store.dispatch("search", { search });
       }
     }
   };
