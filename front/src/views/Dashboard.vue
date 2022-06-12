@@ -1,6 +1,6 @@
 <template>
   <div class="dashboard space-y-12">
-    <Header />
+    <Header v-on:searchUpdated="searchArt" />
 
     <div v-if='certificates.length'>
       <div class="container max-w-7xl sm:px-4 xs:px-2 mx-auto grid lg:grid-cols-4 grid-cols-2 pt-6 gap-8">
@@ -43,31 +43,37 @@ export default {
   },
   methods: {
     async fetchProfile() {
-      const config = {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': this.$store.getters.bearer
-        }
-      };
-
-      const [
-        {user, artist, subscriptions},
-        {certificates}
-      ] = await Promise.all([
-        fetch(this.$store.getters.api + '/profile', config).then((r) => r.json()),
-        fetch(`${this.$store.getters.api}/art/search/${this.$store.getters.search ?? ''}`, config).then((r) => r.json()),
+      const [{user, artist, subscriptions}] = await Promise.all([
+        fetch(this.$store.getters.api + '/profile', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': this.$store.getters.bearer
+          }
+        }).then((r) => r.json()),
+        this.searchArt()
       ]);
 
       this.user = user;
       this.artist = artist;
       this.subscriptions = subscriptions;
-      this.certificates = certificates;
     },
     certificatesCount(subscriptionId) {
       return this.certificates.filter(
         (certificate) => certificate.subscription_id === subscriptionId
       ).length;
+    },
+    async searchArt() {
+      const url = `${this.$store.getters.api}/art/search/${this.$store.getters.search ?? ''}`;
+      const { certificates } = await fetch(url, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': this.$store.getters.bearer
+        }
+      }).then((r) => r.json())
+
+      this.certificates = certificates;
     }
   }
 }

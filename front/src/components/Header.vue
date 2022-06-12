@@ -25,7 +25,7 @@
           <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-gray-500"  viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
         </div>
         <input
-          type="text" v-model="search" placeholder="Search"
+          type="text" v-model="search" placeholder="Search" @input="runSearch"
           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md block w-full pl-10 p-2.5"
         >
       </div>
@@ -120,12 +120,13 @@
 <script>
   export default {
     name: "Header",
+    emits: ['searchUpdated'],
     data() {
       return {
         showMenu: false,
         error: null,
         showSecondMenu: false,
-        search: null,
+        search: '',
       }
     },
     computed: {
@@ -147,8 +148,13 @@
         this.$store.dispatch("logout");
         this.$router.push('/');
       },
-      search() {
-        this.$store.dispatch("search", { search });
+      runSearch() {
+        const previousSearch = this.$store.getters.search;
+        this.$store.dispatch("search", { search: this.search });
+        
+        if(this.search !== previousSearch) {
+          this.$emit('searchUpdated', { search: this.search });
+        }
       }
     }
   };
