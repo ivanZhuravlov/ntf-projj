@@ -17,20 +17,25 @@
         </div>
         <div class="space-y-4">
           <h2 class="font-semibold capitalize">Select your service</h2>
-          <div class="grid grid-cols-4 gap-3 sm:grid-cols-2 xs:grid-cols-1 place-items-center">
+          <div v-if='error' class="max-w-lg mx-auto bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative my-8" role="alert">
+            <span class="block sm:inline">{{ error }}</span>
+          </div>
+          <div class="grid grid-cols-4 gap-3 sm:grid-cols-2 xs:grid-cols-1 place-items-center select-none">
             
-            <div v-for='(product, key) in products' :key='key' class="w-44 h-44 inline-flex flex-col items-center space-y-6 border-2 border-gray-400">
+            <div v-for='(product, key) in products' :key='key' class="w-44 h-full inline-flex flex-col items-center space-y-6 border-2 border-gray-900 rounded-lg">
               <h1 class="text-gray-800 text-lg capitalize leading-relaxed pt-4">{{ product.name }}</h1>
-              <h1 class="text-gray-800 text-lg capitalize leading-relaxed">{{ product.price }}$</h1>
-              <a v-if='$store.getters.token' :href='product.link' class="border-gray-400 border-t-2 text-center px-2 py-3 hover:text-white hover:bg-gray-700 w-full bottom-0">
+              <h2 class="text-gray-800 text-lg capitalize leading-relaxed">{{ product.price }}$</h2>
+              <p class="w-full break-words px-2">{{ product.description }}</p>
+              <button v-if='!product.price' @click='freeProduct()' class="border-gray-900 border-t-2 text-center px-2 py-3 hover:text-black hover:bg-orange w-full bottom-0 cursor-pointer">
+                Select
+              </button>
+              <a v-else-if='product.price && $store.getters.token' :href='product.link' class="border-gray-900 border-t-2 text-center px-2 py-3 hover:text-black hover:bg-orange w-full bottom-0 cursor-pointer">
                 Select
               </a>
-              <router-link v-else to="/login" class="border-gray-400 border-t-2 text-center px-2 py-3 hover:text-white hover:bg-gray-700 w-full bottom-0">
+              <router-link v-else to="/login" class="border-gray-900 border-t-2 text-center px-2 py-3 hover:text-black hover:bg-orange w-full bottom-0 cursor-pointer">
                 Select
               </router-link>
             </div>
-            
-
           </div>
         </div>
       </div>
@@ -53,6 +58,7 @@ export default {
   data() {
     return {
       products: [],
+      error: null,
     }
   },
   async mounted() {
@@ -66,6 +72,32 @@ export default {
           'Content-Type': 'application/json',
         }
       }).then((r) => r.json());
+    },
+    async freeProduct() {
+      if(!this.$store.getters.bearer) {
+        this.$router.push('/register');
+        return ;
+      }
+
+      try {
+        const response = await fetch(this.$store.getters.api + '/products/free', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': this.$store.getters.bearer
+          }
+        });
+
+        if(response.status !== 200) {
+          throw await response.text();
+        }
+
+      } catch(error) {
+        this.error = error;
+        return ;
+      }
+      
+      this.$router.push('/dashboard');    
     }
   },
 };

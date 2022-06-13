@@ -3,7 +3,7 @@ import VueRouter from 'vue-router';
 
 import Home from '../views/Home.vue';
 import Contact from '../views/Contact.vue';
-import Service from '../views/Service.vue';
+import Pricing from '../views/Pricing.vue';
 import Login from '../views/Login.vue';
 import Register from '../views/Register.vue';
 import Art from '../views/Art.vue';
@@ -40,9 +40,9 @@ const routes = [
     component: Register
   },
   {
-    path: '/service',
-    name: 'Service',
-    component: Service
+    path: '/pricing',
+    name: 'pricing',
+    component: Pricing
   },
   {
     path: '/art/:id',
