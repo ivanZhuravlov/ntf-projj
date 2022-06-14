@@ -51,7 +51,7 @@
             </div>
             <div class="text-sm ml-3">
               <label for="terms" class="font-sm">
-                I have read, understood and approve the terms and conditions specified in <a class="text-blue-500 underline" href="/about#terms" target="_blank">JENKO Services Agreement</a>
+                I have read, understood and approve the terms and conditions <a class="text-blue-500 underline" href="/about#terms" target="_blank">here</a>
               </label>
             </div>
           </div>
@@ -63,7 +63,7 @@
 
         <div class="flex justify-center items-center bg-gray-100 p-4">
           <p class="text-gray-500 text-sm text-center">
-            I don't have a JENKO Account 
+            I have a JENKO Account 
             <router-link to='/login' class="text-blue-500 hover:text-blue-600 active:text-blue-700 transition duration-100">Sign in</router-link>
           </p>
         </div>
