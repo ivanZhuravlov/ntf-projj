@@ -12,37 +12,24 @@
         <div class="flex flex-col gap-4 p-4 md:p-8">
 
           <div>
-            <label for="email" class="inline-block text-gray-800 text-sm sm:text-base mb-2">Email</label>
+            <label for="email" class="inline-block font-light text-gray-600 text-sm sm:text-base mb-2">Name</label>
+            <input v-model='email' required type="email" name="email" class="w-full bg-gray-50 text-gray-800 border focus:ring-2 ring-blue-300 rounded outline-none transition duration-100 px-3 py-2" />
+          </div>
+          
+          <div>
+            <label for="email" class="inline-block font-light text-gray-600 text-sm sm:text-base mb-2">Email</label>
             <input v-model='email' required type="email" name="email" class="w-full bg-gray-50 text-gray-800 border focus:ring-2 ring-blue-300 rounded outline-none transition duration-100 px-3 py-2" />
           </div>
 
           <div>
-            <label for="password" class="inline-block text-gray-800 text-sm sm:text-base mb-2">Password</label>
+            <label for="password" class="inline-block font-light text-gray-600 text-sm sm:text-base mb-2">Password</label>
             <input v-model='password' type='password' required name="password" class="w-full bg-gray-50 text-gray-800 border focus:ring-2 ring-blue-300 rounded outline-none transition duration-100 px-3 py-2" />
           </div>
           <div>
-            <label for="passwordRepeat" class="inline-block text-gray-800 text-sm sm:text-base mb-2">Password again</label>
+            <label for="passwordRepeat" class="inline-block font-light text-gray-600 text-sm sm:text-base mb-2">Password again</label>
             <input v-model='passwordRepeat' type='password' required name="passwordRepeat" class="w-full bg-gray-50 text-gray-800 border focus:ring-2 ring-blue-300 rounded outline-none transition duration-100 px-3 py-2" />
           </div>
 
-           <p class="text-sm sm:text-base text-left auto">I register a JENKO Accound as:*</p>
-          <div class="md:grid grid-cols-4 lg:grid gap-2">
-            <div>
-              <input v-model='type' type="radio" id="artist" checked value="artist">
-                <label for="artist" class="text-sm mx-3">Artist</label>
-            </div>
-            <div>
-              <input v-model='type' type="radio" id="gallery" name="type" value="gallery">
-                <label for="gallery" class="text-sm mx-3">Gallery</label>
-            </div>
-            <div>
-              <input v-model='type' type="radio" id="collector" name="type" value="collector">
-                <label for="collector" class="text-sm mx-3">Collector</label>
-            </div>
-            <div>
-              <input v-model='type' type="radio" id="beneficiary" name="type" value="beneficiary">
-                <label for="beneficiary" class="text-sm mx-3">Beneficiary</label>
-            </div>
           </div>
           <hr class="my-4">
           <div class="flex items-start mb-6 px-6">
@@ -51,7 +38,7 @@
             </div>
             <div class="text-sm ml-3">
               <label for="terms" class="font-sm">
-                I have read, understood and approve the terms and conditions <a class="text-blue-500 underline" href="/about#terms" target="_blank">here</a>
+                I read, understood and approve the terms and conditions <a class="text-blue-500 underline" href="/about#terms" target="_blank">here</a>
               </label>
             </div>
           </div>
@@ -62,9 +49,9 @@
         </div>
 
         <div class="flex justify-center items-center bg-gray-100 p-4">
-          <p class="text-gray-500 text-sm text-center">
-            I have a JENKO Account 
-            <router-link to='/login' class="text-blue-500 hover:text-blue-600 active:text-blue-700 transition duration-100">Sign in</router-link>
+          <p class="font-light text-gray-500 text-sm text-center">
+            I already have a JENKO Account 
+            <router-link to='/login' class="font-light text-blue-500 hover:text-blue-600 active:font-light text-blue-700 transition duration-100">Sign in</router-link>
           </p>
         </div>
       </div>
