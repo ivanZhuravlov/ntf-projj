@@ -1,6 +1,6 @@
 create database jenko;
 
-create type user_type as enum ('artist', 'gallery', 'collector');
+create type user_type as enum ('artist', 'gallery', 'collector', 'beneficiary');
 
 create table users
 (

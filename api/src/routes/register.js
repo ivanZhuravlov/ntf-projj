@@ -12,7 +12,7 @@ if (!JWT_SECRET) {
   throw new Error("invalid jwt");
 }
 
-const USER_TYPES = ['artist', 'gallery', 'collector'];
+const USER_TYPES = ['artist', 'gallery', 'collector', 'beneficiary'];
 
 router.route("/").post(async (req, res) => {
   if (!req.body) {
