@@ -2,17 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-/* html {
-  font-family: "Avenir Next", sans-serif;
-} */
-
-@layer base {
-  @font-face {
-    font-family: 'ProximaNova';
-    src: url('/fonts/ProximaNova') format('otf');
-  }
+* {
+  font-family: "Raleway";
 }
-
 
 @media print
 {    
