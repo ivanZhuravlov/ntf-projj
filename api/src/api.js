@@ -50,6 +50,7 @@ app.use("/login", require("./routes/login"));
 app.use("/register", require("./routes/register"));
 
 app.use("/profile", require("./routes/profile"));
+app.use("/password", require("./routes/password"));
 
 // Wallet
 app.use("/wallet", require("./routes/wallet"));
