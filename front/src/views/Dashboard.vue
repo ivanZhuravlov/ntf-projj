@@ -73,7 +73,7 @@ export default {
         }
       }).then((r) => r.json())
 
-      this.certificates = certificates;
+      this.certificates = [{id: 'new'}, ...certificates];
     }
   }
 }
