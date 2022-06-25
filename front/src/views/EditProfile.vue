@@ -61,10 +61,17 @@
           
           <label for="lastName" class="inline-block text-sm sm:text-base mt-3">Last name*</label>
           <input v-model='lastName' required name="lastName" class="w-full bg-gray-50 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2" />
+
+          <label for="phone" class="inline-block text-sm sm:text-base mt-3">Phone</label>
+          <input v-model="phone" name="phone" type="tel" class="w-full bg-gray-50 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2" />
           
           <label for="email" class="inline-block text-sm sm:text-base mt-3">Email</label>
           <input disabled v-model="email" name="email" class="w-full bg-gray-50 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2" />
         </div>
+
+        <button @click='editProfile()' class="bg-gray-800 hover:bg-gray-700 active:bg-gray-600 focus-visible:ring ring-gray-300 focus:ring-2 text-white text-sm md:text-base font-semibold text-center rounded outline-none transition duration-100 px-8 py-3">
+          Update profile
+        </button>
       </div>
       
       
@@ -99,10 +106,11 @@
             <input v-model='passwordRepeat' :type='showPassword ? "text" : "password"' required name="passwordRepeat" class="w-full bg-gray-50 text-gray-800 border focus:ring-2 ring-blue-300 rounded outline-none transition duration-100 px-3 py-2" />
           </div>
           
-          <button @click='resetPassword()' class="bg-gray-800 hover:bg-gray-700 active:bg-gray-600 focus-visible:ring ring-gray-300 focus:ring-2 text-white text-sm md:text-base font-semibold text-center rounded outline-none transition duration-100 px-8 py-3">
-            Reset password
-          </button>
-
+          <div class="flex justify-center items-center">
+            <button @click='resetPassword()' class="bg-gray-800 hover:bg-gray-700 active:bg-gray-600 focus-visible:ring ring-gray-300 focus:ring-2 text-white text-sm md:text-base font-semibold text-center rounded outline-none transition duration-100 px-8 py-3">
+              Reset password
+            </button>
+          </div>
         </div>
       </div>
 
@@ -136,6 +144,7 @@ export default {
       selectedTab: 'Edit Profile',
       firstName: null,
       lastName: null,
+      phone: null,
       email: null,
       name: null,
       street: null,
@@ -146,7 +155,6 @@ export default {
       description: null, 
       artist: null,
       copyID: null,
-      terms: false,
       newsletter: false,
       error: null,
 
@@ -171,13 +179,13 @@ export default {
     this.name = user.name;
     this.firstName = user.data.firstName;
     this.lastName = user.data.lastName;
+    this.phone = user.data.phone;
     this.zip = user.data.zip;
     this.city = user.data.city;
     this.state = user.data.state;
     this.country = user.data.country;
     this.description = user.data.description;
     this.street = user.data.street;
-    this.terms = user.data.terms;
     this.newsletter = user.data.newsletter;
   },
   methods: {
@@ -185,11 +193,6 @@ export default {
       return tab.toLowerCase().replaceAll(' ', '_');
     },
     async editProfile () {
-      if (!this.terms) {
-        this.error = 'Please accept terms';
-        return ;
-      }
-
       const data = {
         firstName: this.firstName,
         lastName: this.lastName,
@@ -198,7 +201,6 @@ export default {
         city: this.city,
         state: this.state,
         country: this.country,
-        terms: this.terms,
       };
 
       if(Object.values(data).some(value => !value)) {
@@ -215,13 +217,11 @@ export default {
           },
           body: JSON.stringify({
             ...data,
+            phone: this.phone,
             description: this.description,
             newsletter: this.newsletter
           })
         }); 
-
-        this.$router.push({name: 'Dashboard'});
-
       } catch(error) {
         console.log(error)
         this.error = 'Undefined error. Please try again later.';

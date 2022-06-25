@@ -43,6 +43,7 @@ router.route("/").post(async (req, res) => {
       id: uuidv4(),
       email: data.email,
       name: data.name,
+      data: JSON.stringify({ terms: true }),
       password: passwordHash,
       created_at: new Date(),
     };

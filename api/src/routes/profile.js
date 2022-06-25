@@ -45,23 +45,27 @@ async function post(req, res) {
     res.status(400).send("Bad Request");
   }
 
-  if(!req.body.terms) {
+  const userId = req.user.id;
+  const [{ data }] = await sql`select data from users where id = ${userId}`;
+  const terms = data.terms ?? req.body.terms;
+  if(!terms) {
     res.status(400).send("You need to accept terms");
+    return ;
   }
 
   try {
-    const userId = req.user.id;
     // TODO
     const infos = {
       firstName: req.body.firstName,
       lastName: req.body.lastName,
+      phone: req.body.phone,
       country: req.body.country,
       street: req.body.street,
       city: req.body.city,
       state: req.body.state,
       zip: req.body.zip,
       description: req.body.description,
-      terms: req.body.terms,
+      terms: true,
       newsletter: req.body.newsletter,
     };
 
