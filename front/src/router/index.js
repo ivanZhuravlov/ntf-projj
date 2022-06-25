@@ -18,6 +18,7 @@ import store from '../store';
 
 Vue.use(VueRouter);
 
+// TODO reset-password
 const routes = [
   {
     path: '/',

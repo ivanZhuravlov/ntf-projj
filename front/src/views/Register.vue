@@ -19,22 +19,29 @@
         <div class="flex flex-col gap-4 p-4 md:p-8">
 
           <div>
-            <label for="email" class="inline-block font-light text-gray-600 text-sm sm:text-base mb-2">Name</label>
+            <label for="email" class="select-none inline-block font-light text-gray-600 text-sm sm:text-base mb-2">UserName</label>
             <input v-model='name' required type="text" name="name" class="w-full bg-gray-50 text-gray-800 border focus:ring-2 ring-blue-300 rounded outline-none transition duration-100 px-3 py-2" />
           </div>
           
           <div>
-            <label for="email" class="inline-block font-light text-gray-600 text-sm sm:text-base mb-2">Email</label>
+            <label for="email" class="select-none inline-block font-light text-gray-600 text-sm sm:text-base mb-2">Email</label>
             <input v-model='email' required type="email" name="email" class="w-full bg-gray-50 text-gray-800 border focus:ring-2 ring-blue-300 rounded outline-none transition duration-100 px-3 py-2" />
           </div>
 
           <div>
-            <label for="password" class="inline-block font-light text-gray-600 text-sm sm:text-base mb-2">Password</label>
-            <input v-model='password' type='password' required name="password" class="w-full bg-gray-50 text-gray-800 border focus:ring-2 ring-blue-300 rounded outline-none transition duration-100 px-3 py-2" />
+            <label for="password" class="select-none inline-block font-light text-gray-600 text-sm sm:text-base mb-2">Password</label>
+            <div class="flex justify-between items-center relative">
+              <input v-model='password' :type='showPassword ? "text" : "password"' name="password" class="w-full bg-gray-50 text-gray-800 border focus:ring-2 ring-blue-300 rounded outline-none transition duration-100 px-3 py-2" />
+
+              <div class="absolute right-4 w-6 h-6 text-gray-700 cursor-pointer" @click="showPassword = !showPassword">
+                <svg v-if='!showPassword' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                <svg v-else xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path><line x1="1" y1="1" x2="23" y2="23"></line></svg>
+              </div>
+            </div>
           </div>
           <div>
-            <label for="passwordRepeat" class="inline-block font-light text-gray-600 text-sm sm:text-base mb-2">Password again</label>
-            <input v-model='passwordRepeat' type='password' required name="passwordRepeat" class="w-full bg-gray-50 text-gray-800 border focus:ring-2 ring-blue-300 rounded outline-none transition duration-100 px-3 py-2" />
+            <label for="passwordRepeat" class="select-none inline-block font-light text-gray-600 text-sm sm:text-base mb-2">Password again</label>
+            <input v-model='passwordRepeat' :type='showPassword ? "text" : "password"' required name="passwordRepeat" class="w-full bg-gray-50 text-gray-800 border focus:ring-2 ring-blue-300 rounded outline-none transition duration-100 px-3 py-2" />
           </div>
 
           </div>
@@ -44,7 +51,7 @@
               <input v-model="terms" required id="terms" aria-describedby="terms" type="checkbox" class="bg-gray-50 border focus:ring focus:ring-blue-300 h-4 w-4 rounded">
             </div>
             <div class="text-sm ml-3">
-              <label for="terms" class="font-sm">
+              <label for="terms" class="select-none font-sm">
                 I read, understood and approve the terms and conditions <a class="text-blue-500 underline" href="/about#terms" target="_blank">here</a>
               </label>
             </div>
@@ -77,6 +84,7 @@ export default {
   		email: null,
   		password: null,
   		passwordRepeat: null,
+      showPassword: false,
       terms: false,
   		error: null,
   	}
