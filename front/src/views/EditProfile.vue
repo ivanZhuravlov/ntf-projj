@@ -25,14 +25,37 @@
         </button>
       </div>
       
-      <div v-if='slugify(selectedTab) === "edit_profile"' class="w-4/5 flex flex-col justify-center items-center pt-8">
+      <div v-if='slugify(selectedTab) === "edit_profile"' class="w-4/5 flex flex-col justify-center items-center pt-8 space-y-4">
         <!-- TODO -->
-        <div class="flex justify-center items-center space-x-8">
-          <div class="rounded-full h-24 w-24 border-2"></div>
-          <span class="capitalize text-indigo-600 text-lg select-none">Change profile photo</span>
+        <div class="w-3/4 grid grid-rows-1 grid-flow-col grid-col-3">
+          <div class="col-span-1">
+            <svg class="w-8 h-8 text-gray-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+          </div>
+          <div class="col-span-1">{{ name }}</div>
+          <div class="capitalize text-indigo-600 select-none col-span-1">Change profile photo</div>
         </div>
 
-        <div class="w-3/4">
+        <div class="w-3/4 grid grid-cols-3 gap-1">
+          <div class="col-span-1">
+            User Name:
+          </div>
+          <div class="col-span-2 text-gray-400">
+            <span v-if="name">{{ name }}</span>
+            <span v-else>Artistic name</span>
+          </div>
+          <div class="col-span-1">
+            Owner Address:
+          </div>
+          <div class="col-span-2 text-gray-400">
+            <span v-if="artist.address">{{ artist.address }}</span>
+            <span v-else>Address is missing</span>
+          </div>
+        </div>
+        <div class="w-3/4 border-t-2">
+          <div class="text-center mt-4 flex-col text-gray-500">
+            <div class="underline">Personal informations</div>
+            <div>Your personal information below won't be part of the Public Profile</div>
+          </div>
           <label for="firstName" class="inline-block text-sm sm:text-base mt-3">First name*</label>
           <input v-model='firstName' required name="firstName" class="w-full bg-gray-50 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2" />
           
@@ -114,16 +137,17 @@ export default {
       firstName: null,
       lastName: null,
       email: null,
+      name: null,
       street: null,
       zip: null,
       city: null,
       state: null,
       country: null,
       description: null, 
+      artist: null,
       copyID: null,
       terms: false,
       newsletter: false,
-      
       error: null,
 
       currentPassword: null,
@@ -134,15 +158,17 @@ export default {
     }
   },
   async mounted() {
-    const { user } = await fetch(this.$store.getters.api + '/profile', {
+    const { user, artist } = await fetch(this.$store.getters.api + '/profile', {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
         'Authorization': this.$store.getters.bearer
       }
     }).then((r) => r.json());
-
-    // this.email = user
+    this.artist = artist;
+    
+    this.email = user.email;
+    this.name = user.name;
     this.firstName = user.data.firstName;
     this.lastName = user.data.lastName;
     this.zip = user.data.zip;
