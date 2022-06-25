@@ -1,23 +1,24 @@
 const express = require("express");
 const router = express.Router();
 const sql = require("../pg");
-const { authenticateJWT, checkPassword } = require("../utils");
+const { authenticateJWT, checkPassword, serialize } = require("../utils");
 
 async function post(req, res) {
   if (!req.body || typeof req.body !== "object") {
     res.status(400).send("Bad Request");
   }
 
-  if (!data.password) {
+  const data = req.body;
+  if (!data.currentPassword || !data.password) {
     throw new Error("Invalid password");
   }
 
   try {
-    const data = req.body;
     const userId = req.user.id;
 
-    const [{password}] = sql`select password from users where id = ${userId}`;
-    if (!password || !checkPassword(password, data.password)) {
+    const [{password}] = await sql`select password from users where id = ${userId}`;
+    const passwordMatches = await checkPassword(data.currentPassword, password);
+    if (!password || !passwordMatches) {
       throw new Error("Invalid password");
     }
     
@@ -35,6 +36,6 @@ async function post(req, res) {
 }
 
 
-router.route("/").post(authenticateJWT, post);
+router.route("/reset").post(authenticateJWT, post);
 
 module.exports = router;

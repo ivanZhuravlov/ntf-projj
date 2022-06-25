@@ -95,6 +95,15 @@ export default new Vuex.Store({
     		throw new Error('Invalid email, password or type');
 	    }
     },
+    async resetPassword({ commit }) {
+    	try {
+				commit('setToken', null);
+				this.state.userId = null;
+	    } catch(e) {
+		  	console.log(e)
+    		throw new Error('Invalid email, password or type');
+	    }
+    },
     async logout({ commit }) {
       commit('setToken', null);
 			this.state.userId = null;

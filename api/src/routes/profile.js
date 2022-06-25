@@ -13,7 +13,7 @@ async function get(req, res) {
       [user],
       [artist]
     ] = await Promise.all([
-      sql`select id, email, data, type from users where id = ${userId}`,
+      sql`select id, email, name, data, type from users where id = ${userId}`,
       sql`select * from artists where user_id = ${userId}`,
     ]);
 
