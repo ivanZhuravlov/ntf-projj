@@ -1,7 +1,7 @@
 <template>
   <div class="rounded-md text-gray-700 border hover:border-orange">
     <router-link to='/new/coa' class="flex flex-col space-y-6 text-center" v-if="certificate.id === 'new'">
-      <div class="font-bold uppercase leading-relaxed text-center cursor-pointer pt-20">
+      <div class="font-bold uppercase leading-relaxed text-center cursor-pointer lg:pt-20 pt-16">
         new <span class="text-orange">aft</span>
       </div>
       <div class="flex justify-center h-24">
