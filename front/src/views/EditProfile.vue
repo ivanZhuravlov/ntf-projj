@@ -1,9 +1,8 @@
 <template>
 <div id="edit-profile">
   <Header />
-  <div class="bg-white py-6 sm:py-8 lg:py-12 flex items-center">
+  <!-- <div class="bg-white py-6 sm:py-8 lg:py-12 flex items-center">
     <div class="px-4 md:px-8 mx-auto">
-      <!-- text - start -->
       <div class="mb-10 md:mb-16">
         <h2 class="text-gray-800 text-2xl lg:text-3xl font-bold text-center mb-4 md:mb-6">Edit Profile</h2>
         <p class="max-w-proce text-gray-500 md:text-lg text-center mx-auto">
@@ -11,9 +10,6 @@
           tempor incididunt ut labore et dolore magna aliqua.
         </p>
       </div>
-      <!-- text - end -->
-
-      <!-- form - start -->
       
       <div class="text-gray-800 sm:grid grid-cols-2 gap-7 md:grid grid-cols-2 lg:grid grid-cols-2 gap-20 mx-auto">
         <div>
@@ -59,7 +55,6 @@
 
           <hr class="my-4">
           <div>
-            <!-- TODO: Use Saas to check ID -->
             <label for="copyID" class="inline-block text-sm sm:text-base mt-3"> A copy of your ID, driving lincense or passport*</label>
             <input type="file" accept="image/png, image/jpeg" name="copyID" class="w-full text-gray-500 text-sm py-2" />
           </div>
@@ -88,12 +83,59 @@
           </button>
         </div>
       </div>
-      <!-- form - end -->
+    </div>
+  </div> -->
+  
+  <div class="max-w-5xl border-2 m-auto mt-12 mb-32 pb-48 shadow-lg">
+    <div class="border-b-2 text-xl text-gray-800 flex items-center justify-center py-6">
+      <svg class="w-6 h-6 mr-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+      Settings
+    </div>
+
+    <div class="flex">
+      <div class="w-1/5 text-sm font-medium text-gray-900">
+        <button 
+          v-for='(tab, k) in tabs' :key="tab" 
+          @click="selectedTab = tab"
+          aria-current="true"
+          class="tab"
+          :class='{"bg-gray-200 border-b border-gray-200": tab === selectedTab, "border-b-2": k === tabs.length-1 }'
+        >
+          {{ tab }}
+        </button>
+      </div>
+      
+      <div v-if='slugify(selectedTab) === "edit_profile"' class="w-4/5 flex flex-col justify-center items-center pt-8">
+        <!-- TODO -->
+        <div class="flex justify-center items-center space-x-8">
+          <div class="rounded-full h-24 w-24 border-2"></div>
+          <span class="capitalize text-indigo-600 text-lg select-none">Change profile photo</span>
+        </div>
+
+        <div class="w-3/4">
+          <label for="firstName" class="inline-block text-sm sm:text-base mt-3">First name*</label>
+          <input v-model='firstName' required name="firstName" class="w-full bg-gray-50 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2" />
+          
+          <label for="lastName" class="inline-block text-sm sm:text-base mt-3">Last name*</label>
+          <input v-model='lastName' required name="lastName" class="w-full bg-gray-50 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2" />
+          
+          <label for="email" class="inline-block text-sm sm:text-base mt-3">Email</label>
+          <input disabled v-model="email" name="email" class="w-full bg-gray-50 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2" />
+        </div>
+
+      </div>
     </div>
   </div>
+  
   <Footer />
 </div>
 </template>
+
+<style>
+.tab {
+  @apply block w-full px-4 py-2 cursor-pointer
+}
+</style>
 
 <script>
 // @ is an alias to /src
@@ -108,8 +150,11 @@ export default {
   },
   data() {
     return {
+      tabs: ['Edit Profile', 'Change Password', 'Manage Contacts', 'Help'],
+      selectedTab: 'Edit Profile',
       firstName: null,
       lastName: null,
+      email: null,
       street: null,
       zip: null,
       city: null,
@@ -130,7 +175,8 @@ export default {
         'Authorization': this.$store.getters.bearer
       }
     }).then((r) => r.json());
-
+    console.log(user);
+    // this.email = user
     this.firstName = user.data.firstName;
     this.lastName = user.data.lastName;
     this.zip = user.data.zip;
@@ -143,6 +189,10 @@ export default {
     this.newsletter = user.data.newsletter;
   },
   methods: {
+    slugify(tab) {
+      console.log(tab)
+      return tab.toLowerCase().replaceAll(' ', '_');
+    },
     async editProfile () {
       if (!this.terms) {
         this.error = 'Please accept terms';
