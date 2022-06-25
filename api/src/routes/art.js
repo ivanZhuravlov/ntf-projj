@@ -18,10 +18,12 @@ async function get(req, res) {
         token_id, 
         token_uri, 
         artists.data as artist, 
-        artists.user_id as user_id
+        artists.user_id as user_id,
+        name
       from certificates 
-        left join artists on certificates.data->>'artistAddress' = artists.address
-      where id = ${id}`;
+        inner join artists on certificates.data->>'artistAddress' = artists.address
+        inner join users on artists.user_id = users.id
+      where certificates.id = ${id}`;
 
     res.json(certificate);
   } catch (error) {

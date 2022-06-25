@@ -1,5 +1,5 @@
 <template>
-  <div class="rounded-md text-gray-700 border hover:border-orange">
+  <div class="max-w-sm rounded-md text-gray-700 border hover:border-orange h-80" :class="{'h-96': isLarge}">
     <router-link to='/new/coa' class="flex flex-col space-y-6 text-center" v-if="certificate.id === 'new'">
       <div class="font-bold uppercase leading-relaxed text-center cursor-pointer lg:pt-20 pt-16">
         new <span class="text-orange">aft</span>
@@ -21,7 +21,7 @@
     </router-link>
     <div v-else class="flex flex-col space-y-4 justify-center">
       <img 
-        class="max-w-screen-lg h-auto max-h-48 rounded-t-md cursor-pointer"
+        class="max-w-screen-lg h-auto max-h-72 rounded-t-md cursor-pointer"
         :src="`https://ipfs.io/ipfs/${certificate.token_uri}`"
         :alt="certificate.data.title"
       >
@@ -49,7 +49,8 @@
 export default {
   name: 'Preview',
   props: {
-    certificate: {}
+    certificate: {},
+    isLarge: false,
   },
   methods: {
     clean(longText) {
