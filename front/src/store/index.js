@@ -66,19 +66,18 @@ export default new Vuex.Store({
 				throw new Error('Invalid email or password');
 	    }
     },
-    async register({ commit }, {email, password, type}) {
+    async register({ commit }, {email, password, name}) {
     	try {
 	    	const { token, userId } = await fetch(
-	    		API + '/register',
-	    		{
-	    			method: 'POST',
-	    			headers: {
-	    				'Content-Type': 'application/json'
-	    			},
-	    			body: JSON.stringify({
-						"email": email,
-						"password": password,
-						"type": type
+	    		API + '/register', {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json'
+					},
+					body: JSON.stringify({
+						email,
+						password,
+						name
 					})
     		}).then((r) => r.json());
 

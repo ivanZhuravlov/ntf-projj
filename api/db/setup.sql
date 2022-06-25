@@ -6,6 +6,7 @@ create table users
 (
     id uuid,
     email text,
+    name text,
     password text,
     stripe text,
     data json default '{}'::json,

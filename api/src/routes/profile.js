@@ -3,6 +3,9 @@ const router = express.Router();
 const sql = require("../pg");
 const { authenticateJWT } = require("../utils");
 
+// TODO
+const USER_TYPES = ['artist', 'gallery', 'collector', 'beneficiary'];
+
 async function get(req, res) {
   try {
     const userId = req.user.id;

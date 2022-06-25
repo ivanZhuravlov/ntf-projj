@@ -1,19 +1,26 @@
 <template>
-  <div class="register space-y-8">
+  <div class="register space-y-20">
     <Header />
-    <div class="max-w-screen-2xl px-4 md:px-8 mx-auto">
+    <div class="max-w-screen-2xl px-4 md:px-8 mx-auto space-y-8">
       <h2 class="text-gray-800 text-2xl lg:text-3xl font-bold text-center mb-4 md:mb-8">Register</h2>
       
-      <div v-if='error' class="max-w-lg mx-auto bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative my-4" role="alert">
-        <span class="block sm:inline">{{ error }}</span>
+      <div class="flex justify-center items-center">
+        <p class="text-gray-600 text-center">
+          Have already a JENKO Account ? 
+          <router-link to='/login' class="text-yellow-500 hover:text-yellow-600 transition duration-100">Sign in</router-link>
+        </p>
       </div>
 
-      <div class="max-w-lg border rounded-lg mx-auto">
+      <div v-if='error' class="max-w-lg mx-auto bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative my-4" role="alert">
+        <span class="block sm:inline">{{ error }}</span>
+      </div>
+
+      <div class="max-w-lg mx-auto">
         <div class="flex flex-col gap-4 p-4 md:p-8">
 
           <div>
             <label for="email" class="inline-block font-light text-gray-600 text-sm sm:text-base mb-2">Name</label>
-            <input v-model='email' required type="email" name="email" class="w-full bg-gray-50 text-gray-800 border focus:ring-2 ring-blue-300 rounded outline-none transition duration-100 px-3 py-2" />
+            <input v-model='name' required type="text" name="name" class="w-full bg-gray-50 text-gray-800 border focus:ring-2 ring-blue-300 rounded outline-none transition duration-100 px-3 py-2" />
           </div>
           
           <div>
@@ -43,18 +50,12 @@
             </div>
           </div>
 
-          <button @click='register()' class="block bg-gray-800 hover:bg-gray-700 active:bg-gray-600 focus-visible:ring ring-gray-300 focus:ring-2 text-white text-sm md:text-base font-semibold text-center rounded outline-none transition duration-100 px-8 py-3">
+          <button @click='register()' class="w-full bg-gray-800 hover:bg-gray-700 active:bg-gray-600 focus-visible:ring ring-gray-300 focus:ring-2 text-white text-sm md:text-base font-semibold text-center rounded outline-none transition duration-100 px-8 py-3">
             Register
           </button>
         </div>
 
-        <div class="flex justify-center items-center bg-gray-100 p-4">
-          <p class="font-light text-gray-500 text-sm text-center">
-            I already have a JENKO Account 
-            <router-link to='/login' class="font-light text-blue-500 hover:text-blue-600 active:font-light text-blue-700 transition duration-100">Sign in</router-link>
-          </p>
-        </div>
-      </div>
+    </div>
     <Footer />
   </div>
 </template>
@@ -72,10 +73,10 @@ export default {
   },
   data() {
   	return {
+  		name: null,
   		email: null,
   		password: null,
   		passwordRepeat: null,
-      type: null,
       terms: false,
   		error: null,
   	}
@@ -87,22 +88,17 @@ export default {
         return ;
       }
       
+      const name = this.name;
       const email = this.email;
       const password = this.password;
-      const type = this.type;
 
       if (password !== this.passwordRepeat) {
       	this.error = 'Passwords not match';
       	return ;
       }
 
-      if (this.type === null) {
-        this.error = 'Please select user type';
-        return ;
-      }
-
   	  this.error = null;
-  	  this.$store.dispatch("register", { email, password, type })
+  	  this.$store.dispatch("register", { email, password, name })
   	  	.catch((e) => this.error = e.message)
   	  	.then(() => {
   	  		if (null === this.error) {

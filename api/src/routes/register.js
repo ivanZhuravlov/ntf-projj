@@ -12,8 +12,6 @@ if (!JWT_SECRET) {
   throw new Error("invalid jwt");
 }
 
-const USER_TYPES = ['artist', 'gallery', 'collector', 'beneficiary'];
-
 router.route("/").post(async (req, res) => {
   if (!req.body) {
     console.log("no body");
@@ -31,36 +29,34 @@ router.route("/").post(async (req, res) => {
       throw new Error("bad password");
     }
 
-    if(!USER_TYPES.includes(data.type)) {
-      throw new Error('invalid user type');
+    if (!data.name) {
+      throw new Error("bad name");
     }
 
-    const [userAlreadyExist] =
-      await sql`select email from users where email = ${data.email}`;
+    const [userAlreadyExist] = await sql`select email from users where email = ${data.email} or name = ${data.name}`;
     if (userAlreadyExist) {
-      throw new Error(`Duplicate user registration: ${data.email}`);
+      throw new Error(`Duplicate user registration: ${data.email} or ${data.name}`);
     }
 
     const passwordHash = await serialize(data.password);
     const user = {
       id: uuidv4(),
       email: data.email,
+      name: data.name,
       password: passwordHash,
       created_at: new Date(),
-      type: data.type,
     };
 
     await sql`insert into users ${sql(user)}`;
-    console.log("New email added", { 
+    console.log("New user created", { 
       id: user.id,
+      name: data.name,
       email: user.email,
-      type: user.type
     });
 
     const token = jwt.sign({ 
       id: user.id,
       email: user.email,
-      type: user.type,
     }, JWT_SECRET);
     
     res.json({ token, userId: user.id });
