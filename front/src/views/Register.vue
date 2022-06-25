@@ -110,7 +110,7 @@ export default {
   	  	.catch((e) => this.error = e.message)
   	  	.then(() => {
   	  		if (null === this.error) {
-  				this.$router.push({name: 'Dashboard'})
+  				this.$router.push('/pricing')
   	  		}
   	  	})
     }
