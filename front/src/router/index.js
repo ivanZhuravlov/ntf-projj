@@ -12,6 +12,7 @@ import Dashboard from '../views/Dashboard.vue';
 import GenerateWallet from '../views/GenerateWallet.vue';
 import CreateCoA from '../views/CreateCoA.vue';
 import About from '../views/About.vue';
+import Kyc from '../views/Kyc.vue';
 import EditProfile from '../views/EditProfile.vue';
 import SetRoyalties from '../views/SetRoyalties.vue';
 import store from '../store';
@@ -93,6 +94,14 @@ const routes = [
     path: '/profile',
     name: 'EditProfile',
     component: EditProfile,
+    meta: {
+      requiresAuth: true
+    }
+  },
+  {
+    path: '/kyc',
+    name: 'Kyc',
+    component: Kyc,
     meta: {
       requiresAuth: true
     }

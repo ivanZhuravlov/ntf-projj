@@ -47,11 +47,18 @@
             Owner Address:
           </div>
           <div class="col-span-2 text-gray-400">
-            <span v-if="artist.address">{{ artist.address }}</span>
+            <span v-if="artist && artist.address">{{ artist.address }}</span>
             <span v-else>Address is missing</span>
           </div>
         </div>
         <div class="w-3/4 border-t-2">
+
+          <div v-if="canStartKyc" class="mt-6 flex justify-center">
+            <router-link to="/kyc" class="bg-blue-600 hover:bg-blue-700 active:bg-blue-600 focus-visible:ring ring-blue-300 focus:ring-2 text-white text-sm md:text-base font-semibold text-center rounded outline-none transition duration-100 px-8 py-3">
+              Verify your identity
+            </router-link>
+          </div>
+
           <div class="text-center mt-4 flex-col text-gray-500">
             <div class="underline">Personal informations</div>
             <div>Your personal information below won't be part of the Public Profile</div>
@@ -163,6 +170,8 @@ export default {
       passwordRepeat: null,
       showCurrentPassword: false,
       showPassword: false,
+
+      canStartKyc: false,
     }
   },
   async mounted() {
@@ -180,6 +189,9 @@ export default {
     this.firstName = user.data.firstName;
     this.lastName = user.data.lastName;
     this.phone = user.data.phone;
+
+    this.canStartKyc = this.firstName && this.lastName && this.phone && this.email;
+
     this.zip = user.data.zip;
     this.city = user.data.city;
     this.state = user.data.state;
