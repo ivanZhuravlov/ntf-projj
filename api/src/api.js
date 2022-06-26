@@ -18,11 +18,12 @@ if (!STRIPE_API_KEY) {
 const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
+const fileupload = require("express-fileupload");
 const expressJwt = require("express-jwt");
 
 const PORT = process.env.PORT ?? 5000;
 const app = express();
-
+app.use(fileupload());
 app.use(bodyParser.json());
 app.use(
   expressJwt({ secret: JWT_SECRET, algorithms: ["HS256"] }).unless({
@@ -50,6 +51,7 @@ app.use("/login", require("./routes/login"));
 app.use("/register", require("./routes/register"));
 
 app.use("/profile", require("./routes/profile"));
+app.use("/image", require("./routes/image"));
 app.use("/password", require("./routes/password"));
 
 // Wallet
