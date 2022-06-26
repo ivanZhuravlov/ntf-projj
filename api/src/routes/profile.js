@@ -81,6 +81,38 @@ async function post(req, res) {
   }
 }
 
+async function updateType(req, res) {
+  if (!req.body || typeof req.body !== "object") {
+    res.status(400).send("Bad Request");
+  }
+
+  const userId = req.user.id;
+  let [{ type }] = await sql`select type from users where id = ${userId}`;
+  if(type) {
+    res.status(400).send("Type is already set");
+    return ;
+  }
+
+  type = req.body.type;
+  if(!type || !USER_TYPES.includes(type)) {
+    res.status(400).send(`Invalid type ${type}`);
+    return ;
+  }
+
+  try {
+    await sql`
+      update users set ${sql({ type: type })}
+      where id = ${userId}
+    `;
+
+    res.status(200).send();
+  } catch (error) {
+    console.log(error);
+    res.status(400).send("Invalid format");
+  }
+}
+
 router.route("/").get(authenticateJWT, get).post(authenticateJWT, post);
+router.route("/type").post(authenticateJWT, updateType);
 
 module.exports = router;
