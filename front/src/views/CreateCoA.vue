@@ -70,18 +70,8 @@
           </div>
 
           <div>
-            <label class="inline-block text-sm sm:text-base mt-6 mb-1">Support Material *</label>
-            <input required v-model="material" placeholder="Cotton, paper, etc..." class="w-full bg-gray-50 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2 placeholder-gray-500 placeholder-opacity-25" />
-          </div>
-
-          <div>
             <label class="inline-block text-sm sm:text-base mt-6 mb-1">Numbering *</label>
             <input required v-model="artPieceId" placeholder="Unique copy, 1 out of 10, etc..." class="w-full bg-gray-50 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2 placeholder-gray-500 placeholder-opacity-25" />
-          </div>
-
-          <div>
-            <label class="inline-block text-sm sm:text-base mt-6 mb-1">Artistic Movement *</label>
-            <input required v-model="movement" placeholder="Abstract, figurative, portrait, etc..." class="w-full bg-gray-50 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2 placeholder-gray-500 placeholder-opacity-25" />
           </div>
 
           <div class="flex items-start mb-6 mt-3">
@@ -128,10 +118,8 @@ export default {
       technical: null,
       size: null,
       tirage: null,
-      material: null,
       artPieceId: null,
       description: null,
-      movement: null,
       tokenUri: null,
       terms: null,
       error: null,
@@ -176,10 +164,8 @@ export default {
           technical: this.technical,
           size: this.size,
           tirage: this.tirage,
-          material: this.material,
           artPieceId: this.artPieceId,
           description: this.description,
-          movement: this.movement,
           tokenUri: this.tokenUri,
         }
         const somethingIsEmpty = Object.values(data).some((value) => !value);

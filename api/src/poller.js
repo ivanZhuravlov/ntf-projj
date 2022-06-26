@@ -45,9 +45,7 @@ async function mintEvent(_tokenId, _artistAddress, _artPieceId) {
       description: tokenData[3],
       size: tokenData[4],
       technical: tokenData[5],
-      material: tokenData[6],
-      tirage: tokenData[7],
-      movement: tokenData[8],
+      tirage: tokenData[6],
     };
 
     await sql`

@@ -23,9 +23,7 @@ contract Jenko is ERC721, Ownable {
         string description;
         string size;
         string technical;
-        string material;
         string tirage;
-        string movement;
         uint256 _createdAt;
     }
     mapping(uint256 => Token) public tokensById;
@@ -103,9 +101,7 @@ contract Jenko is ERC721, Ownable {
         string memory _description,
         string memory _size,
         string memory _technical,
-        string memory _material,
         string memory _tirage,
-        string memory _movement,
         uint256 _createdAt
     ) public onlyOwner returns(uint256) {
         _tokenIds.increment();
@@ -119,9 +115,7 @@ contract Jenko is ERC721, Ownable {
             _description,
             _size,
             _technical,
-            _material,
             _tirage,
-            _movement,
             _createdAt
         );
 

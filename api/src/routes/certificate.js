@@ -50,9 +50,7 @@ async function post(req, res) {
       description: req.body.description,
       size: req.body.size,
       technical: req.body.technical,
-      material: req.body.material,
       tirage: req.body.tirage,
-      movement: req.body.movement,
       createdAt: new Date(req.body.createdAt).getTime(),
     };
 
@@ -79,9 +77,7 @@ async function post(req, res) {
       certificate.description,
       certificate.size,
       certificate.technical,
-      certificate.material,
       certificate.tirage,
-      certificate.movement,
       certificate.createdAt
     );
 

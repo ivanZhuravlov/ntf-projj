@@ -18,9 +18,7 @@ async function createCertificateTransaction(
   _description,
   _size,
   _technical,
-  _material,
   _tirage,
-  _movement,
   _createdAt
 ) {
   const contract = new ethers.Contract(CONTRACT_ADDRESS, abi, provider);
@@ -40,9 +38,7 @@ async function createCertificateTransaction(
     _description,
     _size,
     _technical,
-    _material,
     _tirage,
-    _movement,
     _createdAt
   );
 

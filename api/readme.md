@@ -34,9 +34,7 @@ Return a valid JWT : `{ "token":"eyJh...." }`
       "description": "test description",
       "size": "200x200",
       "technical": "test",
-      "material": "paint",
       "tirage": "eza",
-      "movement": "ezae",
       "createdAt": 1636943010,
       "transaction": "0x412c499ae24fc1f7af47674556af97bee99a4d1d76fa8f56a869f9ae48110956"
     },
@@ -76,9 +74,7 @@ Return a valid JWT : `{ "token":"eyJh...." }`
     "description": "test description",
     "size": "200x200",
     "technical": "test",
-    "material": "paint",
     "tirage": "eza",
-    "movement": "ezae",
     "createdAt": 1636943010,
     "transaction": "0x016aaca7033efeb6923923c1965367501060b051fcc6788296f663bc7510412e"
   },
@@ -270,9 +266,7 @@ body :
     "description": "test description",
     "size": "200x200",
     "technical": "test",
-    "material": "paint",
     "tirage": "eza",
-    "movement":"ezae",
     "createdAt": "2021-01-01 12:00:00"
 }
 ```

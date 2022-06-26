@@ -69,9 +69,7 @@ async function listUser(req, res) {
           or data->>'description' like ${req.params.search}
           or data->>'size' like ${req.params.search}
           or data->>'technical' like ${req.params.search}
-          or data->>'material' like ${req.params.search}
           or data->>'tirage' like ${req.params.search}
-          or data->>'movement' like ${req.params.search}
           or data->>'transaction' like ${req.params.search}
         `;
     } else {
