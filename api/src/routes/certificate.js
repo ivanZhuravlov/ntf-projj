@@ -58,6 +58,21 @@ async function post(req, res) {
       throw new Error("Invalid values");
     }
 
+    if(!req.body.iamArtist && !req.body.createBelongArtist) {
+      throw new Error('Invalid values');
+    }
+
+    if(req.body.createBelongArtist && !req.body.belongArtistEmail) {
+      throw new Error('Invalid values');
+    }
+
+    if(iamArtist) {
+      certificate.iamArtist = req.body.iamArtist
+    } else if(req.body.createBelongArtist && req.body.belongArtistEmail) {
+      certificate.createBelongArtist = req.body.createBelongArtist;
+      certificate.belongArtistEmail = req.body.belongArtistEmail;
+    }
+
     const certificateEntity = {
       id: uuidv4(),
       user_id: userId,
@@ -68,6 +83,12 @@ async function post(req, res) {
       is_validate: false,
     };
     await sql`insert into certificates ${sql(certificateEntity)}`;
+
+    if(!certificate.iamArtist) {
+      console.log(`Don't create certificate ${certificate.id} on contract`);
+      res.status(200);
+      return ; 
+    }
 
     const transaction = await createCertificateTransaction(
       certificate.artistAddress,
