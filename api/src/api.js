@@ -28,7 +28,7 @@ app.use(bodyParser.json());
 app.use(
   expressJwt({ secret: JWT_SECRET, algorithms: ["HS256"] }).unless({
     path: [
-      "/register", "/login", "/products", "/stripe", "/art",
+      "/register", "/login", "/products", "/stripe", "/art", "/kyc/webhook",
       /^\/art\/.*/,
   ],
   })
@@ -69,7 +69,9 @@ app.use("/art", require("./routes/art"));
 app.use("/products", require("./routes/products"));
 app.use("/stripe", require("./routes/stripe"));
 
+// Kyc
+app.use("/kyc", require("./routes/kyc"));
 
-app.listen(PORT, async () => {
+app.listen(PORT, async () => {  
   console.log(`Server running on port ${PORT} in ${process.env.NODE_ENV} mode`);
 });

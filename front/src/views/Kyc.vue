@@ -1,14 +1,16 @@
 <template>
-  <div class=" space-y-8">
-    <div v-if='error' class="max-w-lg mx-auto bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mt-8" role="alert">
+  <div class="flex flex-col items-center justify-center space-y-8 px-8">
+    <div v-if='error' class="w-full max-w-xl bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mt-8" role="alert">
       <span class="block sm:inline">{{ error }}</span>
     </div>
-    <div id='vouched-element' style="height: 100%"/>
+    <router-link v-if='error' to="/dashboard" class="text-blue-600 underline text-lg hover:text-blue-700">
+      Back to dashboard
+    </router-link>
+    <div id='vouched-element' class="max-w-4xl h-screen"/>
   </div>
 </template>
 
 <script>
-
 export default {
   name: 'Kyc',
   data() {
@@ -34,9 +36,9 @@ export default {
       },
       liveness: 'straight',
       
-      appId: '<PUBLIC_KEY>',
+      appId: '8-RIt_ljM-6Op!yxFeC*qecIYDpx5q',
       // your webhook for POST verification processing
-      callbackURL: '/profile',
+      callbackURL: `${this.$store.getters.api}/kyc/webhook`,
 
       // mobile handoff
       crossDevice: true,
@@ -53,13 +55,20 @@ export default {
         // 1. query jobs with the token
         // 2. store relevant job information such as the id and 
         //    success property into the user's profile
-        fetch(`/yourapi/idv?job_token=${job.token}`);
+        fetch(`${this.$store.getters.api}/kyc/record`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': this.$store.getters.bearer
+          },
+          body: JSON.stringify({ token: job.token })
+        });
 
         // Redirect to the next page based on the job success
         if( job.result.success){
           this.$route.push("/profile");
         }else{
-          this.error = `Your identy was not verified`
+          this.error = `Your identy was not verified`;
         }
       },
       

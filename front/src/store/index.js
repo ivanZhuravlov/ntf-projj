@@ -6,6 +6,7 @@ import jwt_decode from "jwt-decode";
 Vue.use(Vuex);
 
 const API = process.env.NODE_ENV === 'production' ? 'http://api.jenko.io' : 'http://localhost:4000';
+export const HOST = process.env.NODE_ENV === 'production' ? 'http://jenko.io' : 'http://localhost:8080';
 
 export default new Vuex.Store({
   state: {
