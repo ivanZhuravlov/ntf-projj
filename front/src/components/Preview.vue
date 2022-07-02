@@ -28,11 +28,10 @@
       <router-link :to='`/art/${certificate.id}`' class="font-bold capitalize leading-relaxed text-center cursor-pointer">
         {{ certificate.data.title }}
       </router-link>
-      
-      <div class="bottom-0 flex justify-around pb-4">
-        <div class="cursor-pointer">
-          <button class="rounded-full hover:shadow w-5 h-5 bg-gray-200 border"></button>
-        </div>
+
+      <div class="bottom-0 inline-flex items-center justify-around pb-4">
+        <button v-if="certificate.token_id" class="rounded-full hover:shadow w-5 h-5 bg-gray-200 border cursor-pointer"></button>
+        <button v-else class="rounded-full hover:shadow w-5 h-5 text-2xl flex items-center cursor-pointer">@</button>
         <div class="cursor-pointer">
           <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
         </div>
