@@ -19,9 +19,9 @@
           </div>
           <div class="space-y-4">
             <div class="text-gray-500 uppercase">COA Transaction</div>
-            <a :href="'https://etherscan.io/tx/' + certificate.data.transaction" target="_blank" class="underline text-blue-600 hover:text-blue-700">{{ clean(certificate.data.transaction) }}</a>
+            <a :href="'https://mumbai.polygonscan.com/tx/' + certificate.data.transaction" target="_blank" class="underline text-blue-600 hover:text-blue-700">{{ clean(certificate.data.transaction) }}</a>
             <div class="text-gray-500 uppercase">Owner Address</div>
-            <a :href="'https://etherscan.io/address/' + certificate.data.artistAddress" target="_blank" class="underline text-blue-600 hover:text-blue-700">{{ clean(certificate.data.artistAddress) }}</a>
+            <a :href="'https://mumbai.polygonscan.com/address/' + certificate.data.artistAddress" target="_blank" class="underline text-blue-600 hover:text-blue-700">{{ clean(certificate.data.artistAddress) }}</a>
           </div>
         </div>
       </div>
