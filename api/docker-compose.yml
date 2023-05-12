@@ -1,0 +1,27 @@
+version: "3.3"
+
+services:
+  database:
+    image: "postgres:13.0"
+    container_name: "app-database"
+#    env_file:
+#      - .env
+    environment:
+      POSTGRES_PASSWORD: "postgres"
+      POSTGRES_USER: "postgres"
+      POSTGRES_MULTIPLE_DATABASES: jenko
+    restart: unless-stopped
+    volumes:
+      - ./postgres/scripts:/docker-entrypoint-initdb.d
+      - appmono_pg_db:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  appmono_pg_db:

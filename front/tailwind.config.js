@@ -39,8 +39,11 @@ module.exports = {
       darkerGray: '#555444',
       fontGray: '#333333',
       textGray: '#666666',
-      
-
+      lightGay: '#777774',
+      passionGay: '#E5E2E2',
+      lighterGay: '#F8F8F8',
+      lighterOrange: '#FB6D06',
+      toughGay: '#E5E5E5',
 
     },
     spacing: {
@@ -507,6 +510,8 @@ module.exports = {
       wide: '0.025em',
       wider: '0.05em',
       widest: '0.1em',
+      'the-widest': '0.2em',
+      'super-wide': '0.4em',
     },
     lineHeight: {
       none: '1',
