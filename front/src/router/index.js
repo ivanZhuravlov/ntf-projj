@@ -3,7 +3,6 @@ import VueRouter from 'vue-router';
 
 import Home from '../views/Home.vue';
 import Contact from '../views/Contact.vue';
-import Pricing from '../views/Pricing.vue';
 import Login from '../views/Login.vue';
 import Register from '../views/Register.vue';
 import Art from '../views/Art.vue';
@@ -17,6 +16,7 @@ import ForgotPassword from '../views/ForgotPassword.vue';
 import EditProfile from '../views/EditProfile.vue';
 import SetRoyalties from '../views/SetRoyalties.vue';
 import store from '../store';
+import RenewedPricing from "@/views/RenewedPricing";
 
 Vue.use(VueRouter);
 
@@ -50,7 +50,7 @@ const routes = [
   {
     path: '/pricing',
     name: 'pricing',
-    component: Pricing
+    component: RenewedPricing
   },
   {
     path: '/art/:id',
