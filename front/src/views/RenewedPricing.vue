@@ -79,7 +79,7 @@
       <div class="grid grid-cols-1 gap-2 place-items-center">
         <div class="space-y-4">
           <div class="grid grid-cols-3 gap-12 sm:grid-cols-2 xs:grid-cols-1 place-items-center select-none">
-            <div v-for='(description, key) in descriptions' :key='key' class="px-4 w-96 h-full inline-flex flex-col items-center">
+            <div v-for='(description, key) in descriptions' :key='key' class="px-4 h-full inline-flex flex-col items-center">
               <div class="flex justify-center items-center">
                 <img class="w-6 h-6 mr-2" alt="description" :src="require(`@/assets/icons/${description.iconName}`)">
                 <h2 class="text-fontGray font-light text-2xl leading-8">{{ description.title }}</h2>
