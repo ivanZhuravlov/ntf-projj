@@ -49,7 +49,7 @@
                 class="text-textGray text-xs font-normal leading-12 hover:text-gray-800 transition duration-100">About
               </router-link>
             </div>
-            <div>
+            <div @click="scrollToGettingStarted">
               <router-link to="/about#getting-started"
                 class="text-textGray text-xs font-normal leading-12 hover:text-gray-800 transition duration-100">Getting
                 Started</router-link>
@@ -137,5 +137,14 @@
 <script>
   export default {
     name: 'Footer',
+    methods: {
+      scrollToGettingStarted() {
+        this.scrollToElement('getting-started');
+      },
+      scrollToElement(id) {
+        const element = document.getElementById(id);
+        element && element.scrollIntoView({ behavior: "smooth" });
+      },
+    },
   };
 </script>

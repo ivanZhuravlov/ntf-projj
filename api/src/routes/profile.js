@@ -48,9 +48,9 @@ async function post(req, res) {
   const userId = req.user.id;
   const [{ data }] = await sql`select data from users where id = ${userId}`;
   const terms = data.terms ?? req.body.terms;
+
   if(!terms) {
-    res.status(400).send("You need to accept terms");
-    return ;
+    return res.status(400).send("You need to accept terms");
   }
 
   try {
@@ -58,6 +58,7 @@ async function post(req, res) {
     const infos = {
       firstName: req.body.firstName,
       lastName: req.body.lastName,
+      legalName: req.body.legalName,
       phone: req.body.phone,
       country: req.body.country,
       street: req.body.street,
@@ -74,7 +75,9 @@ async function post(req, res) {
       where id = ${userId}
     `;
 
-    res.status(200).send();
+    return res.status(200).send({
+      message: 'User updated',
+    });
   } catch (error) {
     console.log(error);
     res.status(400).send("Invalid format");

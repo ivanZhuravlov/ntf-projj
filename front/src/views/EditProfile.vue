@@ -25,33 +25,39 @@
         </button>
       </div>
       
-      <div v-if='slugify(selectedTab) === "edit_profile"' class="w-4/5 flex flex-col justify-center items-center pt-8 space-y-4">
-        <!-- TODO -->
-        <div class="w-3/4 grid grid-rows-1 grid-flow-col grid-col-3">
+      <div v-if='slugify(selectedTab) === "edit_profile"' class="w-4/5 flex flex-col justify-center items-center pt-6 space-y-4 px-4">
+        <div class="w-full grid grid-cols-4">
           <div class="col-span-1">
-            <svg class="w-8 h-8 text-gray-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+            <svg class="w-6 h-6 text-gray-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
           </div>
-          <div class="col-span-1">{{ name }}</div>
-          <div class="capitalize text-indigo-600 select-none col-span-1">Change profile photo</div>
+          <div class="col-span-2">{{ name }}</div>
+          <div class="capitalize text-indigo-600 select-none col-span-1 text-center">Change profile photo</div>
         </div>
 
-        <div class="w-3/4 grid grid-cols-3 gap-1">
-          <div class="col-span-1">
-            User Name:
+        <div class="w-full grid grid-cols-4 gap-1">
+            <div class="col-span-1">
+              User Name:
+            </div>
+            <div class="col-span-2 text-gray-400">
+              <span v-if="name">{{ name }}</span>
+              <span v-else>Artistic name</span>
+            </div>
+            <div class="col-span-1 flex justify-end">
+              <img class="w-5 h-5 sm:w-4 sm:h-4 xs:w-6 xs:h-6 mr-2" alt="verified_icon" :src="require(`@/assets/icons/verified.svg`)">
+            </div>
           </div>
-          <div class="col-span-2 text-gray-400">
-            <span v-if="name">{{ name }}</span>
-            <span v-else>Artistic name</span>
-          </div>
+
+        <div class="w-full grid grid-cols-4 gap-1 mt-2">
           <div class="col-span-1">
             Owner Address:
           </div>
-          <div class="col-span-2 text-gray-400">
+          <div class="col-span-3 text-gray-400">
             <span v-if="artist && artist.address">{{ artist.address }}</span>
             <span v-else>Address is missing</span>
           </div>
         </div>
-        <div class="w-3/4 border-t-2">
+
+        <div class="w-full border-b-2 border-t-2">
 
           <div v-if="canStartKyc" class="mt-6 flex justify-center">
             <router-link to="/kyc" class="bg-blue-600 hover:bg-blue-700 active:bg-blue-600 focus-visible:ring ring-blue-300 focus:ring-2 text-white text-sm md:text-base font-semibold text-center rounded outline-none transition duration-100 px-8 py-3">
@@ -63,20 +69,86 @@
             <div class="underline">Personal informations</div>
             <div>Your personal information below won't be part of the Public Profile</div>
           </div>
-          <label for="firstName" class="inline-block text-sm sm:text-base mt-3">First name*</label>
-          <input v-model='firstName' required name="firstName" class="w-full bg-gray-50 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2" />
-          
-          <label for="lastName" class="inline-block text-sm sm:text-base mt-3">Last name*</label>
-          <input v-model='lastName' required name="lastName" class="w-full bg-gray-50 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2" />
 
-          <label for="phone" class="inline-block text-sm sm:text-base mt-3">Phone</label>
-          <input v-model="phone" name="phone" type="tel" class="w-full bg-gray-50 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2" />
-          
-          <label for="email" class="inline-block text-sm sm:text-base mt-3">Email</label>
-          <input disabled v-model="email" name="email" class="w-full bg-gray-50 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2" />
+          <div v-if='error' class="max-w-lg mx-auto bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mt-8" role="alert">
+            <span class="block sm:inline">{{ error }}</span>
+          </div>
+
+          <div class="w-full grid grid-cols-4 gap-1 mt-10">
+            <div class="col-span-1">
+              <label for="firstName" class="inline-block text-sm sm:text-base">First name*</label>
+            </div>
+            <div class="col-span-2">
+              <input id="firstName" v-model='firstName' required name="firstName" class="edit-profile-input w-full bg-gray-50 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3" />
+            </div>
+            <div class="col-span-1 flex justify-end">
+              <img class="w-5 h-5 sm:w-4 sm:h-4 xs:w-6 xs:h-6 mr-2" alt="verified_icon" :src="require(`@/assets/icons/verified.svg`)">
+            </div>
+          </div>
+
+          <div class="w-full grid grid-cols-4 gap-1 mt-6">
+            <div class="col-span-1">
+              <label for="lastName" class="inline-block text-sm sm:text-base">Last name*</label>
+            </div>
+            <div class="col-span-2">
+              <input id="lastName" v-model='lastName' required name="lastName" class="edit-profile-input w-full bg-gray-50 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3" />
+            </div>
+            <div class="col-span-1 flex justify-end">
+              <img class="w-5 h-5 sm:w-4 sm:h-4 xs:w-6 xs:h-6 mr-2" alt="verified_icon" :src="require(`@/assets/icons/verified.svg`)">
+            </div>
+          </div>
+
+          <div class="w-full grid grid-cols-4 gap-1 mt-6">
+            <div class="col-span-1">
+              <label for="legalName" class="inline-block text-sm sm:text-base">Legal name</label>
+            </div>
+            <div class="col-span-2">
+              <input placeholder="Legal name" id="legalName" v-model='legalName' name="legalName" class="edit-profile-input w-full bg-gray-50 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3" />
+            </div>
+            <div class="col-span-1 flex justify-end">
+              <img class="w-5 h-5 sm:w-4 sm:h-4 xs:w-6 xs:h-6 mr-2" alt="verified_icon" :src="require(`@/assets/icons/verified.svg`)">
+            </div>
+          </div>
+
+          <div class="w-full grid grid-cols-4 gap-1 mt-6">
+            <div class="col-span-1">
+              <label for="email" class="inline-block text-sm sm:text-base">Email</label>
+            </div>
+            <div class="col-span-2">
+              <input id="email" disabled v-model="email" name="email" class="edit-profile-input w-full bg-gray-50 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3" />
+            </div>
+            <div class="col-span-1 flex justify-end">
+              <img class="w-5 h-5 sm:w-4 sm:h-4 xs:w-6 xs:h-6 mr-2" alt="verified_icon" :src="require(`@/assets/icons/verified.svg`)">
+            </div>
+          </div>
+
+          <div class="w-full grid grid-cols-4 gap-1 mt-6">
+            <div class="col-span-1">
+              <label for="phone" class="inline-block text-sm sm:text-base">Phone</label>
+            </div>
+            <div class="col-span-2">
+              <input id="phone" v-model="phone" name="phone" class="edit-profile-input w-full bg-gray-50 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3" />
+            </div>
+            <div class="col-span-1 flex justify-end">
+              <img class="w-5 h-5 sm:w-4 sm:h-4 xs:w-6 xs:h-6 mr-2" alt="verified_icon" :src="require(`@/assets/icons/verified.svg`)">
+            </div>
+          </div>
+
+          <div class="w-full grid grid-cols-4 gap-1 mt-3 mb-3 pt-3 border-t-2">
+            <div class="col-span-1">
+              <label for="aft_creation" class="inline-block text-sm sm:text-base">Id Card</label>
+            </div>
+            <div class="col-span-2">
+              <input placeholder="Enable AFT creation" id="aft_creation" v-model="aft_creation" name="phone" class="edit-profile-input w-full bg-gray-50 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3" />
+            </div>
+            <div class="col-span-1 flex justify-end">
+              <img class="w-5 h-5 sm:w-4 sm:h-4 xs:w-6 xs:h-6 mr-2" alt="verified_icon" :src="require(`@/assets/icons/verified.svg`)">
+            </div>
+          </div>
+
         </div>
 
-        <button @click='editProfile()' class="bg-gray-800 hover:bg-gray-700 active:bg-gray-600 focus-visible:ring ring-gray-300 focus:ring-2 text-white text-sm md:text-base font-semibold text-center rounded outline-none transition duration-100 px-8 py-3">
+        <button @click='editProfile' class="bg-gray-800 hover:bg-gray-700 active:bg-gray-600 focus-visible:ring ring-gray-300 focus:ring-2 text-white text-sm md:text-base font-semibold text-center rounded outline-none transition duration-100 px-8 py-3">
           Update profile
         </button>
       </div>
@@ -86,9 +158,9 @@
 
         <div class="w-3/4 space-y-4">
           <div>
-            <label for="password" class="select-none inline-block font-light text-gray-600 text-sm sm:text-base mb-2">Current password</label>
+            <label for="currentPassword" class="select-none inline-block font-light text-gray-600 text-sm sm:text-base mb-2">Current password</label>
             <div class="flex justify-between items-center relative">
-              <input v-model='currentPassword' :type='showCurrentPassword ? "text" : "password"' name="password" class="w-full bg-gray-50 text-gray-800 border focus:ring-2 ring-blue-300 rounded outline-none transition duration-100 px-3 py-2" />
+              <input id="currentPassword" v-model='currentPassword' :type='showCurrentPassword ? "text" : "password"' name="password" class="w-full bg-gray-50 text-gray-800 border focus:ring-2 ring-blue-300 rounded outline-none transition duration-100 px-3 py-2" />
 
               <div class="absolute right-4 w-6 h-6 text-gray-700 cursor-pointer" @click="showCurrentPassword = !showCurrentPassword">
                 <svg v-if='!showCurrentPassword' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
@@ -100,7 +172,7 @@
           <div>
             <label for="password" class="select-none inline-block font-light text-gray-600 text-sm sm:text-base mb-2">Password</label>
             <div class="flex justify-between items-center relative">
-              <input v-model='password' :type='showPassword ? "text" : "password"' name="password" class="w-full bg-gray-50 text-gray-800 border focus:ring-2 ring-blue-300 rounded outline-none transition duration-100 px-3 py-2" />
+              <input  id="password" v-model='password' :type='showPassword ? "text" : "password"' name="password" class="w-full bg-gray-50 text-gray-800 border focus:ring-2 ring-blue-300 rounded outline-none transition duration-100 px-3 py-2" />
 
               <div class="absolute right-4 w-6 h-6 text-gray-700 cursor-pointer" @click="showPassword = !showPassword">
                 <svg v-if='!showPassword' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
@@ -110,7 +182,7 @@
           </div>
           <div>
             <label for="passwordRepeat" class="select-none inline-block font-light text-gray-600 text-sm sm:text-base mb-2">Password again</label>
-            <input v-model='passwordRepeat' :type='showPassword ? "text" : "password"' required name="passwordRepeat" class="w-full bg-gray-50 text-gray-800 border focus:ring-2 ring-blue-300 rounded outline-none transition duration-100 px-3 py-2" />
+            <input id="passwordRepeat" v-model='passwordRepeat' :type='showPassword ? "text" : "password"' required name="passwordRepeat" class="w-full bg-gray-50 text-gray-800 border focus:ring-2 ring-blue-300 rounded outline-none transition duration-100 px-3 py-2" />
           </div>
           
           <div class="flex justify-center items-center">
@@ -129,9 +201,26 @@
 </template>
 
 <style>
-.tab {
-  @apply block w-full px-4 py-2 cursor-pointer
-}
+  .tab {
+    @apply block w-full px-4 py-2 cursor-pointer
+  }
+  input.edit-profile-input {
+    background: transparent;
+    border-left: 0;
+    border-right: 0;
+    border-top: 0;
+    border-bottom: 1px solid transparent;
+    outline:none;
+  }
+  input.edit-profile-input:focus {
+    border-radius:2px;
+    border-left: 0;
+    border-right: 0;
+    border-top: 0;
+    border-bottom: 1px solid #ACABAB;
+    outline:none;
+    box-shadow: none;
+  }
 </style>
 
 <script>
@@ -151,6 +240,8 @@ export default {
       selectedTab: 'Edit Profile',
       firstName: null,
       lastName: null,
+      legalName: null,
+      aft_creation: null,
       phone: null,
       email: null,
       name: null,
@@ -188,6 +279,7 @@ export default {
     this.name = user.name;
     this.firstName = user.data.firstName;
     this.lastName = user.data.lastName;
+    this.legalName = user.data.legalName;
     this.phone = user.data.phone;
 
     this.canStartKyc = this.firstName && this.lastName && this.phone && this.email;
@@ -205,22 +297,28 @@ export default {
       return tab.toLowerCase().replaceAll(' ', '_');
     },
     async editProfile () {
-      const data = {
+      const payload = {
         firstName: this.firstName,
         lastName: this.lastName,
+        phone: this.phone,
+      };
+
+      if(Object.values(payload).some(value => !value)) {
+        this.error = 'Please fill up the required (*) fields';
+        return;
+      }
+
+      const data = {
+        ...payload,
+        legalName: this.legalName,
         street: this.street,
         zip: this.zip,
         city: this.city,
         state: this.state,
         country: this.country,
-      };
-
-      if(Object.values(data).some(value => !value)) {
-        this.error = 'Please fill up the requirered (*) fields';
-        return;
       }
 
-      try {  
+      try {
         await fetch(this.$store.getters.api + '/profile', {
           method: 'POST',
           headers: {
@@ -229,11 +327,10 @@ export default {
           },
           body: JSON.stringify({
             ...data,
-            phone: this.phone,
             description: this.description,
             newsletter: this.newsletter
           })
-        }); 
+        });
       } catch(error) {
         console.log(error)
         this.error = 'Undefined error. Please try again later.';

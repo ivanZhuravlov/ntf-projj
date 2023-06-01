@@ -11,12 +11,15 @@ import Dashboard from '../views/Dashboard.vue';
 import GenerateWallet from '../views/GenerateWallet.vue';
 import CreateCoA from '../views/CreateCoA.vue';
 import About from '../views/About.vue';
+import RenewedAbout from '../views/RenewedAbout.vue';
 import Kyc from '../views/Kyc.vue';
 import ForgotPassword from '../views/ForgotPassword.vue';
 import EditProfile from '../views/EditProfile.vue';
 import SetRoyalties from '../views/SetRoyalties.vue';
 import store from '../store';
 import RenewedPricing from "@/views/RenewedPricing";
+import RenewedDashboard from "@/views/RenewedDashboard";
+import CreateAFT from '@/views/CreateAFT.vue';
 
 Vue.use(VueRouter);
 
@@ -59,8 +62,8 @@ const routes = [
   },
   {
     path: '/dashboard',
-    name: 'Dashboard',
-    component: Dashboard,
+    name: 'RenewedDashboard',
+    component: RenewedDashboard,
     meta: {
       requiresAuth: true
     }
@@ -92,9 +95,18 @@ const routes = [
     }
   },
   {
+    path: '/new/aft',
+    name: 'CreateAFT',
+    component: CreateAFT,
+    meta: {
+      requiresAuth: true,
+      // requiresArtist: true
+    }
+  },
+  {
     path: '/about',
-    name: 'About',
-    component: About
+    name: 'RenewedAbout',
+    component: RenewedAbout
   }, 
   {
     path: '/profile',
