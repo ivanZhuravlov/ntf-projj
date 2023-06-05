@@ -52,7 +52,7 @@ const routes = [
   },
   {
     path: '/pricing',
-    name: 'pricing',
+    name: 'Pricing',
     component: RenewedPricing
   },
   {
@@ -61,8 +61,8 @@ const routes = [
     component: Art
   },
   {
-    path: '/dashboard',
-    name: 'RenewedDashboard',
+    path: '/artworks',
+    name: 'Dashboard',
     component: RenewedDashboard,
     meta: {
       requiresAuth: true

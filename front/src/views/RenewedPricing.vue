@@ -28,7 +28,9 @@
             <div v-for='(product, key) in products' :key='key' class="card-shadow px-4 bg-lighterGay w-60 h-full inline-flex flex-col items-center rounded-lg">
               <h2 class="title-gradient tracking-widest indent-0.5 not-italic font-black text-lg leading-10 pt-4">{{ product.title }}</h2>
               <hr class="w-full h-px mt-4 border-0 bg-passionGay">
-              <h2 class="text-gray-800 mt-4 text-lg capitalize leading-relaxed">{{ product.price }}$ / {{ isYearly? 'year' : 'month' }}</h2>
+              <h2 class="text-gray-800 mt-4 text-lg capitalize leading-relaxed">{{ isYearly? product.yearlyPrice : product.price }}€ / {{ isYearly? 'year' : 'month' }}</h2>
+              <p v-if="isYearly" class="text-lightGay mt-4 text-md capitalize leading-relaxed">Yearly discount {{product.yearlyDiscount}}</p>
+              <p v-if="isYearly" class="text-gray-600 mt-4 text-md capitalize leading-relaxed">Monthly equivalent {{product.monthlyEquivalent}}€</p>
               <hr class="w-full h-px border-0 bg-passionGay mt-4">
               <h2 class="text-lightGay mt-4 text-lg capitalize leading-relaxed">Get every Month</h2>
               <h3 :class="`text-4xl mt-2 font-bold text-4xl tracking-super-wide ${ key % 2 === 0?'text-darkGray' : 'text-lighterOrange'}`" :ref="`productAmount_${key}`">{{product.amount}}</h3>
@@ -53,7 +55,7 @@
             <div v-for='(plan, key) in plans' :key='key' class="card-shadow px-4 bg-lighterGay w-60 h-full inline-flex flex-col items-center rounded-lg">
               <h2 class="title-gradient tracking-widest indent-0.5 not-italic font-black text-lg leading-10 pt-4">{{ plan.title }}</h2>
               <hr class="w-full h-px mt-4 border-0 bg-passionGay">
-              <h2 class="text-gray-800 mt-4 text-lg capitalize leading-relaxed">{{ plan.price }}$</h2>
+              <h2 class="text-gray-800 mt-4 text-lg capitalize leading-relaxed">{{ plan.price }}€</h2>
               <hr class="w-full h-px border-0 bg-passionGay mt-4">
               <h2 class="text-lightGay mt-4 text-lg capitalize leading-relaxed">Get once</h2>
               <h3 :class="`text-4xl mt-2 font-bold text-4xl tracking-super-wide text-darkGray`">{{plan.amount}}</h3>
@@ -117,6 +119,9 @@ export default {
           description: 'Ideal to start',
           price: 5.99,
           amount: 20,
+          yearlyPrice: 59.99,
+          yearlyDiscount: '-17 %',
+          monthlyEquivalent: '5.00',
         },
         {
           title: 'Recommended',
@@ -124,6 +129,9 @@ export default {
           description: 'Ideal for productive Creator',
           price: 8.49,
           amount: 60,
+          yearlyPrice: 89.99,
+          yearlyDiscount: '-12 %',
+          monthlyEquivalent: '7.50',
         },
         {
           title: 'Professional',
@@ -131,6 +139,9 @@ export default {
           description: 'Ideal for Professional',
           price: 24.99,
           amount: 200,
+          yearlyPrice: 224.99,
+          yearlyDiscount: '-25 %',
+          monthlyEquivalent: '18.75',
         },
       ],
       plans: [
@@ -235,7 +246,7 @@ export default {
         return ;
       }
 
-      this.$router.push('/dashboard');
+      this.$router.push('/artworks');
     }
   },
 };

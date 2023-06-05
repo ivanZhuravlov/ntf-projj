@@ -3,8 +3,8 @@
     <div v-if='error' class="w-full max-w-xl bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mt-8" role="alert">
       <span class="block sm:inline">{{ error }}</span>
     </div>
-    <router-link v-if='error' to="/dashboard" class="text-blue-600 underline text-lg hover:text-blue-700">
-      Back to dashboard
+    <router-link v-if='error' to="/artworks" class="text-blue-600 underline text-lg hover:text-blue-700">
+      Back to artworks
     </router-link>
     <div id='vouched-element' class="max-w-4xl h-screen"/>
   </div>

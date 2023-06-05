@@ -1,6 +1,6 @@
 <template>
-  <div class="h-400 sm:h-600 md:h-screen lg:h-screen bg-local bg-cover bg-hero w-full flex justify-center items-center">
-    <div class="w-4/5 max-w-9xl">
+  <div class="h-400 sm:h-600 md:h-screen lg:h-screen bg-local bg-cover bg-hero w-full flex justify-center 2xl:items-center xl:items-center lg:items-center md:items-center">
+    <div class="w-4/5 max-w-9xl sm:mt-24 xs:mt-4">
       <h1 class="text-orange uppercase tracking-wide text-2xl lg:text-6xl">Art Fruit
         Token
       </h1>
@@ -11,7 +11,7 @@
         value makers
       </p>
       <div class="w-full flex justify-between">
-        <button type="submit" class="px-6 py-4 bg-orange text-white text-xs leading-tight uppercase rounded-md shadow-md hover:bg-gray-600 hover:shadow-lg transition duration-200 ease-in-out">
+        <button @click="redirect" type="submit" class="px-6 py-4 bg-orange text-white text-xs leading-tight uppercase rounded-md shadow-md hover:bg-gray-600 hover:shadow-lg transition duration-200 ease-in-out">
           Get started
         </button>
         <h1 class="uppercase text-white text-right text-xl md:place-self-start lg:font-extralight lg:text-5xl lg:place-self-auto">
@@ -26,5 +26,10 @@
 <script>
   export default {
     name: 'CTA',
+    methods: {
+      redirect() {
+        this.$router.push(`/login`)
+      },
+    }
   };
 </script>

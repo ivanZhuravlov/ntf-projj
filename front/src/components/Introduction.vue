@@ -38,6 +38,7 @@
       </div>
       <div class="flex justify-center">
         <button type="submit"
+          @click="redirect"
           class="inline-block px-6 py-4 bg-orange text-white font-medium text-xs leading-tight uppercase rounded-md shadow-md hover:bg-gray-600 hover:shadow-lg transition duration-200 ease-in-out">Get
           started</button>
       </div>
@@ -48,5 +49,10 @@
 <script>
   export default {
     name: "Introduction",
+    methods: {
+      redirect() {
+        this.$router.push(`/login`)
+      },
+    },
   };
 </script>

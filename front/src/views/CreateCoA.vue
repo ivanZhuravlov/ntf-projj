@@ -215,7 +215,7 @@ export default {
         this.error = 'Error, please contact an administrator';
       }
 
-      await this.$router.push('/dashboard');
+      await this.$router.push('/artworks');
     }
   },
 };
