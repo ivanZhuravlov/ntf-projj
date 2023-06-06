@@ -41,7 +41,7 @@
     </div>
     <!--  Menu - end -->
 
-    <div v-if="showMenu" @click="toggle()" class="burger-menu_overlay">23</div>
+    <div v-if="showMenu" @click="toggle()" class="burger-menu_overlay"></div>
 
     <!-- Hamburger menu icon - start -->
     <div>

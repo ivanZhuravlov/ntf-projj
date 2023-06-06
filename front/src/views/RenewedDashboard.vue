@@ -2,6 +2,19 @@
   <div class="dashboard">
     <Header v-on:searchUpdated="searchArt" />
 
+    <modal name="claim-tokens-modal" :adaptive="true">
+      <div class="h-full">
+        <div class="bg-slightOrange w-full text-center py-2">
+          <p class="text-darkerGray text-3xl">Attention</p>
+        </div>
+        <div class="flex justify-center items-center h-5/6">
+          <p class="text-textGray text-2xl">
+            Get your free AFT tokens!
+          </p>
+        </div>
+      </div>
+    </modal>
+
     <div class="container max-w-full px-4 mt-8">
       <div class="pl-4 xs:pl-0 ">
         <h2 class="uppercase font-medium text-3xl indent-0.5 text-darkGray">{{ user && user.name }}</h2>
@@ -15,7 +28,7 @@
 
     <div class="container mx-auto max-w-4xl">
       <div class="mt-2 grid grid-cols-8 gap-1 xs:gap-2 sm:grid-cols-6 xs:grid-cols-3 xs:px-2 sm:px-3">
-        <router-link to="/new/coa" class="flex flex-col items-center">
+        <router-link to="/new/aft" class="flex flex-col items-center">
           <div class="flex">
             <p class="font-medium text-base indent-0.5 text-lightGay">CREATE</p>
             <p class="font-medium text-base indent-0.5 text-lighterOrange ml-1">AFT</p>
@@ -150,6 +163,10 @@ export default {
   },
   async mounted() {
     await this.fetchProfile();
+    // TODO: proper condition has to be added
+    if (true) {
+      this.$modal.show('claim-tokens-modal')
+    }
   },
   methods: {
     changeViewType(newType) {

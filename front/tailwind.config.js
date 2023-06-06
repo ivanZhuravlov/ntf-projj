@@ -46,7 +46,7 @@ module.exports = {
       toughGay: '#E5E5E5',
       slightGay: '#8D8C8C',
       lightWhite: '#F1F1F1',
-
+      slightOrange: '#FB923C',
     },
     spacing: {
       px: '1px',
