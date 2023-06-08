@@ -66,9 +66,11 @@ async function post(req, res) {
       throw new Error('Invalid values');
     }
 
-    if(iamArtist) {
+    if(req.body.hasOwnProperty('iamArtist') && req.body.iamArtist) {
       certificate.iamArtist = req.body.iamArtist
-    } else if(req.body.createBelongArtist && req.body.belongArtistEmail) {
+    }
+
+    if(req.body.createBelongArtist && req.body.belongArtistEmail) {
       certificate.createBelongArtist = req.body.createBelongArtist;
       certificate.belongArtistEmail = req.body.belongArtistEmail;
     }
