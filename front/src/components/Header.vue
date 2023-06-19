@@ -149,9 +149,6 @@
         search: '',
       }
     },
-    mounted() {
-      console.log(this.$route.name);
-    },
     computed: {
       isConnected() {
         return this.$store.getters.token;

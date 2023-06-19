@@ -54,11 +54,11 @@ async function list(req, res) {
 async function listUser(req, res) {
   try {
     const userId = req.user.id;
+    let certificates = [];
     if(req.user.type !== 'artist') {
-      return null;
+      return res.json({ certificates, });
     }
 
-    let certificates = [];
     if(req.params.search) {
       certificates = await sql`
         select id, subscription_id, data, is_validate, created_at, token_id, token_uri
@@ -80,7 +80,7 @@ async function listUser(req, res) {
       `
     }
 
-    res.json({ certificates, });
+    return res.json({ certificates, });
   } catch (error) {
     res.status(400).send(`${error.message}`);
   }

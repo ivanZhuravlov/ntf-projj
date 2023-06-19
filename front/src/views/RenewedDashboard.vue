@@ -4,13 +4,22 @@
 
     <modal name="claim-tokens-modal" :adaptive="true">
       <div class="h-full">
-        <div class="bg-slightOrange w-full text-center py-2">
-          <p class="text-darkerGray text-3xl">Attention</p>
+        <div class="w-full text-center py-4">
+          <p class="text-slightOrange text-3xl">Welcome to Jenko</p>
         </div>
-        <div class="flex justify-center items-center h-5/6">
-          <p class="text-textGray text-2xl">
-            Get your free AFT tokens!
+        <div class="flex justify-center items-center h-3/6">
+          <p class="text-textGray text-2xl text-center">
+            As a new user, you receive a credit
+            <br>
+            of
+            <br>
+            3 free AFT
           </p>
+        </div>
+        <div class="mt-4 flex justify-center">
+          <button @click="redirectToProfile" class="pop-up-button bg-regularGay hover:bg-gray-200 active:bg-gray-200 focus-visible:ring ring-gray-300 focus:ring-2 text-lighterOrange text-sm md:text-base font-semibold text-center outline-none transition duration-500 px-16 py-2">
+            START
+          </button>
         </div>
       </div>
     </modal>
@@ -24,6 +33,10 @@
         </div>
       </div>
       <hr class="w-full h-px mt-12 border-0 bg-passionGay">
+    </div>
+
+    <div v-if="selectedId">
+      <ArtSelected :token="token" :class="`${change? 'appear': 'disappear'}`" />
     </div>
 
     <div class="container mx-auto max-w-4xl">
@@ -91,7 +104,7 @@
     <div v-if='certificates.length'>
 
       <div v-if="viewType === ViewTypeEnum.GRID" class="container max-w-7xl mx-auto grid lg:grid-cols-4 grid-cols-2 md:px-10 sm:px-4 xs:px-5 xs:grid-cols-1 pt-6 gap-8">
-        <div v-for="certificate in list" :key='certificate.id' class=" hover:shadow-md rounded-md">
+        <div v-for="certificate in list" :key='certificate.id' class="hover:shadow-md rounded-md" @click="openCertificate(certificate.id)">
           <RenewedPreview :certificate="certificate" />
         </div>
       </div>
@@ -117,6 +130,8 @@ import ListItemPreview from '@/components/ListItemPreview.vue';
 import Subscription from '@/components/Subscription.vue';
 import DashboardCoolIcon from '@/components/icons/DashboardCoolIcon.vue';
 import ListCheckListIcon from '@/components/icons/ListCheckListIcon.vue';
+import ArtSelected from '@/components/ArtSelected.vue';
+import { opacityChange } from "@/animations";
 
 const ViewTypeEnum = {
   GRID: 'grid',
@@ -133,9 +148,13 @@ export default {
     ListItemPreview,
     DashboardCoolIcon,
     ListCheckListIcon,
+    ArtSelected,
   },
   data() {
     return {
+      token: null,
+      selectedId: null,
+      change: false,
       ViewTypeEnum: Object.freeze(ViewTypeEnum),
       viewType: ViewTypeEnum.GRID,
       user: null,
@@ -169,8 +188,25 @@ export default {
     }
   },
   methods: {
+    redirectToProfile() {
+      this.$router.push(`/profile`)
+    },
+    async openCertificate(id) {
+      this.change = false
+      await this.fetchArt(id)
+      this.selectedId = id
+      this.change = true
+    },
     changeViewType(newType) {
       this.viewType = newType;
+    },
+    async fetchArt(id) {
+      this.token = await fetch(`${this.$store.getters.api}/art/detail/${id}`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }).then((r) => r.json());
     },
     async fetchProfile() {
       const [{user, artist, subscriptions}] = await Promise.all([
@@ -226,4 +262,29 @@ export default {
   .list-item-container:hover {
     border: 1px solid #FB6D06;
   }
+
+  .appear {
+    animation-duration: 0.5s;
+    animation-name: animate-fade;
+    animation-delay: 0.5s;
+    animation-fill-mode: backwards;
+  }
+
+  .disappear {
+    animation-duration: 0.5s;
+    animation-name: animate-fade-invert;
+    animation-delay: 0.5s;
+    animation-fill-mode: backwards;
+  }
+
+  @keyframes animate-fade {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+
+  @keyframes animate-fade-invert {
+    0% { opacity: 1; }
+    100% { opacity: 0; }
+  }
+
 </style>

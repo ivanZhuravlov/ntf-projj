@@ -17,6 +17,8 @@ import ForgotPassword from '../views/ForgotPassword.vue';
 import EditProfile from '../views/EditProfile.vue';
 import SetRoyalties from '../views/SetRoyalties.vue';
 import store from '../store';
+import COA from '@/views/COA.vue';
+import Printables from '@/views/Printables.vue';
 import RenewedPricing from "@/views/RenewedPricing";
 import RenewedDashboard from "@/views/RenewedDashboard";
 import CreateAFT from '@/views/CreateAFT.vue';
@@ -132,6 +134,16 @@ const routes = [
       requiresAuth: true,
       requiresArtist: true
     }
+  },
+  {
+    path: '/info/coa/:id',
+    name: 'COA',
+    component: COA,
+  },
+  {
+    path: '/info/printables/:id',
+    name: 'Printables',
+    component: Printables,
   }
 ];
 

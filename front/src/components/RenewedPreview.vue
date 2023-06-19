@@ -24,11 +24,10 @@
           class="max-w-screen-lg w-auto max-h-52 px-2 mt-2 rounded-t-md cursor-pointer"
           :src="`https://ipfs.io/ipfs/${certificate.token_uri}`"
           :alt="certificate.data.title"
-          @click="redirect"
       >
-      <router-link :to='`/art/${certificate.id}`' class="font-bold capitalize leading-relaxed text-center cursor-pointer">
+      <p class="font-bold capitalize leading-relaxed text-center cursor-pointer">
         {{ certificate.data.title }}
-      </router-link>
+      </p>
 
       <div class="bottom-0 inline-flex items-center justify-around pb-4">
         <button v-if="certificate.token_id" class="rounded-full hover:shadow w-5 h-5 bg-gray-200 border cursor-pointer"></button>

@@ -24,3 +24,8 @@
 .top-border {
     border-top: 1px solid #E5E2E2;
 }
+
+.pop-up-button {
+    border: 1px solid #E5E2E2;
+    border-radius: 3px;
+}

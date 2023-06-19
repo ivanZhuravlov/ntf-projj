@@ -16,13 +16,9 @@ async function post(req, res) {
     const [userArtist] = await sql`
       select address
       from users_wallet 
-        inner join users on user_id = users.id and type = 'artist'
+        inner join users on user_id = users.id
       where user_id = ${userId};
     `;
-
-    if (!userArtist) {
-      throw new Error("Artist has no wallet or user is not artist");
-    }
 
     const subscriptions = await findActiveSubscriptions(userId);
     if(!subscriptions.length) {
@@ -88,8 +84,10 @@ async function post(req, res) {
 
     if(!certificate.iamArtist) {
       console.log(`Don't create certificate ${certificate.id} on contract`);
-      res.status(200);
-      return ; 
+      return res.status(200).json({
+        status: 201,
+        message: `Don't create certificate ${certificate.id} on contract`,
+      });
     }
 
     const transaction = await createCertificateTransaction(

@@ -8071,6 +8071,11 @@ vue-template-es2015-compiler@^1.9.0:
   resolved "https://registry.npmjs.org/vue-template-es2015-compiler/-/vue-template-es2015-compiler-1.9.1.tgz"
   integrity sha512-4gDntzrifFnCEvyoO8PqyJDmguXgVPxKiIxrBKjIowvL9l+N66196+72XVYR8BBf1Uv1Fgt3bGevJ+sEmxfZzw==
 
+vue-toast-notification@^1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/vue-toast-notification/-/vue-toast-notification-1.0.1.tgz#b97d07c9b061d769b7c959ea303b3e5908b965d2"
+  integrity sha512-qaBDz6jjaRxTXqimb0+NUtfj1Yjz2nd/tSpDePkw04mIyi57dcx1oGTnyqEZpvM6KeXoeYte/Qo9363QdKVQow==
+
 vue2-datepicker@^3.11.1:
   version "3.11.1"
   resolved "https://registry.yarnpkg.com/vue2-datepicker/-/vue2-datepicker-3.11.1.tgz#b2124e15f694d0fd43a92558f6929ec29338d241"

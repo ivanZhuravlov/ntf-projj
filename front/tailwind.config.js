@@ -47,6 +47,7 @@ module.exports = {
       slightGay: '#8D8C8C',
       lightWhite: '#F1F1F1',
       slightOrange: '#FB923C',
+      regularGay: '#F9F9F9',
     },
     spacing: {
       px: '1px',
@@ -84,6 +85,7 @@ module.exports = {
       72: '18rem',
       80: '20rem',
       96: '24rem',
+      116: '28rem',
       126: '36rem',
     },
     animation: {
