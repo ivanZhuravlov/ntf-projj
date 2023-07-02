@@ -35,8 +35,8 @@
       <router-link to="/exhibitions" class="font-medium text-base uppercase hover:text-gray-900">Exhibitions</router-link>
     </div>
     <div class="flex justify-between items-center p-4 space-x-6 text-darkGray sm:hidden xs:hidden" v-else>
-      <router-link to="/features" class="font-medium text-base uppercase hover:text-gray-900">Features</router-link>
-      <router-link to="/pricing" :class="`font-medium text-base uppercase hover:text-gray-900 ${currentRouteIsPricing && 'text-orange'}`">Pricing</router-link>
+      <router-link to="/features" :class="`font-medium text-base uppercase ${onFeatures ? 'text-orange' : 'hover:text-gray-900'}`">Features</router-link>
+      <router-link to="/pricing" :class="`font-medium text-base uppercase ${currentRouteIsPricing? 'text-orange' : 'hover:text-gray-900'}`">Pricing</router-link>
       <router-link to="/community" class="font-medium text-base uppercase hover:text-gray-900">Community</router-link>
     </div>
     <!--  Menu - end -->
@@ -155,6 +155,9 @@
       },
       onDashboard() {
         return this.$route.name === 'Dashboard';
+      },
+      onFeatures() {
+        return this.$route.name === 'Features';
       },
       currentRouteIsPricing() {
         return this.$route.name === 'Pricing';

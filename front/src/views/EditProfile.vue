@@ -26,12 +26,44 @@
       </div>
       
       <div v-if='slugify(selectedTab) === "edit_profile"' class="w-4/5 flex flex-col justify-center items-center pt-6 space-y-4 px-4">
+        <modal name="change-profile-photo" :adaptive="true">
+          <div class="h-full">
+            <div class="w-full text-center py-4">
+              <p class="text-slightOrange text-3xl">Update profile picture</p>
+            </div>
+            <div class="h-3/6">
+              <div class="rounded border bg-gray-50">
+                <div class="mt-4" v-if="!profilePictureUpload">
+                  <div class="flex items-center justify-center w-full">
+                    <label class="flex flex-col w-full h-32 border border-indigo-200 border-dashed hover:bg-gray-100 hover:border-gray-300">
+                      <div class="flex flex-col items-center justify-center pt-7">
+                        <p class="text-sm tracking-wider text-gray-400 group-hover:text-gray-600">Attach a file</p>
+                      </div>
+                      <input type="file" accept="image/png, image/jpeg" required @change='onFileChange($event)' name="file" class="opacity-0" />
+                    </label>
+                  </div>
+                </div>
+                <div v-else>
+                  <img class="object-contain object-left flex w-96 mt-3" :src="profilePictureUpload"/>
+                  <button class="rounded bg-red-400 mt-3 text-xs px-3 py-2 text-white hover:bg-gray-700" @click='removeImage($event)'> Remove image </button>
+                </div>
+              </div>
+            </div>
+            <div class="mt-4 flex justify-center">
+              <button :disabled="!profilePictureNew" @click="updateProfilePicture" class="pop-up-button bg-regularGay hover:bg-gray-200 active:bg-gray-200 focus-visible:ring ring-gray-300 focus:ring-2 text-lighterOrange text-sm md:text-base font-semibold text-center outline-none transition duration-500 px-16 py-2">
+                Update
+              </button>
+            </div>
+          </div>
+        </modal>
+
         <div class="w-full grid grid-cols-4">
-          <div class="col-span-1">
-            <svg class="w-6 h-6 text-gray-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+          <div  class="col-span-1">
+            <img v-if="!changePicLoading && profilePicUrl" :key="keyForRerender" class="w-6 h-6" :src="`${profilePicUrl}?version=${keyForRerender}`">
+            <svg v-else class="w-6 h-6 text-gray-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
           </div>
           <div class="col-span-2">{{ name }}</div>
-          <div class="capitalize text-indigo-600 select-none col-span-1 text-center">Change profile photo</div>
+          <div @click="openChangeProfilePhotoModal" class="cursor-pointer capitalize text-indigo-600 select-none col-span-1 text-center">Change profile photo</div>
         </div>
 
         <div class="w-full grid grid-cols-4 gap-1">
@@ -39,8 +71,8 @@
               User Name:
             </div>
             <div class="col-span-2 text-gray-400">
-              <span v-if="name">{{ name }}</span>
-              <span v-else>Artistic name</span>
+              <span v-if="userName">{{ userName }}</span>
+              <span v-else>No user name specified yet</span>
             </div>
             <div class="col-span-1 flex justify-end">
               <img class="w-5 h-5 sm:w-4 sm:h-4 xs:w-6 xs:h-6 mr-2" alt="verified_icon" :src="require(`@/assets/icons/verified.svg`)">
@@ -59,12 +91,6 @@
 
         <div class="w-full border-b-2 border-t-2">
 
-          <div v-if="canStartKyc" class="mt-6 flex justify-center">
-            <router-link to="/kyc" class="bg-blue-600 hover:bg-blue-700 active:bg-blue-600 focus-visible:ring ring-blue-300 focus:ring-2 text-white text-sm md:text-base font-semibold text-center rounded outline-none transition duration-100 px-8 py-3">
-              Verify your identity
-            </router-link>
-          </div>
-
           <div class="text-center mt-4 flex-col text-gray-500">
             <div class="underline">Personal informations</div>
             <div>Your personal information below won't be part of the Public Profile</div>
@@ -72,30 +98,6 @@
 
           <div v-if='error' class="max-w-lg mx-auto bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mt-8" role="alert">
             <span class="block sm:inline">{{ error }}</span>
-          </div>
-
-          <div class="w-full grid grid-cols-4 gap-1 mt-10">
-            <div class="col-span-1">
-              <label for="firstName" class="inline-block text-sm sm:text-base">First name*</label>
-            </div>
-            <div class="col-span-2">
-              <input id="firstName" v-model='firstName' required name="firstName" class="edit-profile-input w-full bg-gray-50 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3" />
-            </div>
-            <div class="col-span-1 flex justify-end">
-              <img class="w-5 h-5 sm:w-4 sm:h-4 xs:w-6 xs:h-6 mr-2" alt="verified_icon" :src="require(`@/assets/icons/verified.svg`)">
-            </div>
-          </div>
-
-          <div class="w-full grid grid-cols-4 gap-1 mt-6">
-            <div class="col-span-1">
-              <label for="lastName" class="inline-block text-sm sm:text-base">Last name*</label>
-            </div>
-            <div class="col-span-2">
-              <input id="lastName" v-model='lastName' required name="lastName" class="edit-profile-input w-full bg-gray-50 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3" />
-            </div>
-            <div class="col-span-1 flex justify-end">
-              <img class="w-5 h-5 sm:w-4 sm:h-4 xs:w-6 xs:h-6 mr-2" alt="verified_icon" :src="require(`@/assets/icons/verified.svg`)">
-            </div>
           </div>
 
           <div class="w-full grid grid-cols-4 gap-1 mt-6">
@@ -141,7 +143,10 @@
             <div class="col-span-2">
               <input placeholder="Enable AFT creation" id="aft_creation" v-model="aft_creation" name="phone" class="edit-profile-input w-full bg-gray-50 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3" />
             </div>
-            <div class="col-span-1 flex justify-end">
+            <div :class="`col-span-1 flex ${canStartKyc? 'justify-between' : 'justify-end'}`">
+              <router-link v-if="canStartKyc" to="/kyc" class="text-blue-600">
+                Verify ID Card
+              </router-link>
               <img class="w-5 h-5 sm:w-4 sm:h-4 xs:w-6 xs:h-6 mr-2" alt="verified_icon" :src="require(`@/assets/icons/verified.svg`)">
             </div>
           </div>
@@ -152,8 +157,8 @@
           Update profile
         </button>
       </div>
-      
-      
+
+
       <div v-if='slugify(selectedTab) === "change_password"' class="w-4/5 flex flex-col justify-center items-center pt-8">
 
         <div class="w-3/4 space-y-4">
@@ -193,6 +198,14 @@
         </div>
       </div>
 
+      <div v-if='slugify(selectedTab) === "edit_biography"' class="w-4/5 px-4 flex flex-col justify-center items-center pt-8">
+        <textarea required maxlength="500" class="w-full h-60 bg-gray-50 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2"></textarea>
+      </div>
+
+      <div v-if='slugify(selectedTab) === "edit_exhibition"' class="w-4/5 px-4 flex flex-col justify-center items-center pt-8">
+        <textarea required maxlength="500" class="w-full h-60 bg-gray-50 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2"></textarea>
+      </div>
+
     </div>
   </div>
   
@@ -224,9 +237,11 @@
 </style>
 
 <script>
+import Vue from "vue";
 // @ is an alias to /src
 import Header from '@/components/Header.vue'
 import Footer from '@/components/Footer.vue'
+const axios = require('axios');
 
 export default {
   name: 'EditProfile',
@@ -236,15 +251,19 @@ export default {
   },
   data() {
     return {
-      tabs: ['Edit Profile', 'Change Password', 'Manage Contacts', 'Help'],
+      keyForRerender: 0,
+      changePicLoading: false,
+      profilePictureUpload: "",
+      profilePictureNew: null,
+      tabs: ['Edit Profile', 'Change Password', 'Edit biography', 'Edit exhibition', 'Manage Contacts', 'Help'],
       selectedTab: 'Edit Profile',
-      firstName: null,
-      lastName: null,
       legalName: null,
       aft_creation: null,
       phone: null,
       email: null,
       name: null,
+      userName: null,
+      profilePicUrl: null,
       street: null,
       zip: null,
       city: null,
@@ -277,12 +296,14 @@ export default {
     
     this.email = user.email;
     this.name = user.name;
-    this.firstName = user.data.firstName;
-    this.lastName = user.data.lastName;
+    this.userName = user.data.userName;
+    if (user.data.profilePicUrl) {
+      this.profilePicUrl = this.$store.getters.api + user.data.profilePicUrl;
+    }
     this.legalName = user.data.legalName;
     this.phone = user.data.phone;
 
-    this.canStartKyc = this.firstName && this.lastName && this.phone && this.email;
+    this.canStartKyc = this.phone && this.email;
 
     this.zip = user.data.zip;
     this.city = user.data.city;
@@ -293,13 +314,67 @@ export default {
     this.newsletter = user.data.newsletter;
   },
   methods: {
+    openChangeProfilePhotoModal() {
+      this.$modal.show('change-profile-photo')
+    },
+    onFileChange(event) {
+      const files = event.target.files || event.dataTransfer.files;
+      if (!files.length) {
+        return;
+      }
+      // user profile can contain only one picture
+      this.createImage(files[0]);
+    },
+    createImage(file) {
+      this.profilePictureNew = file;
+      const reader = new FileReader();
+
+      reader.onload = (event) => {
+        this.profilePictureUpload = event.target.result;
+      };
+      reader.readAsDataURL(file);
+    },
+    removeImage: function (event) {
+      // remove uploaded image from cache
+      this.profilePictureUpload = "";
+      this.profilePictureNew = null;
+    },
+    async updateProfilePicture() {
+      this.changePicLoading = true
+
+      const formData = new FormData();
+      formData.append("file", this.profilePictureNew);
+
+      try {
+        const res = await axios.post(this.$store.getters.api + '/image', formData, {
+          headers: {
+            'Content-Type': `multipart/form-data; boundary=${formData._boundary}`,
+            'Authorization': this.$store.getters.bearer,
+          }
+        });
+
+        // this.profilePicUrl will probably be the same for each user because profilePicUrl
+        // has name like userId.extension_name
+        this.profilePicUrl = this.$store.getters.api + res.data.profilePicUrl
+        // keyForRerender is used to force rerender the renewed picture
+        this.keyForRerender = this.keyForRerender + 1
+        Vue.set(this, 'keyForRerender',this.keyForRerender + 1)
+        Vue.set(this, 'profilePicUrl',this.$store.getters.api + res.data.profilePicUrl)
+
+        this.changePicLoading = false
+        this.$modal.hide('change-profile-photo')
+        this.removeImage()
+
+      } catch(error) {
+        console.log(error)
+        this.error = 'Undefined error. Please try again later.';
+      }
+    },
     slugify(tab) {
       return tab.toLowerCase().replaceAll(' ', '_');
     },
     async editProfile () {
       const payload = {
-        firstName: this.firstName,
-        lastName: this.lastName,
         phone: this.phone,
       };
 

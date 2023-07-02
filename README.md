@@ -1,5 +1,3 @@
-# Jenko.io
-Jenko.io is a platform enable to create and provide Certificated of Authenticity recorded in Blockchain for a piece of Art. This website platform is dedicated to Artists, Galeries, Collectors and will be able to contain a royalties systems.
 
 "Property together with a contract, is the core institutional component of Market and a core institutional element of liberal society" Yochai Benkler - the wealth of network 2006
 
@@ -8,7 +6,7 @@ users access to jenko.io.
 
 the platform enable artists who wants to protect and register a piece of art into the blockchain such as NFT, and to generate an associated certificate of authenticity in order to build a Contract around the Artpiece that is including royalties system. 
 
-the information given around the Artpiece' life by users (Artist, Galeries, collectors) will be recorded into the Blockchain and accessible through the platform in ipfs. the Certificate of Authencity (CoA) is linked to a legal contract between users enable to deploy fair conditions and reinforce user's legal rights aside the physical transaction of the associated piece of Art. The CoA cannot be changed once it is created. The CoA Ownership will be shown in Jenko Dashboard by all the Users involved into the Legal Contract whenever a Royalties system have been set.
+the information given around the Artpiece' life by users (Artist, Galeries, collectors) will be recorded into the Blockchain and accessible through the platform in ipfs. the Certificate of Authencity (CoA) is linked to a legal contract between users enable to deploy fair conditions and reinforce user's legal rights aside the physical transaction of the associated piece of Art. The CoA cannot be changed once it is created. The CoA Ownership will be shown in Dashboard by all the Users involved into the Legal Contract whenever a Royalties system have been set.
 
 
 # POC
@@ -33,7 +31,7 @@ We Keep the privacy such as management system connected to user profil. explorat
 
 Royalties initial default settings for POC: 
 Artist: 15% to 20%
-Jenko: 4%
+Sas: 4%
 Galerie: 4%
 or Agent: 4%
 collector0: 2%

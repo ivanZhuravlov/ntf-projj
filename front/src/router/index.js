@@ -22,6 +22,8 @@ import Printables from '@/views/Printables.vue';
 import RenewedPricing from "@/views/RenewedPricing";
 import RenewedDashboard from "@/views/RenewedDashboard";
 import CreateAFT from '@/views/CreateAFT.vue';
+import Features from '@/views/Features.vue';
+import Portfolio from '@/views/Portfolio.vue';
 
 Vue.use(VueRouter);
 
@@ -109,7 +111,17 @@ const routes = [
     path: '/about',
     name: 'RenewedAbout',
     component: RenewedAbout
-  }, 
+  },
+  {
+    path: '/features',
+    name: 'Features',
+    component: Features
+  },
+  {
+    path: '/portfolio',
+    name: 'Portfolio',
+    component: Portfolio
+  },
   {
     path: '/profile',
     name: 'EditProfile',

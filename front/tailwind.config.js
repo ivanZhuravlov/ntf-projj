@@ -48,6 +48,7 @@ module.exports = {
       lightWhite: '#F1F1F1',
       slightOrange: '#FB923C',
       regularGay: '#F9F9F9',
+      standardGay: '#8A8181',
     },
     spacing: {
       px: '1px',
