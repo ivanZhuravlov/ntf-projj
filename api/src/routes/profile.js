@@ -59,6 +59,7 @@ async function post(req, res) {
       firstName: req.body.firstName,
       lastName: req.body.lastName,
       legalName: req.body.legalName,
+      userName: req.body.userName,
       phone: req.body.phone,
       country: req.body.country,
       street: req.body.street,

@@ -131,7 +131,6 @@ import Subscription from '@/components/Subscription.vue';
 import DashboardCoolIcon from '@/components/icons/DashboardCoolIcon.vue';
 import ListCheckListIcon from '@/components/icons/ListCheckListIcon.vue';
 import ArtSelected from '@/components/ArtSelected.vue';
-import { opacityChange } from "@/animations";
 
 const ViewTypeEnum = {
   GRID: 'grid',
